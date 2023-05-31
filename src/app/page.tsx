@@ -1,10 +1,6 @@
-import { buttonVariants, Button } from "@/components/Input/Button";
+import { Button, buttonVariants } from "@/components/UI/Button";
 
-export const metadata = {
-  title: "OptimizeX",
-};
-
-export default function Home() {
+const Page = () => {
   return (
     <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
       <div className="flex max-w-[980px] flex-col items-start gap-3">
@@ -44,4 +40,10 @@ export default function Home() {
       </div>
     </section>
   );
-}
+};
+
+export const metadata = {
+  title: "OptimizeX",
+};
+
+export default Page;

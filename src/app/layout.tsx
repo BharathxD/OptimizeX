@@ -1,5 +1,6 @@
-import mergeClasses from "@/utils";
+import Header from "@/components/Navbar/Header";
 import "./globals.css";
+import mergeClasses from "@/utils";
 import { Montserrat } from "next/font/google";
 
 const font = Montserrat({
@@ -11,6 +12,8 @@ export const metadata = {
   title: "OptimizeX",
   description: "Generate Optimized Images",
 };
+
+// Anti-aliazing - Improving the edges of the font
 
 export default function RootLayout({
   children,
@@ -26,6 +29,7 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-screen bg-white font-sans text-zinc-900 antialiased dark:bg-zinc-900 dark:text-zinc-50">
+        <Header />
         {children}
       </body>
     </html>
