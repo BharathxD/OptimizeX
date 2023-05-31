@@ -44,7 +44,7 @@ const Page = () => {
           unoptimized={true}
           height={100}
           priority={true}
-          className="hidden md:block aspect-video w-full md:w-[103vh] md:-ml-7 rounded-lg"
+          className="hidden md:block aspect-video w-full md:w-[107vh] md:-ml-7 rounded-lg"
         />
       </div>
     </section>
