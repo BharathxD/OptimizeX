@@ -19,7 +19,11 @@ const Navbar = ({ items }: NavbarProps) => {
           {items?.map(
             (item, index) =>
               item.href && (
-                <Button key={index} href={item.href} className={buttonVariants({variant: "ghost"})}>
+                <Button
+                  key={index}
+                  href={item.href}
+                  className={buttonVariants({ variant: "ghost" })}
+                >
                   {item.title}
                 </Button>
               )
