@@ -33,3 +33,34 @@ const buttonVariants = cva(
     },
   }
 );
+
+export interface ButtonProps
+  extends React.HTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  href?: string;
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, children, href, variant, size, ...props }, ref) => {
+    if (href) {
+      return (
+        <Link
+          href={href}
+          className={mergeClasses(buttonVariants({ variant, size, className }))}
+        >
+          {children}
+        </Link>
+      );
+    }
+    return (
+      <button
+        className={mergeClasses(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  }
+);
+Button.displayName = "Button";
