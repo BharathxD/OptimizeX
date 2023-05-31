@@ -3,8 +3,8 @@ const siteConfiguration = {
         { title: "Home", href: "/" }
     ],
     links: {
-        github: "/",
-        linkedin: "/"
+        github: "https://github.com/BharathxD",
+        linkedin: "https://www.linkedin.com/in/bharath-bandi/"
     }
 }
 

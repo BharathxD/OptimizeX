@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -6,11 +5,29 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    container: {
-      center: true,
-      padding: "1.5rem",
+    extend: {
+      container: {
+        center: true,
+        padding: "1.5rem",
+      },
       screens: {
         "2xl": "1360px",
+      },
+      keyframes: {
+        "border-expand": {
+          "0%": {
+            width: 0,
+          },
+          "50%": {
+            width: "100%",
+          },
+          "100%": {
+            width: 0,
+          },
+        },
+      },
+      animation: {
+        "border-expand": "border-expand 4s ease-in-out infinite",
       },
     },
   },
