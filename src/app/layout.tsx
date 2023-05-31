@@ -1,3 +1,4 @@
+import mergeClasses from "@/utils";
 import "./globals.css";
 import { Inter, Montserrat } from "next/font/google";
 
@@ -17,7 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={mergeClasses(
+        "dark bg-white font-sans text-zinc-900 antialiased",
+        font.variable
+      )}
+    >
       <body className="min-h-screen bg-white font-sans text-zinc-900 antialiased dark:bg-zinc-900 dark:text-zinc-50">
         {children}
       </body>
