@@ -1,3 +1,9 @@
+import { buttonVariants, Button } from "@/components/Input/Button";
+
+export const metadata = {
+  title: "OptimizeX",
+};
+
 export default function Home() {
   return (
     <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
@@ -12,15 +18,29 @@ export default function Home() {
         </p>
       </div>
       <div className="flex gap-4">
-        {/**
-         * Upload Section
-         */}
+        <Button className={buttonVariants({ size: "lg", className: "w-fit" })}>
+          Upload
+        </Button>
       </div>
       <div className="flex flex-col gap-4 mt-12">
         <p className=" text-sm text-zinc-400">
           All images are used solely for alt-generation and are automatically
           deleted after 24h.
         </p>
+        <div className="flex items-center gap-4">
+          <Button
+            href="/terms"
+            className={buttonVariants({ variant: "link", size: "sm" })}
+          >
+            Terms
+          </Button>
+          <Button
+            href="/privacy-policy"
+            className={buttonVariants({ variant: "link", size: "sm" })}
+          >
+            Privacy Policy
+          </Button>
+        </div>
       </div>
     </section>
   );
