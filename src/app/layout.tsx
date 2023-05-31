@@ -1,6 +1,6 @@
 import mergeClasses from "@/utils";
 import "./globals.css";
-import { Inter, Montserrat } from "next/font/google";
+import { Montserrat } from "next/font/google";
 
 const font = Montserrat({
   subsets: ["latin"],
