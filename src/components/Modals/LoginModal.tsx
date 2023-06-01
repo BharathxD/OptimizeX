@@ -12,12 +12,12 @@ import Input from "../Inputs/Input";
 import { Button, buttonVariants } from "../Inputs/Button";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import { useRouter } from "next/navigation";
+import { useQuery } from "react-query";
 
 const LoginModal = () => {
   const router = useRouter();
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -35,9 +35,27 @@ const LoginModal = () => {
     registerModal.onOpen();
   }, [registerModal, loginModal]);
 
-  const onSubmit: SubmitHandler<FieldValues> = async (values: FieldValues) => {
-    return console.log(values);
-  };
+  const { data, isLoading, error } = useQuery("authenticate", {
+    queryFn: async (data) => {
+      const response = await signIn("credentials", {
+        ...data,
+        redirect: false,
+      });
+    },
+    onSuccess: async () => {
+      console.log("Successfully logged in");
+      loginModal.onClose();
+      router.refresh();
+      return reset();
+    },
+    onError: () => {
+      console.log("Something went wrong");
+    },
+  });
+
+  const onSubmit: SubmitHandler<FieldValues> = async (
+    values: FieldValues
+  ) => {};
 
   const body = (
     <div className="flex flex-col gap-5">

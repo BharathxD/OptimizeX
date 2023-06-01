@@ -5,6 +5,8 @@ import { Montserrat } from "next/font/google";
 import Footer from "@/components/Footer/Footer";
 import Modal from "@/components/Modals/Modal";
 import LoginModal from "@/components/Modals/LoginModal";
+import client from "@/libs/prismadb";
+import RtkProvider from "@/providers/RtkProvider";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -32,10 +34,12 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-screen bg-white font-sans text-zinc-900 antialiased dark:bg-zinc-900 dark:text-zinc-50">
-        <Header />
-        <LoginModal />
-        {children}
-        <Footer />
+        <RtkProvider>
+          <Header />
+          <LoginModal />
+          {children}
+          <Footer />
+        </RtkProvider>
       </body>
     </html>
   );
