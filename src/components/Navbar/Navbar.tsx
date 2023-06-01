@@ -1,6 +1,6 @@
 import { NavItem } from "@/types/navigation";
 import Link from "next/link";
-import { Button, buttonVariants } from "../UI/Button";
+import { Button, buttonVariants } from "../Inputs/Button";
 
 interface NavbarProps {
   items: NavItem[];

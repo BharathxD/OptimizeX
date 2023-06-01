@@ -1,4 +1,4 @@
-import { buttonVariants, Button } from "../UI/Button";
+import { Button, buttonVariants } from "../Inputs/Button";
 
 const Footer = () => {
   return (

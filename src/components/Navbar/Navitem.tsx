@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { buttonVariants } from "../UI/Button";
+import { buttonVariants } from "../Inputs/Button";
 import { IconType } from "react-icons";
 
 interface NavItemProps {
