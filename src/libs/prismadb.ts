@@ -1,5 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 
+/**
+ * Implementing a Singleton Prisma Client
+ */
+
 declare global {
     var prisma: PrismaClient | undefined;
 }
