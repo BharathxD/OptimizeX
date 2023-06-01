@@ -6,13 +6,14 @@ import { FcGoogle } from "react-icons/fc";
 import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import useLoginModal from "@/hooks/useLoginModal";
+import { StatusCodes } from "http-status-codes";
 
 import Modal from "./Modal";
 import Input from "../Inputs/Input";
 import { Button, buttonVariants } from "../Inputs/Button";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import { useRouter } from "next/navigation";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -35,12 +36,15 @@ const LoginModal = () => {
     registerModal.onOpen();
   }, [registerModal, loginModal]);
 
-  const { data, isLoading, error } = useQuery("authenticate", {
-    queryFn: async (data) => {
+  const { mutate, isLoading, error } = useMutation({
+    mutationFn: async (data: FieldValues) => {
       const response = await signIn("credentials", {
         ...data,
         redirect: false,
       });
+      if (response?.status === StatusCodes.UNAUTHORIZED) {
+        throw new Error("Invalid Credentials");
+      }
     },
     onSuccess: async () => {
       console.log("Successfully logged in");
@@ -48,14 +52,14 @@ const LoginModal = () => {
       router.refresh();
       return reset();
     },
-    onError: () => {
-      console.log("Something went wrong");
+    onError: (error) => {
+      console.log(`Something went wrong: ${(error as any).message}`);
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = async (
-    values: FieldValues
-  ) => {};
+  const onSubmit: SubmitHandler<FieldValues> = async (values: FieldValues) => {
+    mutate(values);
+  };
 
   const body = (
     <div className="flex flex-col gap-5">
@@ -86,9 +90,7 @@ const LoginModal = () => {
       <div className="flex flex-row w-full gap-2">
         <Button
           icon={FcGoogle}
-          onClick={() => {
-            signIn("google");
-          }}
+          onClick={() => signIn("google")}
           className={buttonVariants({
             variant: "outline",
             className: "w-full p-7 text-lg",
@@ -98,9 +100,7 @@ const LoginModal = () => {
         </Button>
         <Button
           icon={AiFillGithub}
-          onClick={() => {
-            signIn("github");
-          }}
+          onClick={() => signIn("github")}
           className={buttonVariants({
             variant: "outline",
             className: "w-full p-7 text-lg",

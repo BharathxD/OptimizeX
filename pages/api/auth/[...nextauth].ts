@@ -13,15 +13,15 @@ const authOptions: AuthOptions = {
         GithubProvider({
             id: "github",
             name: "Github",
-            clientId: process.env.GITHUB_ID as string,
-            clientSecret: process.env.GITHUB_SECRET as string,
+            clientId: process.env.GITHUB_CLIENT_ID as string,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
             allowDangerousEmailAccountLinking: true,
         }),
         GoogleProvider({
             id: "google",
             name: "Google",
-            clientId: process.env.GOOGLE_ID as string,
-            clientSecret: process.env.GOOGLE_SECRET as string,
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
             allowDangerousEmailAccountLinking: true,
         }),
         CredentialsProvider({
@@ -53,7 +53,8 @@ const authOptions: AuthOptions = {
     pages: {
         signIn: "/"
     },
-    debug: process.env.NODE_ENV !== "production",
+    // process.env.NODE_ENV !== "production"
+    debug: false,
     session: {
         strategy: "jwt"
     },
