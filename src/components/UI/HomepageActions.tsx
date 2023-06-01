@@ -29,6 +29,7 @@ const HomepageActions = () => {
         })}
         href={siteConfiguration.project.github}
         icon={GoMarkGithub}
+        newTab
       >
         Shine a Star
       </Button>

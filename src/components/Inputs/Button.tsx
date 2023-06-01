@@ -43,17 +43,20 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   href?: string;
   icon?: IconType;
+  newTab?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, href, variant, size, icon: Icon, ...props }, ref) => {
+  (
+    { className, children, href, variant, size, newTab, icon: Icon, ...props },
+    ref
+  ) => {
     if (href) {
       return (
         <Link
           href={href}
           className={mergeClasses(buttonVariants({ variant, size, className }))}
-          target="_blank"
-          rel="noreferrer"
+          {...(newTab && { target: "_blank", rel: "noreferrer" })}
         >
           {children}
           {Icon && <Icon />}
