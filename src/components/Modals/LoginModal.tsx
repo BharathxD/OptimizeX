@@ -9,7 +9,7 @@ import useLoginModal from "@/hooks/useLoginModal";
 
 import Modal from "./Modal";
 import Input from "../Inputs/Input";
-import { Button } from "../Inputs/Button";
+import { Button, buttonVariants } from "../Inputs/Button";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import { useRouter } from "next/navigation";
 
@@ -35,8 +35,8 @@ const LoginModal = () => {
     registerModal.onOpen();
   }, [registerModal, loginModal]);
 
-  const onSubmit: SubmitHandler<FieldValues> = async () => {
-    return;
+  const onSubmit: SubmitHandler<FieldValues> = async (values: FieldValues) => {
+    return console.log(values);
   };
 
   const body = (
@@ -64,14 +64,17 @@ const LoginModal = () => {
   );
 
   const footerContent = (
-    <div className="flex flex-col gap-4 mt-3">
-      <hr />
-      <div className="flex flex-col gap-3">
+    <div className="flex flex-col mt-3">
+      <div className="flex flex-row w-full gap-2">
         <Button
           icon={FcGoogle}
           onClick={() => {
             signIn("google");
           }}
+          className={buttonVariants({
+            variant: "outline",
+            className: "w-full p-7 text-lg",
+          })}
         >
           Google
         </Button>
@@ -80,15 +83,19 @@ const LoginModal = () => {
           onClick={() => {
             signIn("github");
           }}
+          className={buttonVariants({
+            variant: "outline",
+            className: "w-full p-7 text-lg",
+          })}
         >
           Github
         </Button>
       </div>
-      <div className="text-neutral-500 text-center mt-4 font-light">
+      <div className="text-zinc-300 text-center font-light p-3">
         <div className="flex flex-row items-center gap-2 justify-center">
           <div>Don&apos;t have an account?</div>
           <div
-            className="text-neutral-600 cursor-pointer hover:underline font-medium"
+            className="text-zinc-400 cursor-pointer hover:underline font-medium"
             onClick={toggle}
           >
             Sign Up

@@ -2,6 +2,7 @@
 
 import { FC, ReactElement, useCallback, useEffect, useState } from "react";
 import { Button, buttonVariants } from "../Inputs/Button";
+import { IoMdClose } from "react-icons/io";
 
 interface ModalProps {
   isOpen: boolean;
@@ -54,7 +55,7 @@ const Modal: FC<ModalProps> = ({
   }
   return (
     <div
-      className={`justify-center items-center backdrop-blur flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-slate-800/70`}
+      className={`justify-center items-center backdrop-blur flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-zinc-800/70`}
       onClick={handleClose}
     >
       <div
@@ -69,11 +70,11 @@ const Modal: FC<ModalProps> = ({
         >
           <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-zinc-900 outline-none focus:outline-none">
             {/* {HEADER} */}
-            <div className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
-              <button className="p-1 border-0 hover:opacity-70 transition absolute left-6">
-                Close
-              </button>
+            <div className="flex items-center p-6 rounded-t justify-center relative border-zinc-500 border-opacity-50 border-b-[1px]">
               <div className="text-lg font-semibold">{title}</div>
+              <button className="p-1 border-0 hover:opacity-70 transition absolute right-6">
+                <IoMdClose size={18} onClick={() => onClose()} />
+              </button>
             </div>
             <div className="relative p-6 pb-0 flex-auto">{body}</div>
             <div className="flex flex-col gap-2 p-6 pb-0">
@@ -94,7 +95,7 @@ const Modal: FC<ModalProps> = ({
                   onClick={handleSubmit}
                   className={buttonVariants({
                     variant: "special",
-                    className: "w-full p-7"
+                    className: "w-full p-7 text-lg",
                   })}
                 >
                   {actionLabel}
