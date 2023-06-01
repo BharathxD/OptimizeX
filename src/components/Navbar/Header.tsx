@@ -4,6 +4,7 @@ import NavItem from "./Navitem";
 
 import { FaLinkedin } from "react-icons/fa";
 import { GoMarkGithub } from "react-icons/go";
+import UserMenu from "./UserMenu";
 
 const Header = () => {
   return (
@@ -20,6 +21,7 @@ const Header = () => {
               href={siteConfiguration.links.linkedin}
               icon={FaLinkedin}
             />
+            <UserMenu />
           </nav>
         </div>
       </div>
