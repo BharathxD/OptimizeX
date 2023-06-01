@@ -19,7 +19,7 @@ const HomepageActions = () => {
           loginModal.onOpen();
         }}
       >
-        Get Started
+        Get Optimized
       </Button>
       <Button
         className={buttonVariants({

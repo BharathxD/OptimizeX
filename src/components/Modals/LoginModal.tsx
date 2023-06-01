@@ -109,7 +109,7 @@ const LoginModal = () => {
           Github
         </Button>
       </div>
-      <div className="text-zinc-300 text-center font-light p-3">
+      <div className="text-zinc-300 text-center font-light p-8">
         <div className="flex flex-row items-center gap-2 justify-center">
           <div>Don&apos;t have an account?</div>
           <div

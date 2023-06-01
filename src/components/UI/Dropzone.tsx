@@ -1,9 +1,15 @@
 "use client";
 
-import { Fragment, useCallback } from "react";
+import { FC, Fragment, useCallback, useState } from "react";
 import ReactDropzone, { Accept } from "react-dropzone";
 
-const Dropzone = () => {
+interface DropzoneProps {
+  setFiles: (files: File[]) => void;
+}
+
+const Dropzone: FC<DropzoneProps> = ({ setFiles }) => {
+  const [uploadedFilesCount, setUploadedFilesCount] = useState(0);
+
   const acceptedFileTypes: Accept = {
     "image/jpeg": [".jpg", ".jpeg"],
     "image/png": [".png"],
@@ -11,14 +17,26 @@ const Dropzone = () => {
     "image/webp": [".webp"],
     "image/avif": [".avif"],
   };
-  const handleImageDrop = useCallback((acceptedFiles: any) => {
-    console.log(acceptedFiles);
-  }, []);
+  const handleImageDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      // Check if the total count of uploaded files + the count of accepted files is greater than 10
+      if (uploadedFilesCount + acceptedFiles.length > 10) {
+        // Display an error message or perform any necessary action
+        console.log("You can only upload up to 10 images.");
+        return;
+      }
+
+      setUploadedFilesCount(uploadedFilesCount + acceptedFiles.length);
+      setFiles(acceptedFiles);
+    },
+    [setFiles, uploadedFilesCount]
+  );
+
   return (
     <ReactDropzone
       accept={acceptedFileTypes}
       onDrop={handleImageDrop}
-      multiple={false}
+      multiple={true}
     >
       {({ getRootProps, getInputProps }) => (
         <div

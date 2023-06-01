@@ -33,8 +33,8 @@ const RegisterModal = () => {
   });
 
   const toggle = useCallback(() => {
-    registerModal.onClose();
     loginModal.onOpen();
+    registerModal.onClose();
   }, [registerModal, loginModal]);
 
   const { mutate, isLoading, error } = useMutation({
@@ -114,7 +114,7 @@ const RegisterModal = () => {
           Github
         </Button>
       </div>
-      <div className="text-zinc-300 text-center font-light p-3">
+      <div className="text-zinc-300 text-center font-light p-8">
         <div className="flex flex-row items-center gap-2 justify-center">
           <div>Already have an account?</div>
           <div
