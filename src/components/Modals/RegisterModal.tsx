@@ -39,10 +39,7 @@ const RegisterModal = () => {
 
   const { mutate, isLoading, error } = useMutation({
     mutationFn: async (data: FieldValues) => {
-      const response = await axios.post("/api/register", data);
-      if (response.status !== StatusCodes.OK) {
-        throw new Error("Oops! Something went wrong.");
-      }
+      await axios.post("/api/register", data);
     },
     onSuccess: async () => {
       console.log("Successfully Registered the User");
