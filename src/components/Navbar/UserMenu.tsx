@@ -24,7 +24,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
     <div className="relative">
       <div
         onClick={toggleOpen}
-        className={`ml-4 p-4 md:py-1 md:px-1 border-[1px] hover:border-zinc-600 hover:bg-zinc-700 ${
+        className={`ml-4 p-1 md:p-4 md:py-1 md:px-1 border-[1px] hover:border-zinc-600 hover:bg-zinc-700 ${
           isOpen ? "border-zinc-600 bg-zinc-700" : "border-zinc-700 bg-zinc-800"
         } flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition`}
       >
