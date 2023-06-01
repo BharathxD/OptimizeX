@@ -52,8 +52,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <Link
           href={href}
           className={mergeClasses(buttonVariants({ variant, size, className }))}
+          target="_blank"
+          rel="noreferrer"
         >
           {children}
+          {Icon && <Icon />}
         </Link>
       );
     }

@@ -7,6 +7,7 @@ import Modal from "@/components/Modals/Modal";
 import LoginModal from "@/components/Modals/LoginModal";
 import client from "@/libs/prismadb";
 import RtkProvider from "@/providers/RtkProvider";
+import RegisterModal from "@/components/Modals/RegisterModal";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -40,6 +41,7 @@ export default function RootLayout({
         <RtkProvider>
           <Header />
           <LoginModal />
+          <RegisterModal />
           {children}
           <Footer />
         </RtkProvider>

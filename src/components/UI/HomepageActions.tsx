@@ -3,6 +3,7 @@
 import useLoginModal from "@/hooks/useLoginModal";
 import { Button, buttonVariants } from "../Inputs/Button";
 import { GoMarkGithub } from "react-icons/go";
+import siteConfiguration from "@/config";
 
 const HomepageActions = () => {
   const loginModal = useLoginModal();
@@ -26,6 +27,7 @@ const HomepageActions = () => {
           size: "lg",
           className: "md:w-fit font-bold text-md w-full",
         })}
+        href={siteConfiguration.project.github}
         icon={GoMarkGithub}
       >
         Shine a Star
