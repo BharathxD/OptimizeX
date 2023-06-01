@@ -8,6 +8,7 @@ import LoginModal from "@/components/Modals/LoginModal";
 import client from "@/libs/prismadb";
 import RtkProvider from "@/providers/RtkProvider";
 import RegisterModal from "@/components/Modals/RegisterModal";
+import getCurrentUser from "@/actions/getCurrentUser";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -21,11 +22,12 @@ export const metadata = {
 
 // Anti-aliazing - Improving the edges of the font
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const currentUser = await getCurrentUser();
   return (
     <html
       lang="en"
@@ -39,7 +41,7 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <RtkProvider>
-          <Header />
+          <Header currentUser={currentUser} />
           <LoginModal />
           <RegisterModal />
           {children}

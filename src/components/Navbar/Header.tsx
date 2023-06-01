@@ -5,8 +5,14 @@ import NavItem from "./Navitem";
 import { FaLinkedin } from "react-icons/fa";
 import { GoMarkGithub } from "react-icons/go";
 import UserMenu from "./UserMenu";
+import { SafeUser } from "@/types/User";
+import { FC } from "react";
 
-const Header = () => {
+interface HeaderProps {
+  currentUser: SafeUser | null;
+}
+
+const Header: FC<HeaderProps> = ({ currentUser }) => {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-b-zinc-200 bg-white dark:border-b-zinc-700 dark:bg-zinc-900">
       <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
@@ -21,7 +27,7 @@ const Header = () => {
               href={siteConfiguration.links.linkedin}
               icon={FaLinkedin}
             />
-            <UserMenu />
+            <UserMenu currentUser={currentUser} />
           </nav>
         </div>
       </div>

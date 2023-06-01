@@ -9,7 +9,7 @@ const HomepageImage = () => {
       unoptimized={true}
       height={100}
       priority={true}
-      className="hidden md:block aspect-video w-full md:w-[107vh] md:-ml-7 rounded-lg -mr-10"
+      className="hidden md:block aspect-video w-full md:w-[110vh] md:-ml-7 rounded-lg -mr-10"
     />
   );
 };

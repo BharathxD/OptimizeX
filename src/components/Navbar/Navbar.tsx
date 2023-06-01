@@ -1,4 +1,4 @@
-import { NavItem } from "@/types/navigation";
+import { NavItem } from "@/types/Navigation";
 import Link from "next/link";
 import { Button, buttonVariants } from "../Inputs/Button";
 
