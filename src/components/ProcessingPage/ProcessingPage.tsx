@@ -4,6 +4,7 @@ import React, { FC, useCallback, useState } from "react";
 import Dropzone from "../UI/Dropzone";
 import InputInfo from "./InputInfo";
 import { Button, buttonVariants } from "../Inputs/Button";
+import { toast } from "react-hot-toast";
 
 const ProcessingPage: FC = () => {
   const [files, setFiles] = useState<File[] | null>(null);
@@ -56,6 +57,7 @@ const ProcessingPage: FC = () => {
                   variant: "special",
                   className: "w-full md:w-full mb-4",
                 })}
+                onClick={() => toast.success("Processing the request")}
               >
                 Begin Processing
               </Button>
