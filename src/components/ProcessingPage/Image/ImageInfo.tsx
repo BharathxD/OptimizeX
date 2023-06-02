@@ -8,22 +8,21 @@ interface ImageInfoProps {
   name: File["name"];
   size: File["size"];
   url: string;
-  setFiles: (file: File[]) => void;
-  handleRemove: (fileName: File["name"]) => void;
+  handleEdit: (fileName: File["name"]) => void;
 }
 
-const ImageInfo: FC<ImageInfoProps> = ({
-  name,
-  size,
-  url,
-  setFiles,
-  handleRemove,
-}) => {
+const ImageInfo: FC<ImageInfoProps> = ({ name, size, url, handleEdit }) => {
   return (
     <tr>
       <td className="px-6 py-4 text-sm dark:text-slate-400">
         <div className="relative flex h-12 w-20">
-          <Image src={url} fill alt={name} quality={20} className="rounded-lg" />
+          <Image
+            src={url}
+            fill
+            alt={name}
+            quality={20}
+            className="rounded-lg"
+          />
         </div>
       </td>
       <td className="px-6 py-4">{name}</td>
@@ -33,7 +32,7 @@ const ImageInfo: FC<ImageInfoProps> = ({
       <td className="px-10 py-10">
         <IoIosRemoveCircleOutline
           size={25}
-          onClick={() => handleRemove(name)}
+          onClick={() => handleEdit(name)}
           className="cursor-pointer text-rose-400"
         />
       </td>

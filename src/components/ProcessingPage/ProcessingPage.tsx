@@ -1,74 +1,134 @@
 "use client";
 
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, Fragment, useCallback, useState } from "react";
 import Dropzone from "../UI/Dropzone";
-import InputInfo from "./InputInfo";
+import ImageInfoContainer from "./Image/ImageInfoContainer";
 import { Button, buttonVariants } from "../Inputs/Button";
-import { toast } from "react-hot-toast";
+import ProcessBody from "../Wrapper/Processing";
+import { siteMessages } from "@/config";
+
+enum STEP {
+  SELECT,
+  CURATE,
+  PROCESSED,
+}
 
 const ProcessingPage: FC = () => {
-  const [files, setFiles] = useState<File[] | null>(null);
+  const [selectedFiles, setSelectedFiles] = useState<File[] | null>(null);
+  const [step, setStep] = useState<STEP>(STEP.SELECT);
 
-  const onRemove = useCallback((fileName: string) => {
-    setFiles((prevFiles) => {
-      return prevFiles?.filter((file) => file.name !== fileName) || null;
+  const handleEdit = useCallback((fileName: string) => {
+    setSelectedFiles((prevSelectedFiles) => {
+      const updatedFiles =
+        prevSelectedFiles?.filter((file) => file.name !== fileName) || null;
+      if (!updatedFiles || updatedFiles.length === 0) {
+        setStep(STEP.SELECT);
+      }
+      return updatedFiles;
     });
   }, []);
 
-  const renderDropzone = () => {
-    if (!files || files.length === 0) {
-      return <Dropzone setFiles={setFiles} />;
-    }
-    return (
-      <div className="bg-zinc-800 border border-dashed border-zinc-600 h-auto max-h-[20rem] w-full md:w-[40rem] rounded-lg overflow-auto">
-        <InputInfo files={files} setFiles={setFiles} handleRemove={onRemove} />
-      </div>
-    );
+  const handleDropzoneChange = useCallback((files: File[]) => {
+    setSelectedFiles((prevSelectedFiles) => {
+      const updatedFiles = [...(prevSelectedFiles || []), ...files];
+      if (updatedFiles.length > 0) {
+        setStep(STEP.CURATE);
+      }
+      return updatedFiles;
+    });
+  }, []);
+
+  const handleBeginProcessing = async () => {
+    // Perform async operation here
+
+    // Once the operation is complete, set the step to PROCESSED
+    setStep(STEP.PROCESSED);
   };
 
   const renderHeading = () => {
-    if (files && files?.length !== 0) {
-      return "Alright One Last step.";
+    switch (step) {
+      case STEP.SELECT:
+        return siteMessages.heading.withoutFiles;
+      case STEP.CURATE:
+        return siteMessages.heading.withFiles;
+      case STEP.PROCESSED:
+        return siteMessages.heading.afterProcessed;
+      default:
+        return null;
     }
-    return "Drop your image(s) below.";
   };
 
   const renderBody = () => {
-    if (files && files?.length !== 0) {
-      return "Finalize and curate your pictures with the option to selectively choose or remove them.";
+    switch (step) {
+      case STEP.SELECT:
+        return siteMessages.body.withoutFiles;
+      case STEP.CURATE:
+        return siteMessages.body.withFiles;
+      case STEP.PROCESSED:
+        return siteMessages.body.afterProcessed;
+      default:
+        return null;
     }
-    return "Effortlessly process multiple images by simply dropping them or clicking in the designated area below.";
   };
 
-  return (
-    <div className={`flex flex-col gap-10 absolute top-3 p-5 w-full`}>
-      <h1 className="font-extrabold text-center text-3xl tracking-tighter leading-tight sm:text-3xl md:text-5xl lg:text-6xl">
-        {renderHeading()}
-      </h1>
-      <p className="text-zinc-700 dark:text-zinc-400 w-full text-lg sm:text-xl text-center">
-        {renderBody()}
-      </p>
-      <div className="flex w-full md:justify-center md:items-center">
-        <div className="w-full md:w-max">
-          {files && files?.length !== 0 && (
+  const renderFooter = () => {
+    switch (step) {
+      case STEP.SELECT:
+        return (
+          <div className="flex w-full flex-col gap-4 items-center relative">
+            <Dropzone setFiles={handleDropzoneChange} />
+          </div>
+        );
+      case STEP.CURATE:
+        return (
+          <Fragment>
             <div className="flex justify-center items-center">
               <Button
                 className={buttonVariants({
                   variant: "special",
                   className: "w-full md:w-full mb-4",
                 })}
-                onClick={() => toast.success("Processing the request")}
+                onClick={handleBeginProcessing}
               >
                 Begin Processing
               </Button>
             </div>
-          )}
-          <div className="flex w-full flex-col gap-4 items-center relative">
-            {renderDropzone()}
-          </div>
-        </div>
-      </div>
-    </div>
+            <div className="flex w-full flex-col gap-4 items-center relative">
+              <div className="bg-zinc-800 border border-dashed border-zinc-600 h-auto max-h-[20rem] w-full md:w-[40rem] rounded-lg overflow-auto">
+                <ImageInfoContainer
+                  files={selectedFiles}
+                  handleEdit={handleEdit}
+                />
+              </div>
+            </div>
+          </Fragment>
+        );
+      case STEP.PROCESSED:
+        return (
+          <Fragment>
+            <div className="flex justify-center items-center">
+              <Button
+                className={buttonVariants({
+                  variant: "default",
+                })}
+                onClick={() => setStep(STEP.SELECT)}
+              >
+                Reset
+              </Button>
+            </div>
+          </Fragment>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <ProcessBody
+      header={renderHeading()}
+      body={renderBody()}
+      footer={renderFooter()}
+    />
   );
 };
 

@@ -3,7 +3,7 @@
 import useLoginModal from "@/hooks/useLoginModal";
 import { Button, buttonVariants } from "../Inputs/Button";
 import { GoMarkGithub } from "react-icons/go";
-import siteConfiguration from "@/config";
+import { siteConfiguration } from "@/config";
 
 const HomepageActions = () => {
   const loginModal = useLoginModal();

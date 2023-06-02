@@ -1,5 +1,5 @@
 import Navbar from "./Navbar";
-import siteConfiguration from "@/config";
+import { siteConfiguration } from "@/config";
 import NavItem from "./Navitem";
 
 import { FaLinkedin } from "react-icons/fa";

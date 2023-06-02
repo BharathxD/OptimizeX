@@ -1,4 +1,4 @@
-const siteConfiguration = {
+export const siteConfiguration = {
   items: [{ title: "Home", href: "/" }],
   links: {
     github: "https://github.com/BharathxD",
@@ -9,4 +9,18 @@ const siteConfiguration = {
   }
 };
 
-export default siteConfiguration;
+export const siteMessages = {
+  heading: {
+    withFiles: "Alright, one last step.",
+    withoutFiles: "Drop your image(s) below.",
+    afterProcessed: "Processing complete!",
+  },
+  body: {
+    withFiles:
+      "Finalize and curate your pictures with the option to selectively choose or remove them.",
+    withoutFiles:
+      "Effortlessly process multiple images by simply dropping them or clicking in the designated area below.",
+    afterProcessed: "Your images have been successfully processed.",
+  },
+};
+
