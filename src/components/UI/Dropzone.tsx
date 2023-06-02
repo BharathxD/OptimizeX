@@ -2,6 +2,7 @@
 
 import { FC, Fragment, useCallback, useState } from "react";
 import ReactDropzone, { Accept } from "react-dropzone";
+import { toast } from "react-hot-toast";
 
 interface DropzoneProps {
   setFiles: (files: File[]) => void;
@@ -19,15 +20,28 @@ const Dropzone: FC<DropzoneProps> = ({ setFiles }) => {
   };
   const handleImageDrop = useCallback(
     (acceptedFiles: File[]) => {
+      // Filter out files greater than 5MB
+      const filteredFiles = acceptedFiles.filter(
+        (file) => {
+          if (file.size >= 5 * 1024 * 1024) {
+            toast.error(`${file.name} is too large to process.`);
+          }
+          return file.size <= 5 * 1024 * 1024;
+        } // 5MB in bytes
+      );
+
       // Check if the total count of uploaded files + the count of accepted files is greater than 10
-      if (uploadedFilesCount + acceptedFiles.length > 10) {
+      if (uploadedFilesCount + filteredFiles.length > 5) {
         // Display an error message or perform any necessary action
-        console.log("You can only upload up to 10 images.");
+        return toast.error("You can only upload up to 5 images.");
+      }
+      if (filteredFiles.length <= 0) {
         return;
       }
 
-      setUploadedFilesCount(uploadedFilesCount + acceptedFiles.length);
-      setFiles(acceptedFiles);
+      setUploadedFilesCount(uploadedFilesCount + filteredFiles.length);
+
+      setFiles(filteredFiles);
     },
     [setFiles, uploadedFilesCount]
   );

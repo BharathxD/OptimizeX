@@ -7,6 +7,8 @@ import { Button, buttonVariants } from "../Inputs/Button";
 import ProcessBody from "../Wrapper/Processing";
 import { siteMessages } from "@/config";
 import { uploadImage } from "@/utils/api";
+import { AiOutlineLoading } from "react-icons/ai";
+import Link from "next/link";
 
 enum STEP {
   SELECT,
@@ -16,8 +18,11 @@ enum STEP {
 
 const ProcessingPage: FC = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[] | null>(null);
-  const [processedFiles, setProcessedFiles] = useState<string[] | []>([]);
+  const [processedFiles, setProcessedFiles] = useState<
+    { name: string; url: string }[] | []
+  >([]);
   const [step, setStep] = useState<STEP>(STEP.SELECT);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleEdit = useCallback((fileName: string) => {
     setSelectedFiles((prevSelectedFiles) => {
@@ -36,17 +41,22 @@ const ProcessingPage: FC = () => {
   }, []);
 
   const handleBeginProcessing = async () => {
+    setIsLoading(true);
     if (selectedFiles && selectedFiles.length > 0) {
       try {
         const uploadPromises = selectedFiles.map(async (file) => {
-          const key = await uploadImage(file);
-          return key;
+          const url = await uploadImage(file);
+          return { name: file.name, url: url };
         });
         const uploadedImages = await Promise.all(uploadPromises);
         setProcessedFiles(uploadedImages);
-        setStep(STEP.PROCESSED);
+        setTimeout(() => {
+          setStep(STEP.PROCESSED);
+          setIsLoading(false);
+        }, 10000);
       } catch (error) {
         console.error(error);
+        setIsLoading(false);
       }
     }
   };
@@ -92,11 +102,18 @@ const ProcessingPage: FC = () => {
               <Button
                 className={buttonVariants({
                   variant: "special",
-                  className: "w-full md:w-full mb-4",
+                  className: `w-full md:w-full mb-4 ${
+                    isLoading && "animate-pulse disabled:opacity-50"
+                  }`,
                 })}
+                disabled={isLoading}
                 onClick={handleBeginProcessing}
               >
-                Begin Processing
+                {isLoading ? (
+                  <AiOutlineLoading className="animate-spin" />
+                ) : (
+                  "Begin Processing"
+                )}
               </Button>
             </div>
             <div className="flex w-full flex-col gap-4 items-center relative">
@@ -111,10 +128,24 @@ const ProcessingPage: FC = () => {
         );
       case STEP.PROCESSED:
         return (
-          <Fragment>
-            <div>
+          <div className="flex flex-col gap-10">
+            <div className="w-[10vw] bg-zinc-800 m-2 rounded-lg">
               {processedFiles &&
-                processedFiles.map((file, index) => <p key={index}>{file}</p>)}
+                processedFiles.map((value, index) => {
+                  return (
+                    <div key={index} className="p-2 flex flex-col gap-2">
+                      <Button
+                        className={buttonVariants({
+                          variant: "special",
+                        })}
+                        href={value.url}
+                        newTab
+                      >
+                        Download {value.name}
+                      </Button>
+                    </div>
+                  );
+                })}
             </div>
             <div className="flex justify-center items-center">
               <Button
@@ -129,7 +160,7 @@ const ProcessingPage: FC = () => {
                 Reset
               </Button>
             </div>
-          </Fragment>
+          </div>
         );
       default:
         return null;
