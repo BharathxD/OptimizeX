@@ -3,12 +3,11 @@ import "./globals.css";
 import mergeClasses from "@/utils";
 import { Montserrat } from "next/font/google";
 import Footer from "@/components/Footer/Footer";
-import Modal from "@/components/Modals/Modal";
 import LoginModal from "@/components/Modals/LoginModal";
-import client from "@/libs/prismadb";
 import RtkProvider from "@/providers/RtkProvider";
 import RegisterModal from "@/components/Modals/RegisterModal";
 import getCurrentUser from "@/actions/getCurrentUser";
+import { Toaster } from "react-hot-toast";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -42,9 +41,10 @@ export default async function RootLayout({
       >
         <RtkProvider>
           <Header currentUser={currentUser} />
+          <Toaster position="top-center" reverseOrder={false} />
           <LoginModal />
           <RegisterModal />
-          {children}
+          <main className="overflow-hidden">{children}</main>
           <Footer />
         </RtkProvider>
       </body>

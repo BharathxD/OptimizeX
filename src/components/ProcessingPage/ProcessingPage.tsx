@@ -40,11 +40,7 @@ const ProcessingPage: FC = () => {
   };
 
   return (
-    <div
-      className={`flex flex-col gap-10 ${
-        !files || files?.length !== 0 ? "-mt-[25vh]" : "mt-5"
-      } ${files ? "md:mt-0" : "md:mt-auto"}`}
-    >
+    <div className={`flex flex-col gap-10 absolute top-3 p-5 w-full`}>
       <h1 className="font-extrabold text-center text-3xl tracking-tighter leading-tight sm:text-3xl md:text-5xl lg:text-6xl">
         {renderHeading()}
       </h1>
