@@ -1,15 +1,16 @@
 import axios from "axios";
 
-export const uploadImage = async (files: File[]): Promise<string | undefined> => {
-    if (!files || files.length === 0) {
+export const uploadImage = async (file: File): Promise<string> => {
+    if (!file || file.name === "") {
         throw new Error("Invalid file");
     }
+    const fileType = encodeURIComponent(file.type);
     try {
-        const { data } = await axios.get(`/api/media`);
-        const { s3UploadUrl, fullUrls } = data;
-        await axios.put(s3UploadUrl, files);
-        return fullUrls;
+        const { data } = await axios.get(`/api/media?fileType=${fileType}`);
+        const { s3UploadUrl, key } = JSON.parse(data);
+        await axios.put(s3UploadUrl, file);
+        return key;
     } catch (error: any) {
-        console.error("Failed to upload file to S3:", error);
+        throw new Error(error);
     }
-}
+};

@@ -6,6 +6,7 @@ import ImageInfoContainer from "./Image/ImageInfoContainer";
 import { Button, buttonVariants } from "../Inputs/Button";
 import ProcessBody from "../Wrapper/Processing";
 import { siteMessages } from "@/config";
+import { uploadImage } from "@/utils/api";
 
 enum STEP {
   SELECT,
@@ -15,6 +16,7 @@ enum STEP {
 
 const ProcessingPage: FC = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[] | null>(null);
+  const [processedFiles, setProcessedFiles] = useState<string[] | []>([]);
   const [step, setStep] = useState<STEP>(STEP.SELECT);
 
   const handleEdit = useCallback((fileName: string) => {
@@ -29,20 +31,24 @@ const ProcessingPage: FC = () => {
   }, []);
 
   const handleDropzoneChange = useCallback((files: File[]) => {
-    setSelectedFiles((prevSelectedFiles) => {
-      const updatedFiles = [...(prevSelectedFiles || []), ...files];
-      if (updatedFiles.length > 0) {
-        setStep(STEP.CURATE);
-      }
-      return updatedFiles;
-    });
+    setSelectedFiles(files);
+    setStep(STEP.CURATE);
   }, []);
 
   const handleBeginProcessing = async () => {
-    // Perform async operation here
-
-    // Once the operation is complete, set the step to PROCESSED
-    setStep(STEP.PROCESSED);
+    if (selectedFiles && selectedFiles.length > 0) {
+      try {
+        const uploadPromises = selectedFiles.map(async (file) => {
+          const key = await uploadImage(file);
+          return key;
+        });
+        const uploadedImages = await Promise.all(uploadPromises);
+        setProcessedFiles(uploadedImages);
+        setStep(STEP.PROCESSED);
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
   const renderHeading = () => {
@@ -106,12 +112,19 @@ const ProcessingPage: FC = () => {
       case STEP.PROCESSED:
         return (
           <Fragment>
+            <div>
+              {processedFiles &&
+                processedFiles.map((file, index) => <p key={index}>{file}</p>)}
+            </div>
             <div className="flex justify-center items-center">
               <Button
                 className={buttonVariants({
                   variant: "default",
                 })}
-                onClick={() => setStep(STEP.SELECT)}
+                onClick={() => {
+                  setStep(STEP.SELECT);
+                  setProcessedFiles([]);
+                }}
               >
                 Reset
               </Button>
