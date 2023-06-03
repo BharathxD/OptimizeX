@@ -61,14 +61,12 @@ const Typography: FC<TypographyProps> = ({
       );
     case "lightweight":
       return (
-        <span className="font-light text-zinc-200 my-0 inline-block mx-1">
+        <span className="font-light text-zinc-200 inline-block">
           {children}
         </span>
       );
     case "special":
-      return (
-        <span className="text-zinc-200 inline-block">{children}</span>
-      );
+      return <span className="text-zinc-200 inline-block">{children}</span>;
     default:
       return <div className={mergeClasses(className)}>{children}</div>;
   }
