@@ -12,17 +12,18 @@ datasource db {
 
 model User {
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  name            String?
-  email           String?   @unique
-  emailVerified   DateTime?
-  image           String?
-  hashedPassword  String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  name           String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  optimizedImages   String[]  @db.ObjectId
 
-  optimizations       String[]            @db.ObjectId
-  accounts            Account[]
-  OptimizationBatches OptimizationBatch[]
+
+  accounts Account[]
+  Image OptimizedImage[]
 }
 
 model Account {
@@ -44,21 +45,10 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model OptimizationBatch {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String   @db.ObjectId
-  createdAt DateTime @default(now())
-  images    Image[]
-  ttl       Int      @db.Int
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model Image {
+model OptimizedImage {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
-  batchId  String @db.ObjectId
+  userId   String @db.ObjectId
   url      String
   fileName String
-
-  batch OptimizationBatch @relation(fields: [batchId], references: [id])
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

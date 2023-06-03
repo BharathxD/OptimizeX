@@ -27,7 +27,6 @@ const DownloadButton: FC<DownloadButtonProps> = ({ name, url }) => {
         ) {
           return false;
         } else {
-          console.log("Retrying")
           return true;
         }
       },
