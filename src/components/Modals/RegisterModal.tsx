@@ -14,7 +14,9 @@ import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery } from "react-query";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import { toast } from "react-hot-toast";
+import Toast from "../UI/Toast";
 
 const RegisterModal = () => {
   const router = useRouter();
@@ -42,13 +44,16 @@ const RegisterModal = () => {
       await axios.post("/api/register", data);
     },
     onSuccess: async () => {
-      console.log("Successfully Registered the User");
-      registerModal.onClose();
+      toggle();
       router.refresh();
       return reset();
     },
-    onError: (error) => {
-      console.log(`Something went wrong: ${(error as any).message}`);
+    onError: (error: AxiosError) => {
+      let errorMessage: string = "Something went wrong";
+      if (error?.response?.status === StatusCodes.CONFLICT) {
+        errorMessage = "The user with this email already exists.";
+      }
+      Toast(errorMessage, "error");
     },
   });
 

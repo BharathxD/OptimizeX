@@ -3,7 +3,7 @@
 import { signIn } from "next-auth/react";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import useLoginModal from "@/hooks/useLoginModal";
 import { StatusCodes } from "http-status-codes";
@@ -13,7 +13,9 @@ import Input from "../Inputs/Input";
 import { Button, buttonVariants } from "../Inputs/Button";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import { useRouter } from "next/navigation";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
+import { AxiosError } from "axios";
+import Toast from "../UI/Toast";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -43,17 +45,18 @@ const LoginModal = () => {
         redirect: false,
       });
       if (response?.status === StatusCodes.UNAUTHORIZED) {
-        throw new Error("Invalid Credentials");
+        throw new Error("Invalid Email or Password");
+      } else if (response?.status !== StatusCodes.OK) {
+        throw new Error("Something went wrong");
       }
     },
     onSuccess: async () => {
-      console.log("Successfully logged in");
       loginModal.onClose();
       router.refresh();
       return reset();
     },
-    onError: (error) => {
-      console.log(`Something went wrong: ${(error as any).message}`);
+    onError: (error: AxiosError) => {
+      Toast(error.message, "error");
     },
   });
 
