@@ -8,7 +8,7 @@ import ProcessBody from "../Wrapper/Processing";
 import { siteMessages } from "@/config";
 import { uploadImage } from "@/utils/api";
 import { AiOutlineLoading } from "react-icons/ai";
-import Link from "next/link";
+import DownloadButton from "../UI/DownloadButton";
 
 enum STEP {
   SELECT,
@@ -50,15 +50,22 @@ const ProcessingPage: FC = () => {
         });
         const uploadedImages = await Promise.all(uploadPromises);
         setProcessedFiles(uploadedImages);
-        setTimeout(() => {
-          setStep(STEP.PROCESSED);
-          setIsLoading(false);
-        }, 10000);
+        setStep(STEP.PROCESSED);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
         setIsLoading(false);
       }
     }
+  };
+
+  const [buttonStatus, setButtonStatus] = useState({}); // Maintain status for each button
+
+  const handleButtonStatus = (url: string, status: number) => {
+    setButtonStatus((prevStatus) => ({
+      ...prevStatus,
+      [url]: status,
+    }));
   };
 
   const renderHeading = () => {
@@ -129,21 +136,15 @@ const ProcessingPage: FC = () => {
       case STEP.PROCESSED:
         return (
           <div className="flex flex-col gap-10">
-            <div className="w-[10vw] bg-zinc-800 m-2 rounded-lg">
+            <div className="w-full min-w-[10vw] bg-zinc-800 rounded-lg">
               {processedFiles &&
                 processedFiles.map((value, index) => {
                   return (
-                    <div key={index} className="p-2 flex flex-col gap-2">
-                      <Button
-                        className={buttonVariants({
-                          variant: "special",
-                        })}
-                        href={value.url}
-                        newTab
-                      >
-                        Download {value.name}
-                      </Button>
-                    </div>
+                    <DownloadButton
+                      key={index}
+                      name={value.name}
+                      url={value.url}
+                    />
                   );
                 })}
             </div>
@@ -151,6 +152,7 @@ const ProcessingPage: FC = () => {
               <Button
                 className={buttonVariants({
                   variant: "default",
+                  className: "w-full",
                 })}
                 onClick={() => {
                   setStep(STEP.SELECT);

@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
         const s3Params = {
             Bucket: process.env.NEXT_AWS_S3_SOURCE_BUCKET_NAME,
             Key: key,
-            Expires: 10,
+            Expires: 60,
             ContentType: `image/${extension}`,
         };
         const s3UploadUrl = await s3.getSignedUrlPromise("putObject", s3Params);

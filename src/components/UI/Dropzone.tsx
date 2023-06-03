@@ -31,9 +31,9 @@ const Dropzone: FC<DropzoneProps> = ({ setFiles }) => {
       );
 
       // Check if the total count of uploaded files + the count of accepted files is greater than 10
-      if (uploadedFilesCount + filteredFiles.length > 5) {
+      if (uploadedFilesCount + filteredFiles.length > 3) {
         // Display an error message or perform any necessary action
-        return toast.error("You can only upload up to 5 images.");
+        return toast.error("You can only upload up to 3 images at a time.");
       }
       if (filteredFiles.length <= 0) {
         return;

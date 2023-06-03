@@ -13,7 +13,7 @@ export const siteMessages = {
   heading: {
     withFiles: "Alright, one last step.",
     withoutFiles: "Drop your image(s) below.",
-    afterProcessed: "Processing complete!",
+    afterProcessed: "Finished Uploading!",
   },
   body: {
     withFiles:
