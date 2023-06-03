@@ -13,14 +13,14 @@ export const siteMessages = {
   heading: {
     withFiles: "Alright, one last step.",
     withoutFiles: "Drop your image(s) below.",
-    afterProcessed: "Finished Uploading!",
+    afterUploading: "Finished Uploading.",
   },
   body: {
     withFiles:
       "Finalize and curate your pictures with the option to selectively choose or remove them.",
     withoutFiles:
       "Effortlessly process multiple images by simply dropping them or clicking in the designated area below.",
-    afterProcessed: "Your images have been successfully processed.",
+    afterUploading: "Instantly access your optimized pictures after processing.",
   },
 };
 

@@ -59,15 +59,6 @@ const ProcessingPage: FC = () => {
     }
   };
 
-  const [buttonStatus, setButtonStatus] = useState({}); // Maintain status for each button
-
-  const handleButtonStatus = (url: string, status: number) => {
-    setButtonStatus((prevStatus) => ({
-      ...prevStatus,
-      [url]: status,
-    }));
-  };
-
   const renderHeading = () => {
     switch (step) {
       case STEP.SELECT:
@@ -75,7 +66,7 @@ const ProcessingPage: FC = () => {
       case STEP.CURATE:
         return siteMessages.heading.withFiles;
       case STEP.PROCESSED:
-        return siteMessages.heading.afterProcessed;
+        return siteMessages.heading.afterUploading;
       default:
         return null;
     }
@@ -88,7 +79,7 @@ const ProcessingPage: FC = () => {
       case STEP.CURATE:
         return siteMessages.body.withFiles;
       case STEP.PROCESSED:
-        return siteMessages.body.afterProcessed;
+        return siteMessages.body.afterUploading;
       default:
         return null;
     }
@@ -119,7 +110,7 @@ const ProcessingPage: FC = () => {
                 {isLoading ? (
                   <AiOutlineLoading className="animate-spin" />
                 ) : (
-                  "Begin Processing"
+                  "Begin Uploading"
                 )}
               </Button>
             </div>
@@ -135,8 +126,8 @@ const ProcessingPage: FC = () => {
         );
       case STEP.PROCESSED:
         return (
-          <div className="flex flex-col gap-10">
-            <div className="w-full min-w-[10vw] bg-zinc-800 rounded-lg">
+          <div className="flex flex-col gap-5 w-full">
+            <div className="min-w-[25vw] bg-zinc-800 rounded-lg">
               {processedFiles &&
                 processedFiles.map((value, index) => {
                   return (
@@ -159,7 +150,7 @@ const ProcessingPage: FC = () => {
                   setProcessedFiles([]);
                 }}
               >
-                Reset
+                Initiate new batch
               </Button>
             </div>
           </div>

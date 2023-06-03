@@ -27,7 +27,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({ name, url }) => {
         ) {
           return false;
         } else {
-          console.log("Retrying");
+          console.log("Retrying")
           return true;
         }
       },
@@ -39,7 +39,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({ name, url }) => {
   const renderMessage = () => {
     if (isLoading) {
       return (
-        <p className="flex flex-row gap-1 items-center justify-center">
+        <p className="flex flex-row gap-3 animate-pulse justify-between">
           Processing {name}
           <AiOutlineLoading className="animate-spin" />
         </p>

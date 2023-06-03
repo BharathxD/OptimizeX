@@ -15,7 +15,6 @@ const Dropzone: FC<DropzoneProps> = ({ setFiles }) => {
     "image/jpeg": [".jpg", ".jpeg"],
     "image/png": [".png"],
     "image/tiff": [".tiff"],
-    "image/webp": [".webp"],
     "image/avif": [".avif"],
   };
   const handleImageDrop = useCallback(
