@@ -1,5 +1,4 @@
 import axios from "axios";
-import { StatusCodes } from "http-status-codes";
 
 export const uploadImage = async (file: File): Promise<string> => {
     if (!file || file.name === "") {

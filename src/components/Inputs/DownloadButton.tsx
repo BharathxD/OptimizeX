@@ -4,7 +4,7 @@ import React, { FC } from "react";
 import { useQuery } from "react-query";
 import axios, { AxiosError } from "axios";
 import { AiOutlineLoading } from "react-icons/ai";
-import { Button, buttonVariants } from "../Inputs/Button";
+import { Button, buttonVariants } from "./Button";
 
 interface DownloadButtonProps {
   name: string;

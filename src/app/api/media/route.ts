@@ -1,13 +1,18 @@
 import { Data } from "aws-sdk/clients/firehose";
 import s3 from "../../../../aws/s3";
-import { randomUUID } from "crypto";
 import { StatusCodes } from "http-status-codes";
 import { NextRequest, NextResponse } from "next/server";
+import getCurrentUser from "@/actions/getCurrentUser";
+import { v4 as uuidv4 } from 'uuid';
 
 export async function GET(req: NextRequest) {
     try {
         const extension = req.url?.split("%2F")[1];
-        const key = `optimize/picture_${randomUUID()}.${extension}`;
+        const key = `optimize/picture_${uuidv4()}.${extension}`;
+        const currentUser = await getCurrentUser();
+        if (!currentUser) {
+            return NextResponse.json({ message: "Unauthorized" }, { status: StatusCodes.OK });
+        }
         const s3Params = {
             Bucket: process.env.NEXT_AWS_S3_SOURCE_BUCKET_NAME,
             Key: key,

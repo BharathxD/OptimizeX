@@ -37,10 +37,12 @@
     "tailwind-merge": "^1.12.0",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4",
+    "uuid": "^9.0.0",
     "zustand": "^4.3.8"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.195",
+    "@types/uuid": "^9.0.1",
     "prisma": "^4.15.0"
   }
 }

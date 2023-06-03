@@ -4,11 +4,11 @@ import React, { FC, Fragment, useCallback, useState } from "react";
 import Dropzone from "../UI/Dropzone";
 import ImageInfoContainer from "./Image/ImageInfoContainer";
 import { Button, buttonVariants } from "../Inputs/Button";
-import ProcessBody from "../Wrapper/Processing";
+import ProcessBody from "../Container/Processing";
 import { siteMessages } from "@/config";
 import { uploadImage } from "@/utils/api";
 import { AiOutlineLoading } from "react-icons/ai";
-import DownloadButton from "../UI/DownloadButton";
+import DownloadButton from "../Inputs/DownloadButton";
 
 enum STEP {
   SELECT,
@@ -16,7 +16,7 @@ enum STEP {
   PROCESSED,
 }
 
-const ProcessingPage: FC = () => {
+const MediaProcessingPanel: FC = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[] | null>(null);
   const [processedFiles, setProcessedFiles] = useState<
     { name: string; url: string }[] | []
@@ -169,4 +169,4 @@ const ProcessingPage: FC = () => {
   );
 };
 
-export default ProcessingPage;
+export default MediaProcessingPanel;
