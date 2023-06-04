@@ -1,24 +1,30 @@
 "use client";
 
 import Image from "next/image";
-import { FC } from "react";
+import { FC, HTMLAttributes } from "react";
+import mergeClasses from "@/utils";
 
-interface AvatarProps {
+interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   src?: string | null;
-  name: string | null;
+  name?: string | null;
 }
 
-const Avatar: FC<AvatarProps> = ({ src, name }) => {
+const Avatar: FC<AvatarProps> = ({ src, name, className }) => {
   if (!src && name) {
     return (
-      <div className="flex justify-center items-center font-bold text-xl h-[25px] w-[25px]">
+      <div
+        className={mergeClasses(
+          className,
+          "flex justify-center items-center text-md p-auto aspect-square w-[25px] h-[25px] bg-green-600 rounded-full"
+        )}
+      >
         {name.charAt(0)}
       </div>
     );
   }
   return (
     <Image
-      className={`${src || `opacity-60`} rounded-full`}
+      className={mergeClasses(className, `${src || `opacity-60`} rounded-full`)}
       height={25}
       width={25}
       quality={100}
