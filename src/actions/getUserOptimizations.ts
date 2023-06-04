@@ -15,9 +15,13 @@ const getUserOptimizations = async () => {
                 }
             }
         })
+        const oneDay = 24 * 60 * 60 * 1000;
         const formattedOptimizations = getUserOptimizations.map((optimization) => {
+            const isExpired = optimization.expiresAt.getTime() > new Date().getTime() + oneDay;
             return {
                 ...optimization,
+                extension: optimization.extension.replace("image/", ""),
+                expired: isExpired,
                 createdAt: formatDate(optimization.createdAt)
             }
         })

@@ -49,6 +49,8 @@ model OptimizedImage {
   userId    String   @db.ObjectId
   url       String
   fileName  String
+  extension String
+  expiresAt DateTime
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
