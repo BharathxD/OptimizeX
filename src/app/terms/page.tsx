@@ -1,7 +1,7 @@
 import LiabilitiesPageWrapper from "@/components/UI/LiabilitiesWrapper";
 import Typography from "@/components/static/Typegraphy";
 
-const PrivacyPolicyPage = () => {
+const TermsPage = () => {
   return (
     <LiabilitiesPageWrapper>
       <Typography type="heading" className="text-bold text-lg">
@@ -93,4 +93,4 @@ const PrivacyPolicyPage = () => {
   );
 };
 
-export default PrivacyPolicyPage;
+export default TermsPage;
