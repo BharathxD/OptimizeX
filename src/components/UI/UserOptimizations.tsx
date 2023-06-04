@@ -4,7 +4,6 @@ import { FC, Fragment, useState } from "react";
 import Typography from "../static/Typegraphy";
 import { SafeUserOptimizations } from "@/types/Optimizations";
 import Optimizations from "./Optimizations";
-import Link from "next/link";
 import { Button, buttonVariants } from "../Inputs/Button";
 
 interface UserOptimizationsProps {
@@ -26,7 +25,9 @@ const UserOptimizations: FC<UserOptimizationsProps> = ({ optimizations }) => {
 
   return (
     <Fragment>
-      <div className="bg-zinc-800/50 p-4 flex rounded-lg">
+      <div
+        className={`bg-zinc-800/50 p-4 flex rounded-lg rounded-tl-sm rounded-b-sm`}
+      >
         <Typography type="heading">Optimization History</Typography>
       </div>
       <div className="flex w-full flex-row gap-2 justify-center items-center">
@@ -34,7 +35,7 @@ const UserOptimizations: FC<UserOptimizationsProps> = ({ optimizations }) => {
           Array.from({ length: maxPages }).map((_, i) => (
             <div
               key={i}
-              className={`p-2 flex items-center justify-center w-full rounded-lg cursor-pointer ${
+              className={`p-2 flex items-center justify-center w-full rounded-sm cursor-pointer ${
                 currentPage === i + 1
                   ? "bg-zinc-200 text-zinc-800"
                   : "bg-zinc-800 text-zinc-200"
@@ -45,7 +46,11 @@ const UserOptimizations: FC<UserOptimizationsProps> = ({ optimizations }) => {
             </div>
           ))}
       </div>
-      <div className="flex flex-col bg-zinc-800/50 p-3 rounded-lg gap-4 h-full">
+      <div
+        className={`flex flex-col bg-zinc-800/50 p-3 rounded-lg gap-4 h-full rounded-t-sm rounded-l-sm ${
+          optimizations && optimizations?.length <= 4 && "-mt-2"
+        }`}
+      >
         {(!optimizations || optimizations.length === 0) && (
           <div className="flex flex-col gap-4 justify-center items-center h-full w-full text-2xl font-bold">
             <div className="flex flex-col gap-4 justify-center items-center ">
@@ -73,6 +78,7 @@ const UserOptimizations: FC<UserOptimizationsProps> = ({ optimizations }) => {
                 createdAt={optimization.createdAt}
                 extension={optimization.extension}
                 url={optimization.url}
+                length={optimizationPage.length}
               />
             );
           })}

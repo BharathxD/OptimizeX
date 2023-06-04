@@ -9,6 +9,7 @@ interface OptimizationsProps {
   createdAt: string;
   extension: string;
   url: string;
+  length?: number;
 }
 
 const Optimizations: FC<OptimizationsProps> = ({
@@ -16,9 +17,14 @@ const Optimizations: FC<OptimizationsProps> = ({
   createdAt,
   extension,
   url,
+  length,
 }) => {
   return (
-    <div className={"flex flex-col bg-zinc-800/50 p-4 rounded-lg gap-4"}>
+    <div
+      className={`flex flex-col bg-zinc-800/50 p-4 ${
+        length && length >= 4 ? "h-full" : "h-min"
+      } rounded-lg gap-4`}
+    >
       <div className="flex flex-row justify-between">
         <Typography
           type="subheading"

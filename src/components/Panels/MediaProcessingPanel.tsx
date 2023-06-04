@@ -9,6 +9,7 @@ import { siteMessages } from "@/config";
 import { uploadImage } from "@/utils/api";
 import { AiOutlineLoading } from "react-icons/ai";
 import DownloadButton from "../Inputs/DownloadButton";
+import { useRouter } from "next/navigation";
 
 enum STEP {
   SELECT,
@@ -17,6 +18,7 @@ enum STEP {
 }
 
 const MediaProcessingPanel: FC = () => {
+  const router = useRouter();
   const [selectedFiles, setSelectedFiles] = useState<File[] | null>(null);
   const [processedFiles, setProcessedFiles] = useState<
     { name: string; url: string }[] | []
@@ -49,6 +51,7 @@ const MediaProcessingPanel: FC = () => {
           return { name: file.name, url: url };
         });
         const uploadedImages = await Promise.all(uploadPromises);
+        router.refresh();
         setProcessedFiles(uploadedImages);
         setStep(STEP.PROCESSED);
         setIsLoading(false);

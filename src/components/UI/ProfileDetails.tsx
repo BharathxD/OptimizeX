@@ -12,7 +12,7 @@ const ProfileDetails: FC<ProfileDetails> = (data) => {
     value === 0 ? "No Optimizations" : `${value} Optimizations so far`;
   const container = (value: string | number, index: number) => {
     return (
-      <div className="p-5 md:px-5 bg-zinc-800/50 h-full flex justify-left items-center rounded-lg text-zinc-100 shadow-lg" key={index}>
+      <div className={`p-5 md:px-5 bg-zinc-800/50 h-full flex justify-left items-center rounded-sm text-zinc-100 shadow-lg ${Number.isInteger(value) && "rounded-b-2xl md:rounded-bl-2xl md:rounded-br-sm"}`} key={index}>
         <div className="font-semibold">
           {Number.isInteger(value) ? formatOptimization(Number(value)) : value}
         </div>
