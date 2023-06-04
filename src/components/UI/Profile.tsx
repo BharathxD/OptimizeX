@@ -14,7 +14,7 @@ const Profile: FC<ProfileProps> = ({ src }) => {
       {src ? (
         <div className="h-full w-full relative">
           <div
-            className={`absolute flex justify-center items-center h-[100%] bg-transparent w-[100%] ${
+            className={`absolute flex justify-center items-center h-full bg-transparent w-full ${
               isBlurred && "backdrop-blur-lg backdrop-brightness-50"
             } rounded-full z-9`}
           >
@@ -29,10 +29,13 @@ const Profile: FC<ProfileProps> = ({ src }) => {
               </div>
             )}
           </div>
-          <Avatar className="h-full w-full" src={src} />
+          <Avatar
+            className="h-full w-full border-2 border-zinc-800/50"
+            src={src}
+          />
         </div>
       ) : (
-        <div className="flex text-zinc-500 items-center justify-center h-[20rem] w-[20rem] rounded-full bg-zinc-800/50">
+        <div className="flex text-zinc-500 items-center justify-center h-[25rem] w-full rounded-full bg-zinc-800/50">
           You have no profile picture
         </div>
       )}
