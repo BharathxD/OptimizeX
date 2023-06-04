@@ -1,4 +1,4 @@
-import { FC, Fragment } from "react";
+import { FC, Fragment, useMemo } from "react";
 
 interface ProfileDetails {
   name?: string | null;
@@ -7,16 +7,17 @@ interface ProfileDetails {
 }
 
 const ProfileDetails: FC<ProfileDetails> = (data) => {
+  const formatOptimization = (value: number) =>
+    value === 0 ? "No Optimizations" : `${value} Optimizations so far`;
   const container = (value: string | number) => {
     return (
       <div className="px-5 bg-zinc-800/50 h-full flex justify-left items-center rounded-lg text-zinc-100 font-semibold shadow-lg">
-        {value} {Number.isInteger(value) && "optimizations so far"}
+        {Number.isInteger(value) ? formatOptimization(Number(value)) : value}
       </div>
     );
   };
-  return (
-    <Fragment>{Object.values(data).map((value) => container(value))}</Fragment>
-  );
+  const userData = Object.values(data).map((value) => container(value));
+  return <Fragment>{userData}</Fragment>;
 };
 
 export default ProfileDetails;

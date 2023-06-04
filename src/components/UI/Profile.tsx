@@ -14,7 +14,7 @@ const Profile: FC<ProfileProps> = ({ src }) => {
       {src ? (
         <div className="h-full w-full relative">
           <div
-            className={`absolute flex justify-center items-center h-[99%] bg-transparent w-[99%] ${
+            className={`absolute flex justify-center items-center h-[100%] bg-transparent w-[100%] ${
               isBlurred && "backdrop-blur-lg backdrop-brightness-50"
             } rounded-full z-9`}
           >
