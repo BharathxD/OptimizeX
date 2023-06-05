@@ -2,9 +2,9 @@
 
 import getCurrentUser from "@/actions/getCurrentUser";
 import getUserOptimizations from "@/actions/getUserOptimizations";
-import Profile from "@/components/UI/Profile";
-import ProfileDetails from "@/components/UI/ProfileDetails";
-import UserOptimizations from "@/components/UI/UserOptimizations";
+import Profile from "@/components/Profile/Profile";
+import ProfileDetails from "@/components/Profile/ProfileDetails";
+import UserOptimizations from "@/components/Profile/UserOptimizations";
 
 const OptimizationsPage = async () => {
   const currentUser = await getCurrentUser();
@@ -12,7 +12,7 @@ const OptimizationsPage = async () => {
   return (
     <div className="container grid grid-cols-1 grid-rows-2 md:grid-cols-3 md:grid-rows-1 py-4 md:h-[82vh] gap-0 md:gap-2">
       <div className="flex flex-col gap-2 mb-4 md:mb-0">
-        <div className="bg-zinc-800/50 p-4 rounded-2xl  rounded-b-sm md:rounded-r-sm rounded-bl-sm h-full flex justify-center items-center aspect shadow-lg">
+        <div className="bg-zinc-800/50 p-4 rounded-2xl rounded-b-sm md:rounded-r-sm rounded-bl-sm h-full flex justify-center items-center aspect shadow-lg">
           <Profile src={currentUser?.image} />
         </div>
         <ProfileDetails

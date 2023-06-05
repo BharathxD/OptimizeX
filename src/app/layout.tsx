@@ -1,6 +1,6 @@
 import Header from "@/components/Navbar/Header";
 import "./globals.css";
-import mergeClasses from "@/utils";
+import mergeClasses from "@/utils/mergeClasses";
 import { Montserrat } from "next/font/google";
 import Footer from "@/components/Footer/Footer";
 import LoginModal from "@/components/Modals/LoginModal";

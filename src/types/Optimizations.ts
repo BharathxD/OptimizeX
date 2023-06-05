@@ -4,6 +4,7 @@ export type SafeUserOptimizations = {
     url: string;
     fileName: string;
     extension: string;
+    expired: boolean;
     expiresAt: Date;
     createdAt: string;
 }

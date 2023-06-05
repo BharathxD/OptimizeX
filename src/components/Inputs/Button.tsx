@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import { VariantProps, cva } from "class-variance-authority";
 
-import mergeClasses from "@/utils";
+import mergeClasses from "@/utils/mergeClasses";
 import { IconType } from "react-icons";
 
 const buttonVariants = cva(

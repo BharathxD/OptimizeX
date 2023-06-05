@@ -1,5 +1,5 @@
 import LiabilitiesPageWrapper from "@/components/UI/LiabilitiesWrapper";
-import Typography from "@/components/static/Typegraphy";
+import Typography from "@/components/UI/Typography";
 
 const PrivacyPolicyPage = () => {
   return (

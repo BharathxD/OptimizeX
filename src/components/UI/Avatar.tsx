@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { FC, HTMLAttributes } from "react";
-import mergeClasses from "@/utils";
+import mergeClasses from "@/utils/mergeClasses";
 
 interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   src?: string | null;

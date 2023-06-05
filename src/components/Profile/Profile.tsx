@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, Fragment, useState } from "react";
-import Avatar from "./Avatar";
+import Avatar from "../UI/Avatar";
 
 interface ProfileProps {
   src?: string | null;

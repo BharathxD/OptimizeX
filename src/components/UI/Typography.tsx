@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes, ReactNode } from "react";
-import mergeClasses from "@/utils";
+import mergeClasses from "@/utils/mergeClasses";
 import Link from "next/link";
 
 interface TypographyProps

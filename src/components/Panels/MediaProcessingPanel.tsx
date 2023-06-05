@@ -6,15 +6,15 @@ import ImageInfoContainer from "./Image/ImageInfoContainer";
 import { Button, buttonVariants } from "../Inputs/Button";
 import ProcessBody from "../Container/Processing";
 import { siteMessages } from "@/config";
-import { uploadImage } from "@/utils/api";
+import { uploadImage } from "@/utils/s3Utility";
 import { AiOutlineLoading } from "react-icons/ai";
 import DownloadButton from "../Inputs/DownloadButton";
 import { useRouter } from "next/navigation";
 
-enum STEP {
-  SELECT,
-  CURATE,
-  PROCESSED,
+const enum STEP {
+  SELECT = 0,
+  CURATE = 1,
+  PROCESSED = 2,
 }
 
 const MediaProcessingPanel: FC = () => {
@@ -129,8 +129,8 @@ const MediaProcessingPanel: FC = () => {
         );
       case STEP.PROCESSED:
         return (
-          <div className="flex flex-col gap-5 w-full">
-            <div className="min-w-[25vw] bg-zinc-800 rounded-lg">
+          <div className="flex flex-col gap-1 w-full">
+            <div className="min-w-[25vw] bg-zinc-800 rounded-lg rounded-b-sm">
               {processedFiles &&
                 processedFiles.map((value, index) => {
                   return (
@@ -146,7 +146,7 @@ const MediaProcessingPanel: FC = () => {
               <Button
                 className={buttonVariants({
                   variant: "default",
-                  className: "w-full",
+                  className: "w-full rounded-t-sm",
                 })}
                 onClick={() => {
                   setStep(STEP.SELECT);
