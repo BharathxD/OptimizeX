@@ -1,5 +1,7 @@
 # OptimizeX - An Open-Source image optimization platform
 
+![Landing Page](https://media-bucket-project.s3.ap-south-1.amazonaws.com/1.png)
+
 OptimizeX is a serverless cloud application built with NextJS, React 18, TypeScript, Prisma, and various AWS services. It provides a frontend interface for seamless user interaction and leverages serverless architecture to handle backend processes efficiently. This repository contains the codebase for the frontend implementation of the application.
 
 ## Features
@@ -98,4 +100,4 @@ NextAuth
 
 ## Contact
 
-For any inquiries or feedback, please contact [contact](BharathxxD@gmail.com) us or open an issue in the repository.
+For any inquiries or feedback, please contact [us](BharathxxD@gmail.com) or open an issue in the repository.
