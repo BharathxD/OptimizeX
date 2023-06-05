@@ -1,34 +1,91 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# OptimizeX - An open-source image optimization platform
 
-## Getting Started
+OptimizeX is a serverless cloud application built with NextJS, React 18, TypeScript, Prisma, and various AWS services. It provides a frontend interface for seamless user interaction and leverages serverless architecture to handle backend processes efficiently. This repository contains the codebase for the frontend implementation of the application.
 
-First, run the development server:
+## Features
+
+**NextJS 13.4.1:** Utilizes the latest version of NextJS framework for building fast and scalable web applications.
+**React 18:** Harnesses the power of React 18 to create dynamic and interactive user interfaces.
+**TypeScript:** Implements strong typing with TypeScript for enhanced code quality and maintainability.
+**Prisma:** Uses Prisma as an Object-Relational Mapping (ORM) tool to interact with the MongoDB database seamlessly.
+**MongoDB:** Stores user data, including name, email, and securely encrypted hashed passwords.
+**S3:** Stores and retrieves images securely in S3 buckets, employing S3 Managed Encryption Keys for high-level encryption.
+**Lambda:** Executes serverless functions to handle various tasks within the application, such as image optimization and processing.
+**SQS:** Utilizes a FIFO (First-In, First-Out) queue to manage messages triggered by S3 object creation events.
+**CloudFront:** Enables fast content delivery by leveraging a Content Delivery Network (CDN) and serves the optimized images from the destination S3 bucket.
+**Cloudwatch:** Monitors and logs the application's performance and provides actionable insights for debugging and optimization.
+Getting Started
+
+## To get started with OptimizeX, follow the steps below:
+
+### Prerequisites
+
+1. Node.js (version 19.0.X)
+2. AWS Account with necessary permissions
+3. MongoDB Account with necessary credentials
+
+### Installation
+
+**Clone the repository:**
+
+```bash
+git clone https://github.com/your-username/project-name.git
+```
+
+**Install the dependencies:**
+
+```bash
+cd optimizex-client
+npm install
+```
+
+**Configure AWS services:**
+
+Set up the necessary AWS services, including S3, Lambda, SQS, CloudFront, and Cloudwatch, by following this blog by me[Soon!]
+
+**Configure MongoDB:**
+
+Set up a MongoDB database and obtain the connection string.
+
+**Configure environment variables:**
+
+Copy the .env.example file and rename it to .env.
+Update the environment variables in the .env file with your specific values.
+
+**Start the development server:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Access the application:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open your preferred web browser and navigate to `http://localhost:3000`.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Usage
 
-## Learn More
+OptimizeX provides a user-friendly interface for seamless interaction. Users can perform various actions such as uploading images, authenticating via OAuth using NextAuth, and accessing their stored data securely. The application follows industry-standard security practices, including encrypted storage of user data and secure transmission of sensitive information.
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions are always welcome! If you wish to contribute to OptimizeX, please follow these guidelines:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and ensure they follow the code style guidelines.
+4. Commit your changes and push them to your forked repository.
+5. Submit a pull request with a detailed description of your changes.
 
-## Deploy on Vercel
+## Acknowledgements
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+NextJS
+React
+TypeScript
+Prisma
+MongoDB
+AWS
+NextAuth
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contact
+
+For any inquiries or feedback, please contact [contact](BharathxxD@gmail.com) us or open an issue in the repository.
