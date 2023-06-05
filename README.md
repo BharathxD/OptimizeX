@@ -98,6 +98,10 @@ MongoDB
 AWS
 NextAuth
 
+## License
+
+Licensed under the [MIT](https://opensource.org/license/mit/) license.
+
 ## Contact
 
-For any inquiries or feedback, please contact [us](BharathxxD@gmail.com) or open an issue in the repository.
+For any inquiries or feedback, please [contact us](BharathxxD@gmail.com) or open an issue in the repository.
