@@ -1,22 +1,32 @@
-# OptimizeX - An open-source image optimization platform
+# OptimizeX - An Open-Source image optimization platform
 
 OptimizeX is a serverless cloud application built with NextJS, React 18, TypeScript, Prisma, and various AWS services. It provides a frontend interface for seamless user interaction and leverages serverless architecture to handle backend processes efficiently. This repository contains the codebase for the frontend implementation of the application.
 
 ## Features
 
 **NextJS 13.4.1:** Utilizes the latest version of NextJS framework for building fast and scalable web applications.
-**React 18:** Harnesses the power of React 18 to create dynamic and interactive user interfaces.
-**TypeScript:** Implements strong typing with TypeScript for enhanced code quality and maintainability.
-**Prisma:** Uses Prisma as an Object-Relational Mapping (ORM) tool to interact with the MongoDB database seamlessly.
-**MongoDB:** Stores user data, including name, email, and securely encrypted hashed passwords.
-**S3:** Stores and retrieves images securely in S3 buckets, employing S3 Managed Encryption Keys for high-level encryption.
-**Lambda:** Executes serverless functions to handle various tasks within the application, such as image optimization and processing.
-**SQS:** Utilizes a FIFO (First-In, First-Out) queue to manage messages triggered by S3 object creation events.
-**CloudFront:** Enables fast content delivery by leveraging a Content Delivery Network (CDN) and serves the optimized images from the destination S3 bucket.
-**Cloudwatch:** Monitors and logs the application's performance and provides actionable insights for debugging and optimization.
-Getting Started
 
-## To get started with OptimizeX, follow the steps below:
+**React 18:** Harnesses the power of React 18 to create dynamic and interactive user interfaces.
+
+**TypeScript:** Implements strong typing with TypeScript for enhanced code quality and maintainability.
+
+**Prisma:** Uses Prisma as an Object-Relational Mapping (ORM) tool to interact with the MongoDB database seamlessly.
+
+**MongoDB:** Stores user data, including name, email, and securely encrypted hashed passwords.
+
+**S3:** Stores and retrieves images securely in S3 buckets, employing S3 Managed Encryption Keys for high-level encryption.
+
+**Lambda:** Executes serverless functions to handle various tasks within the application, such as image optimization and processing.
+
+**SQS:** Utilizes a FIFO (First-In, First-Out) queue to manage messages created by a Lambda function triggered by S3 object creation events.
+
+**CloudFront:** Enables fast content delivery by leveraging a Content Delivery Network (CDN) and serves the optimized images from the destination S3 bucket.
+
+**Cloudwatch:** Monitors and logs the application's performance and provides actionable insights for debugging and optimization.
+
+## Getting Started
+
+To get started with OptimizeX, follow the steps below:
 
 ### Prerequisites
 
