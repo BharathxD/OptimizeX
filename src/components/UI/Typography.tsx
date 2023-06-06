@@ -29,23 +29,26 @@ const Typography: FC<TypographyProps> = ({
   switch (type) {
     case "heading":
       return (
-        <h1 className={mergeClasses(className, "text-2xl font-extrabold")}>
+        <h1 className={mergeClasses("text-2xl font-extrabold", className)}>
           {children}
         </h1>
       );
     case "subheading":
       return (
-        <h3 className={mergeClasses(className, "text-xl  font-bold")}>
+        <h3 className={mergeClasses("text-xl  font-bold", className)}>
           {children}
         </h3>
       );
     case "paragraph":
-      return <p className={mergeClasses(className, "text-lg")}>{children}</p>;
+      return <p className={mergeClasses("text-lg", className)}>{children}</p>;
     case "email":
       return (
         <Link
           href={`mailto:${email!}`}
-          className=" underline text-zinc-200 my-0 inline-block mx-1"
+          className={mergeClasses(
+            "underline text-zinc-200 my-0 inline-block mx-1",
+            className
+          )}
         >
           {children}
         </Link>
@@ -54,19 +57,31 @@ const Typography: FC<TypographyProps> = ({
       return (
         <Link
           href={href!}
-          className="underline text-zinc-200 my-0 inline-block mx-1"
+          className={mergeClasses(
+            "underline text-zinc-200 my-0 inline-block mx-1",
+            className
+          )}
         >
           {children}
         </Link>
       );
     case "lightweight":
       return (
-        <span className="font-light text-zinc-200 inline-block">
+        <span
+          className={mergeClasses(
+            "font-light text-zinc-200 inline-block",
+            className
+          )}
+        >
           {children}
         </span>
       );
     case "special":
-      return <span className="text-zinc-200 inline-block">{children}</span>;
+      return (
+        <span className={mergeClasses("text-zinc-200 inline-block", className)}>
+          {children}
+        </span>
+      );
     default:
       return <div className={mergeClasses(className)}>{children}</div>;
   }

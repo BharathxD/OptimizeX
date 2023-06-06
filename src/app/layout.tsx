@@ -9,6 +9,7 @@ import RegisterModal from "@/components/Modals/RegisterModal";
 import getCurrentUser from "@/actions/getCurrentUser";
 import { Toaster } from "react-hot-toast";
 import ToasterProvider from "@/providers/ToasterProvider";
+import { usePathname } from "next/navigation";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -37,7 +38,7 @@ export default async function RootLayout({
       )}
     >
       <body
-        className="min-h-screen bg-white font-sans text-zinc-900 antialiased dark:bg-zinc-900 dark:text-zinc-50"
+        className={`min-h-screen bg-white font-sans text-zinc-900 antialiased dark:bg-zinc-900 dark:text-zinc-50`}
         suppressHydrationWarning={true}
       >
         <ToasterProvider />
@@ -45,7 +46,7 @@ export default async function RootLayout({
           <Header currentUser={currentUser} />
           <LoginModal />
           <RegisterModal />
-          <main className="overflow-hidden">{children}</main>
+          <main>{children}</main>
           <Footer />
         </RtkProvider>
       </body>

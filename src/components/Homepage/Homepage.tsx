@@ -5,7 +5,7 @@ import HomepageImage from "./HomepageImage";
 
 const Homepage = () => {
   return (
-    <Fragment>
+    <div>
       <div className="flex w-full gap-4 flex-col items-center">
         <HomepageHeader />
         <HomepageActions />
@@ -13,7 +13,7 @@ const Homepage = () => {
       <div className="flex w-full flex-col items-center">
         <HomepageImage />
       </div>
-    </Fragment>
+    </div>
   );
 };
 

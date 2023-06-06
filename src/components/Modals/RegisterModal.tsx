@@ -141,6 +141,7 @@ const RegisterModal = () => {
       actionLabel="Register"
       onClose={registerModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
+      isLoading={isLoading}
       body={body}
       footer={footerContent}
     />

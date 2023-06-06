@@ -13,6 +13,7 @@ const Toast = (message: ToastProps["message"], type: ToastProps["type"]) => {
       border: "1px solid #27272a",
       marginTop: "-6px",
       borderRadius: "20px",
+      maxWidth: "90vw",
       minWidth: "max-content",
     },
   };

@@ -3,11 +3,13 @@
 import { FC, ReactElement, useCallback, useEffect, useState } from "react";
 import { Button, buttonVariants } from "../Inputs/Button";
 import { IoMdClose } from "react-icons/io";
+import { AiOutlineLoading } from "react-icons/ai";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: () => void;
+  isLoading: boolean;
   title?: string;
   body?: ReactElement | null;
   footer?: ReactElement;
@@ -21,6 +23,7 @@ const Modal: FC<ModalProps> = ({
   isOpen,
   onClose,
   onSubmit,
+  isLoading,
   title,
   body,
   footer,
@@ -57,7 +60,7 @@ const Modal: FC<ModalProps> = ({
   }
   return (
     <div
-      className={`justify-center items-center backdrop-blur flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-zinc-800/70`}
+      className={`justify-center items-center backdrop-blur flex fixed inset-0 z-50 outline-none focus:outline-none bg-zinc-800/70`}
       onClick={handleClose}
     >
       <div
@@ -74,7 +77,7 @@ const Modal: FC<ModalProps> = ({
             {/* {HEADER} */}
             <div className="flex items-center p-6 rounded-t justify-center relative border-zinc-500 border-opacity-50 border-b-[1px]">
               <div className="text-xl text-center font-bold">{title}</div>
-              <button className="p-1 border-0 hover:opacity-70 transition absolute right-6 text-neutral-400 hover:text-white inline-flex appearance-none items-center justify-center rounded-full focus-outline-null">
+              <button className="p-1 border-0 hover:opacity-70 transition absolute right-6 text-zinc-400 hover:text-white inline-flex appearance-none items-center justify-center rounded-full focus-outline-null">
                 <IoMdClose size={18} onClick={() => onClose()} />
               </button>
             </div>
@@ -93,14 +96,20 @@ const Modal: FC<ModalProps> = ({
                   </Button>
                 )}
                 <Button
-                  disabled={disabled}
+                  disabled={disabled || isLoading}
                   onClick={handleSubmit}
                   className={buttonVariants({
                     variant: "special",
                     className: "w-full p-7 text-lg",
                   })}
                 >
-                  {actionLabel}
+                  {isLoading ? (
+                    <div className="animate-spin">
+                      <AiOutlineLoading />
+                    </div>
+                  ) : (
+                    actionLabel
+                  )}
                 </Button>
               </div>
               {footer}

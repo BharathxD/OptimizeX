@@ -132,6 +132,7 @@ const LoginModal = () => {
       disabled={isLoading}
       isOpen={loginModal.isOpen}
       title="Login"
+      isLoading={isLoading}
       actionLabel="Login"
       onClose={loginModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
