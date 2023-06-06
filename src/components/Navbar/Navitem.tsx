@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { buttonVariants } from "../Inputs/Button";
+import { Button, buttonVariants } from "../Inputs/Button";
 import { IconType } from "react-icons";
 
 interface NavItemProps {
@@ -10,7 +10,7 @@ interface NavItemProps {
 const NavItem = ({ href, icon: Icon }: NavItemProps) => {
   return (
     <Link href={href} target="_blank" rel="noreferrer">
-      <div
+      <Button
         className={buttonVariants({
           size: "sm",
           variant: "ghost",
@@ -19,7 +19,7 @@ const NavItem = ({ href, icon: Icon }: NavItemProps) => {
       >
         <Icon className="h-5 w-5" />
         <span className="sr-only">GitHub</span>
-      </div>
+      </Button>
     </Link>
   );
 };
