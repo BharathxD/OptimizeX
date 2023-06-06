@@ -12,8 +12,4 @@ const Page = async () => {
   );
 };
 
-export const metadata = {
-  title: "OptimizeX",
-};
-
 export default Page;

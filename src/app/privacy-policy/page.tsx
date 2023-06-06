@@ -1,6 +1,10 @@
 import LiabilitiesPageWrapper from "@/components/UI/LiabilitiesWrapper";
 import Typography from "@/components/UI/Typography";
 
+export const metadata = {
+  title: "Privacy Policy - OptimizeX",
+};
+
 const PrivacyPolicyPage = () => {
   return (
     <LiabilitiesPageWrapper>
