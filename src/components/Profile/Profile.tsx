@@ -12,7 +12,7 @@ const Profile: FC<ProfileProps> = ({ src }) => {
   return (
     <Fragment>
       {src ? (
-        <div className="h-full w-full relative">
+        <div className="h-min w-full relative aspect-square">
           <div
             className={`absolute flex justify-center items-center h-full bg-transparent w-full ${
               isBlurred && "backdrop-blur-lg backdrop-brightness-50"
@@ -35,7 +35,7 @@ const Profile: FC<ProfileProps> = ({ src }) => {
           />
         </div>
       ) : (
-        <div className="flex text-zinc-500 items-center justify-center h-[25rem] w-full rounded-full bg-zinc-800/50">
+        <div className="aspect-square flex text-zinc-500 items-center justify-center h-auto w-auto p-10 rounded-full bg-zinc-800/50">
           You have no profile picture
         </div>
       )}

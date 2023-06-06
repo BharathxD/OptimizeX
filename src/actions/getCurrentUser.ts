@@ -5,6 +5,7 @@ import { Session } from "next-auth";
 import { authOptions } from "../../pages/api/auth/[...nextauth]";
 import prisma from "@/libs/prismadb";
 import { SafeUser } from "@/types/User";
+import formatDate from "@/utils/formatDate";
 
 export const getSession = async () => {
     return await getServerSession(authOptions);
@@ -20,7 +21,11 @@ const getCurrentUser = async (): Promise<SafeUser | null> => {
         if (!currentUser) return null;
         return {
             ...currentUser,
-            createdAt: currentUser.createdAt.toISOString(),
+            createdAt: currentUser.createdAt.toLocaleString("en-US", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }),
             updatedAt: currentUser.updatedAt.toISOString(),
             emailVerified: currentUser.emailVerified?.toISOString() || null
         }

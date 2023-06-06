@@ -14,11 +14,10 @@ const NavItem = ({ href, icon: Icon }: NavItemProps) => {
         className={buttonVariants({
           size: "sm",
           variant: "ghost",
-          className: "",
+          className: "text-zinc-200",
         })}
       >
         <Icon className="h-5 w-5" />
-        <span className="sr-only">GitHub</span>
       </Button>
     </Link>
   );

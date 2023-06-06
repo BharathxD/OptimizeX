@@ -14,7 +14,7 @@ interface ImageInfoProps {
 const ImageInfo: FC<ImageInfoProps> = ({ name, size, url, handleEdit }) => {
   return (
     <tr>
-      <td className="px-6 py-4 text-sm dark:text-slate-400">
+      <td className="px-6 py-4 text-sm text-zinc-400">
         <div className="relative flex h-12 w-20">
           <Image
             src={url}

@@ -38,7 +38,7 @@ export default async function RootLayout({
       )}
     >
       <body
-        className={`min-h-screen bg-white font-sans text-zinc-900 antialiased dark:bg-zinc-900 dark:text-zinc-50`}
+        className={`min-h-screen font-sans antialiased bg-zinc-950 text-zinc-50`}
         suppressHydrationWarning={true}
       >
         <ToasterProvider />

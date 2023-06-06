@@ -9,13 +9,16 @@ interface NavbarProps {
 const Navbar = ({ items }: NavbarProps) => {
   return (
     <div className="flex gap-6 md:gap-10">
-      <Link href="/" className="items-center space-x-2 md:flex">
+      <Link
+        href="/"
+        className="flex items-center justify-center space-x-2 md:flex"
+      >
         <span className="font-extrabold text-2xl sm:inline-block relative">
           OptimizeX
         </span>
       </Link>
       {items?.length ? (
-        <nav className="hidden gap-6 md:flex">
+        <nav className="hidden md:block">
           {items?.map(
             (item, index) =>
               item.href && (

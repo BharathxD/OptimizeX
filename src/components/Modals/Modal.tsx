@@ -60,20 +60,20 @@ const Modal: FC<ModalProps> = ({
   }
   return (
     <div
-      className={`justify-center items-center backdrop-blur flex fixed inset-0 z-50 outline-none focus:outline-none bg-zinc-800/70`}
+      className={`justify-center items-center backdrop-blur flex fixed inset-0 z-50 outline-none focus:outline-none bg-zinc-800/70 `}
       onClick={handleClose}
     >
       <div
-        className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto border border-zinc-700 rounded-lg overflow-hidden"
+        className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto bg-zinc-800 border border-zinc-700 rounded-lg overflow-hidden"
         onClick={(event) => event.stopPropagation()}
       >
         {/* {CONTENT} */}
         <div
           className={`h-full ${
-            showModal ? `translate-y-0` : `translate-y-full`
+            showModal ? `tranzinc-y-0` : `tranzinc-y-full`
           } ${showModal ? `opacity-100` : `opacity-0`}`}
         >
-          <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-zinc-900 outline-none focus:outline-none">
+          <div className="tranzinc h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-zinc-950 outline-none focus:outline-none">
             {/* {HEADER} */}
             <div className="flex items-center p-6 rounded-t justify-center relative border-zinc-500 border-opacity-50 border-b-[1px]">
               <div className="text-xl text-center font-bold">{title}</div>

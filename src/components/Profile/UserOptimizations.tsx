@@ -64,7 +64,7 @@ const UserOptimizations = ({ optimizations }: UserOptimizationsProps) => {
                   })}
                   href="/"
                 >
-                 Optimize Now
+                  Optimize Now
                 </Button>
               </div>
             </div>

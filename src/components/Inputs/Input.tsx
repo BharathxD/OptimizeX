@@ -39,7 +39,7 @@ const Input: FC<InputProps> = ({
           {...register(id, { required: true, minLength: minLength })}
           placeholder=" "
           type={type}
-          className={`peer w-full p-4 pt-6 font-light border-2 border-zinc-500 border-opacity-50 bg-zinc-800 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed shadow-sm focus:shadow-md
+          className={`peer w-full p-4 pt-6 font-light border-2 border-zinc-500 border-opacity-50 bg-zinc-900 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed shadow-sm focus:shadow-md
         ${formatPrice ? `pl-9` : `pl-4`}
         ${errors[id] ? `border-rose-500` : `border-zinc-300`}
         ${errors[id] ? `focus:border-rose-500` : `focus:border-zinc-600`}

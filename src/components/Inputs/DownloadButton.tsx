@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, Fragment } from "react";
 import { useQuery } from "react-query";
 import axios, { AxiosError } from "axios";
 import { AiOutlineLoading } from "react-icons/ai";
@@ -38,15 +38,15 @@ const DownloadButton: FC<DownloadButtonProps> = ({ name, url }) => {
   const renderMessage = () => {
     if (isLoading) {
       return (
-        <p className="flex flex-row gap-3 animate-pulse justify-between">
-          Processing {name}
+        <Fragment>
+          <p>Processing {name}</p>
           <AiOutlineLoading className="animate-spin" />
-        </p>
+        </Fragment>
       );
     } else if (data === 200) {
       return <p>Download {name}</p>;
     } else {
-      return <p>Processing {name}</p>;
+      return <p>Sorry something went wrong :(</p>;
     }
   };
 
@@ -54,7 +54,9 @@ const DownloadButton: FC<DownloadButtonProps> = ({ name, url }) => {
     const isDownloaded = data === 200;
     const buttonClassName = buttonVariants({
       variant: "special",
-      className: `disabled:bg-zinc-500 ${isDownloaded ? "" : "disabled"}`,
+      className: `p-6 disabled:bg-zinc-500 flex justify-between items-center ${
+        isDownloaded ? "" : "disabled"
+      }`,
     });
 
     return (

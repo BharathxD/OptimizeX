@@ -27,7 +27,7 @@ const Optimizations = ({
     fileName.length > 8 ? `${fileName.substring(0, 8)}...` : fileName;
   return (
     <div
-      className={`flex flex-col bg-zinc-800/50 p-4 ${
+      className={`flex flex-col justify-center bg-zinc-800/50 p-4 ${
         isFullHeight ? "h-full" : "h-min"
       } rounded-lg gap-4`}
     >

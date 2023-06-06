@@ -13,7 +13,7 @@ const ImageInfoContainer: FC<ImageInfoContainerProps> = ({
   handleEdit,
 }) => {
   return (
-    <table className="min-w-full divide-y dark:divide-zinc-600">
+    <table className="min-w-full divide-y divide-zinc-600">
       <tbody>
         {files?.map((file, index) => {
           return (

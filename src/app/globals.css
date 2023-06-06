@@ -6,6 +6,12 @@ html,
 body,
 :root {
   -webkit-tap-highlight-color: transparent;
+  color-scheme: dark;
+}
+
+*::selection {
+  background-color: #ef4444;
+  color: #fef2f2;
 }
 
 @layer utilities {

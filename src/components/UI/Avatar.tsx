@@ -18,7 +18,7 @@ const Avatar: FC<AvatarProps> = ({ src, name, className }) => {
           "flex justify-center items-center text-md p-auto aspect-square w-[25px] h-[25px] bg-green-600 rounded-full"
         )}
       >
-        {name.charAt(0)}
+        {name.charAt(0).toUpperCase()}
       </div>
     );
   }

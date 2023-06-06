@@ -2,7 +2,7 @@ import { Button, buttonVariants } from "../Inputs/Button";
 
 const Footer = () => {
   return (
-    <div className="justify-between sticky h-auto md:min-h-[10vh] p-3 md:p-auto bottom-0 left-0 px-5 right-0 container flex flex-col-reverse gap-2 md:gap-2 border-t-zinc-200 border-t dark:border-t-zinc-700 text-zinc-900 dark:bg-zinc-900 md:flex-row-reverse">
+    <div className="justify-between sticky h-min md:min-h-[10vh] p-3 md:p-auto bottom-0 left-0 px-5 right-0 container flex flex-col-reverse gap-2 md:gap-2 border-t border-t-zinc-700 bg-zinc-950 md:flex-row-reverse">
       <p className="text-sm flex items-center text-center md:text-left text-zinc-400 py-3 md:py-auto">
         All images are used solely for image optimization and are automatically
         deleted after 24h.
