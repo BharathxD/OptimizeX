@@ -57,7 +57,7 @@ const Dropzone: FC<DropzoneProps> = ({ setFiles }) => {
           <div className="hidden md:inline-block md:-mt-[25%] font-bold">
             Click (Or) Drop the Images here
           </div>
-          <div className="font-bold pt-[15vh]">Click to select Image(s)</div>
+          <div className="md:hidden ont-bold pt-[15vh]">Click to select Image(s)</div>
         </div>
       )}
     </ReactDropzone>
