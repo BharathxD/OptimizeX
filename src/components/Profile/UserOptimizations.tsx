@@ -52,8 +52,10 @@ const UserOptimizations = ({ optimizations }: UserOptimizationsProps) => {
       >
         {(!optimizations || optimizations.length === 0) && (
           <div className="flex flex-col gap-4 justify-center items-center h-full w-full text-2xl font-bold">
-            <div className="flex flex-col gap-4 justify-center items-center border border-zinc-700">
-              <div>You haven&apos;t optimized anything :(</div>
+            <div className="flex flex-col gap-4 justify-center items-center">
+              <div className="text-light">
+                Oops! We couldn&apos;t find any previous optimization records
+              </div>
               <div className="w-full">
                 <Button
                   className={buttonVariants({
@@ -62,7 +64,7 @@ const UserOptimizations = ({ optimizations }: UserOptimizationsProps) => {
                   })}
                   href="/"
                 >
-                  Get &apos;Em Optimized!
+                 Optimize Now
                 </Button>
               </div>
             </div>
