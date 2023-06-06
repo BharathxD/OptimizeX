@@ -21,12 +21,12 @@ const Dropzone: FC<DropzoneProps> = ({ setFiles }) => {
   const handleImageDrop = useCallback(
     (acceptedFiles: File[]) => {
       if (uploadedFilesCount + acceptedFiles.length > 3) {
-        return Toast("You can only upload up to 3 images at a time.", "error");
+        return toast.error("You can only upload up to 3 images at a time.");
       }
 
       const filteredFiles = acceptedFiles.filter((file) => {
         if (file.size >= 5 * 1024 * 1024) {
-          Toast(`${file.name} is too large to process.`, "error");
+          toast.error(`${file.name} is too large to process.`);
         }
         return file.size <= 5 * 1024 * 1024;
       });

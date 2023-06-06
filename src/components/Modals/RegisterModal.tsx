@@ -53,7 +53,7 @@ const RegisterModal = () => {
       if (error?.response?.status === StatusCodes.CONFLICT) {
         errorMessage = "The user with this email already exists.";
       }
-      Toast(errorMessage, "error");
+      toast.error(errorMessage);
     },
   });
 

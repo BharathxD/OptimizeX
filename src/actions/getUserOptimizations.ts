@@ -16,9 +16,8 @@ const getUserOptimizations = async (): Promise<SafeUserOptimizations[] | null> =
             }
         })
 
-        const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
         const formattedOptimizations = getUserOptimizations.map((optimization) => {
-            const isExpired = optimization.expiresAt.getTime() > new Date().getTime() + oneDayInMilliseconds;
+            const isExpired = optimization.expiresAt.getTime() < new Date().getTime();
             return {
                 ...optimization,
                 extension: optimization.extension.replace("image/", ""),
@@ -27,7 +26,7 @@ const getUserOptimizations = async (): Promise<SafeUserOptimizations[] | null> =
             }
         });
 
-        return formattedOptimizations;
+        return formattedOptimizations.reverse();
     } catch (error: any) {
         throw new Error(error);
     }

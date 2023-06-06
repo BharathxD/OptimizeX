@@ -8,6 +8,7 @@ import RtkProvider from "@/providers/RtkProvider";
 import RegisterModal from "@/components/Modals/RegisterModal";
 import getCurrentUser from "@/actions/getCurrentUser";
 import { Toaster } from "react-hot-toast";
+import ToasterProvider from "@/providers/ToasterProvider";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -39,9 +40,9 @@ export default async function RootLayout({
         className="min-h-screen bg-white font-sans text-zinc-900 antialiased dark:bg-zinc-900 dark:text-zinc-50"
         suppressHydrationWarning={true}
       >
+        <ToasterProvider />
         <RtkProvider>
           <Header currentUser={currentUser} />
-          <Toaster position="top-center" reverseOrder={false} />
           <LoginModal />
           <RegisterModal />
           <main className="overflow-hidden">{children}</main>

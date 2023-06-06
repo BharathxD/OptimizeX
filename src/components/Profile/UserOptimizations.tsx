@@ -34,7 +34,7 @@ const UserOptimizations = ({ optimizations }: UserOptimizationsProps) => {
           Array.from({ length: maxPages }).map((_, i) => (
             <div
               key={i}
-              className={`p-2 flex items-center justify-center w-full rounded-sm cursor-pointer ${
+              className={`p-2 flex items-center justify-center w-full rounded-sm cursor-pointer  ${
                 currentPage === i + 1
                   ? "bg-zinc-200 text-zinc-800"
                   : "bg-zinc-800 text-zinc-200"
@@ -52,7 +52,7 @@ const UserOptimizations = ({ optimizations }: UserOptimizationsProps) => {
       >
         {(!optimizations || optimizations.length === 0) && (
           <div className="flex flex-col gap-4 justify-center items-center h-full w-full text-2xl font-bold">
-            <div className="flex flex-col gap-4 justify-center items-center ">
+            <div className="flex flex-col gap-4 justify-center items-center border border-zinc-700">
               <div>You haven&apos;t optimized anything :(</div>
               <div className="w-full">
                 <Button

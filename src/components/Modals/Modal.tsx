@@ -30,9 +30,11 @@ const Modal: FC<ModalProps> = ({
   secondaryActionLabel,
 }) => {
   const [showModal, setShowModal] = useState<boolean>(isOpen);
+
   useEffect(() => {
     setShowModal(isOpen);
   }, [isOpen]);
+
   const handleClose = useCallback(() => {
     if (disabled) {
       // If the modal is already disabled
@@ -59,7 +61,7 @@ const Modal: FC<ModalProps> = ({
       onClick={handleClose}
     >
       <div
-        className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto"
+        className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto border border-zinc-700 rounded-lg"
         onClick={(event) => event.stopPropagation()}
       >
         {/* {CONTENT} */}
@@ -71,8 +73,8 @@ const Modal: FC<ModalProps> = ({
           <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-zinc-900 outline-none focus:outline-none">
             {/* {HEADER} */}
             <div className="flex items-center p-6 rounded-t justify-center relative border-zinc-500 border-opacity-50 border-b-[1px]">
-              <div className="text-lg font-semibold">{title}</div>
-              <button className="p-1 border-0 hover:opacity-70 transition absolute right-6">
+              <div className="text-xl text-center font-bold">{title}</div>
+              <button className="p-1 border-0 hover:opacity-70 transition absolute right-6 text-neutral-400 hover:text-white inline-flex appearance-none items-center justify-center rounded-full focus-outline-null">
                 <IoMdClose size={18} onClick={() => onClose()} />
               </button>
             </div>

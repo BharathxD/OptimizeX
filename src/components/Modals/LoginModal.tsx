@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
 import { AxiosError } from "axios";
 import Toast from "../UI/Toast";
+import { toast } from "react-hot-toast";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -56,7 +57,7 @@ const LoginModal = () => {
       return reset();
     },
     onError: (error: AxiosError) => {
-      Toast(error.message, "error");
+      toast.error(error.message);
     },
   });
 
