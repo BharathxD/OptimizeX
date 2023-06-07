@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
                 fileName,
                 extension,
                 expiresAt: expiresAtDate,
-                createdAt: uploadDate,
+                uploadDate: uploadDate,
                 url: updatedKey,
             },
         });
@@ -70,7 +70,6 @@ export async function POST(req: NextRequest) {
             },
         });
 
-        // Prepare response body
         const data: Data = { s3UploadUrl, key: updatedKey };
         const responseBody = JSON.stringify(data);
 
