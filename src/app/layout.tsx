@@ -8,7 +8,6 @@ import RtkProvider from "@/providers/RtkProvider";
 import RegisterModal from "@/components/Modals/RegisterModal";
 import getCurrentUser from "@/actions/getCurrentUser";
 import ToasterProvider from "@/providers/ToasterProvider";
-import Head from "next/head";
 import { Metadata } from "next";
 
 const font = Montserrat({

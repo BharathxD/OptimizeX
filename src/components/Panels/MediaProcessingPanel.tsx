@@ -55,9 +55,9 @@ const MediaProcessingPanel: FC = () => {
         router.refresh();
         setProcessedFiles(uploadedImages);
         setStep(STEP.PROCESSED);
-        setIsLoading(false);
       } catch (error) {
         console.error(error);
+      } finally {
         setIsLoading(false);
       }
     }
@@ -119,10 +119,15 @@ const MediaProcessingPanel: FC = () => {
               </Button>
             </div>
             <div className="flex w-full flex-col gap-4 items-center relative">
-              <div className="bg-zinc-800 border border-dashed border-zinc-600 h-auto max-h-[20rem] w-full md:w-[40rem] rounded-lg overflow-auto">
+              <div
+                className={`bg-zinc-900 border border-dashed border-zinc-600 h-auto max-h-[20rem] w-full md:w-[40rem] rounded-lg overflow-auto ${
+                  isLoading && "bg-zinc-900/50 hover:cursor-not-allowed"
+                }`}
+              >
                 <ImageInfoContainer
                   files={selectedFiles}
                   handleEdit={handleEdit}
+                  isLoading={isLoading}
                 />
               </div>
             </div>

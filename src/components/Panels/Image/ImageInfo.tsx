@@ -9,9 +9,16 @@ interface ImageInfoProps {
   size: File["size"];
   url: string;
   handleEdit: (fileName: File["name"]) => void;
+  isLoading: boolean;
 }
 
-const ImageInfo: FC<ImageInfoProps> = ({ name, size, url, handleEdit }) => {
+const ImageInfo: FC<ImageInfoProps> = ({
+  name,
+  size,
+  url,
+  handleEdit,
+  isLoading,
+}) => {
   return (
     <tr>
       <td className="px-6 py-4 text-sm text-zinc-400">
@@ -21,7 +28,7 @@ const ImageInfo: FC<ImageInfoProps> = ({ name, size, url, handleEdit }) => {
             fill
             alt={name}
             quality={20}
-            className="rounded-lg"
+            className="rounded-lg border border-zinc-600 object-cover"
           />
         </div>
       </td>
@@ -30,11 +37,12 @@ const ImageInfo: FC<ImageInfoProps> = ({ name, size, url, handleEdit }) => {
         {(size / 1000).toFixed(0)} KB
       </td>
       <td className="px-10 py-10">
-        <IoIosRemoveCircleOutline
-          size={25}
-          onClick={() => handleEdit(name)}
-          className="cursor-pointer text-rose-400"
-        />
+        <button disabled={isLoading} onClick={() => handleEdit(name)}>
+          <IoIosRemoveCircleOutline
+            size={25}
+            className={`cursor-pointer text-rose-400 ${isLoading && "hover:cursor-not-allowed text-rose-800"}`}
+          />
+        </button>
       </td>
     </tr>
   );

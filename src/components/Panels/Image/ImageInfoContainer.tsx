@@ -6,11 +6,13 @@ import ImageInfo from "./ImageInfo";
 interface ImageInfoContainerProps {
   files: File[] | null;
   handleEdit: (fileName: File["name"]) => void;
+  isLoading: boolean;
 }
 
 const ImageInfoContainer: FC<ImageInfoContainerProps> = ({
   files,
   handleEdit,
+  isLoading,
 }) => {
   return (
     <table className="min-w-full divide-y divide-zinc-600">
@@ -23,6 +25,7 @@ const ImageInfoContainer: FC<ImageInfoContainerProps> = ({
               size={file.size}
               url={URL.createObjectURL(file)}
               handleEdit={handleEdit}
+              isLoading={isLoading}
             />
           );
         })}

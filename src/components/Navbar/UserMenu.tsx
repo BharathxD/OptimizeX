@@ -9,6 +9,7 @@ import useRegisterModal from "@/hooks/useRegisterModal";
 import { signOut } from "next-auth/react";
 import { BiMenu } from "react-icons/bi";
 import { useRouter } from "next/navigation";
+import { useMutation } from "react-query";
 
 interface UserMenuProps {
   currentUser: SafeUser | null;
@@ -20,6 +21,10 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const menuRef = useRef<HTMLDivElement>(null);
+
+  const { isLoading, mutate: logOut } = useMutation({
+    mutationFn: () => signOut(),
+  });
 
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -50,7 +55,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
           isOpen
             ? "border-zinc-700 bg-zinc-800 bg-gradient-to-tl from-zinc-700 to-zinc-900"
             : "border-zinc-700 bg-zinc-900 bg-gradient-to-br from-zinc-700 to-zinc-900"
-        } flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition`}
+        } hover:bg-gradient-to-tr hover:from-zinc-700 hover:to-zinc-900 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition`}
       >
         <div>
           {currentUser ? (
@@ -76,12 +81,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 label="Optimizations"
               />
               <div className="w-full bg-zinc-600 h-[1px]"></div>
-              <MenuItem
-                onClick={() => {
-                  signOut();
-                }}
-                label="Logout"
-              />
+              <MenuItem onClick={logOut} isLoading={isLoading} label="Logout" />
             </div>
           ) : (
             <div>
