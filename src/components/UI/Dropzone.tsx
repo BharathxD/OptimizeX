@@ -51,13 +51,15 @@ const Dropzone: FC<DropzoneProps> = ({ setFiles }) => {
       {({ getRootProps, getInputProps }) => (
         <div
           {...getRootProps()}
-          className="bg-zinc-800/50 transition-colors hover:bg-zinc-800 h-[40rem] w-full md:w-[40rem] rounded-lg shadow-2xl text-center md:flex flex-col justify-center items-center  cursor-pointer inset-0 outline-dashed outline-zinc-200 outline-12"
+          className="bg-zinc-800/50 transition-colors hover:bg-zinc-800 h-[40rem] w-full md:w-[40rem] rounded-lg shadow-2xl text-center md:flex flex-col justify-center items-center  cursor-pointer inset-0 outline-dashed bg-gradient-to-tr from-zinc-800/50 to-zinc-950/50 outline-zinc-200 outline-12 hover:transition hover:bg-gradient-to-bl hover:from-zinc-800 hover:to-zinc-950/50"
         >
           <input {...getInputProps()} required />
-          <div className="hidden md:inline-block md:-mt-[25%] font-bold">
+          <div className="hidden md:inline-block md:-mt-[25%] text-transparent bg-clip-text bg-gradient-to-br from-zinc-200 to-zinc-400 font-extrabold">
             Click (Or) Drop the Images here
           </div>
-          <div className="md:hidden font-bold pt-[15vh]">Click to select Image(s)</div>
+          <div className="md:hidden pt-[12.5vh] text-transparent bg-clip-text bg-gradient-to-br from-zinc-200 to-zinc-400 font-extrabold">
+            Click to select Image(s)
+          </div>
         </div>
       )}
     </ReactDropzone>

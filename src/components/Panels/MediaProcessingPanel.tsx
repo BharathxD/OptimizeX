@@ -10,6 +10,7 @@ import { uploadImage } from "@/utils/s3Utility";
 import { AiOutlineLoading } from "react-icons/ai";
 import DownloadButton from "../Inputs/DownloadButton";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 const enum STEP {
   SELECT = 0,
@@ -56,6 +57,7 @@ const MediaProcessingPanel: FC = () => {
         setProcessedFiles(uploadedImages);
         setStep(STEP.PROCESSED);
       } catch (error) {
+        toast.error("Something went wrong");
         console.error(error);
       } finally {
         setIsLoading(false);

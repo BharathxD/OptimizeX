@@ -24,6 +24,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
 
   const { isLoading, mutate: logOut } = useMutation({
     mutationFn: () => signOut(),
+    onSuccess: () => router.refresh(),
   });
 
   const toggleOpen = useCallback(() => {
