@@ -14,7 +14,7 @@ const getUserOptimizations = async (): Promise<SafeUserOptimizations[] | null> =
                     in: currentUser.optimizedImages
                 }
             }
-        })
+        });
 
         const formattedOptimizations = getUserOptimizations.map((optimization) => {
             const isExpired = optimization.expiresAt.getTime() < new Date().getTime();
@@ -22,7 +22,7 @@ const getUserOptimizations = async (): Promise<SafeUserOptimizations[] | null> =
                 ...optimization,
                 extension: optimization.extension.replace("image/", ""),
                 expired: isExpired,
-                createdAt: formatDate(optimization.createdAt)
+                createdAt: formatDate(optimization.uploadDate)
             }
         });
 

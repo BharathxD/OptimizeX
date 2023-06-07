@@ -52,7 +52,7 @@ const UserOptimizations = ({ optimizations }: UserOptimizationsProps) => {
       >
         {(!optimizations || optimizations.length === 0) && (
           <div className="flex flex-col gap-4 justify-center items-center h-full w-full text-2xl font-bold">
-            <div className="flex flex-col gap-4 justify-center items-center">
+            <div className="flex flex-col gap-4 justify-center items-center text-center">
               <div className="text-light">
                 Oops! We couldn&apos;t find any previous optimization records
               </div>

@@ -12,9 +12,9 @@ const formatDate = (targetDate: Date): string => {
 
     if (timeDifference < oneDayInMilliseconds) {
         return `${TimeAgo.Today} at ${formatTime(targetDate)}`;
-    } else if (timeDifference < 2 * oneDayInMilliseconds) {
+    } else if (timeDifference > oneDayInMilliseconds && timeDifference < 2 * oneDayInMilliseconds) {
         return `${TimeAgo.Yesterday} at ${formatTime(targetDate)}`;
-    } else if (timeDifference < 3 * oneDayInMilliseconds) {
+    } else if (timeDifference > 2 * oneDayInMilliseconds && timeDifference < 3 * oneDayInMilliseconds) {
         return `${TimeAgo.TwoDaysAgo} at ${formatTime(targetDate)}`;
     } else {
         return TimeAgo.MoreThanTwoDaysAgo;
