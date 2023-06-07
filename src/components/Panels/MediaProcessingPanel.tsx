@@ -47,7 +47,8 @@ const MediaProcessingPanel: FC = () => {
     if (selectedFiles && selectedFiles.length > 0) {
       try {
         const uploadPromises = selectedFiles.map(async (file) => {
-          const url = await uploadImage(file);
+          const uploadDate = new Date();
+          const url = await uploadImage(file, uploadDate);
           return { name: file.name, url: url };
         });
         const uploadedImages = await Promise.all(uploadPromises);
