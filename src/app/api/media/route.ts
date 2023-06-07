@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 import getCurrentUser from "@/actions/getCurrentUser";
 import { v4 as uuidv4 } from 'uuid';
 import prisma from "@/libs/prismadb";
+import { utcToZonedTime } from "date-fns-tz";
 
 export async function POST(req: NextRequest) {
     try {
@@ -46,7 +47,8 @@ export async function POST(req: NextRequest) {
         // Set expiration date
         const oneDay = 24 * 60 * 60 * 1000;
         const currentDate = new Date();
-        const expiresAtDate = new Date(currentDate.getTime() + oneDay);
+        const zonedExpiresAtDate = utcToZonedTime(currentDate.getTime() + oneDay, "IST");
+        const zonedUploadDate = utcToZonedTime(uploadDate.getTime() + oneDay, "IST");
 
         // Create optimized image record in the database
         const createdImage = await prisma.optimizedImage.create({
@@ -54,8 +56,8 @@ export async function POST(req: NextRequest) {
                 userId: currentUser.id,
                 fileName,
                 extension,
-                expiresAt: expiresAtDate,
-                uploadDate: uploadDate,
+                expiresAt: zonedExpiresAtDate,
+                uploadDate: zonedUploadDate,
                 url: updatedKey,
             },
         });
