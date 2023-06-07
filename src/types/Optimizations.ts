@@ -5,6 +5,5 @@ export type SafeUserOptimizations = {
     fileName: string;
     extension: string;
     expired: boolean;
-    expiresAt: Date;
     createdAt: string;
 }

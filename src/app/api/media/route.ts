@@ -46,9 +46,7 @@ export async function POST(req: NextRequest) {
 
         // Set expiration date
         const oneDay = 24 * 60 * 60 * 1000;
-        const currentDate = new Date();
-        const zonedExpiresAtDate = utcToZonedTime(currentDate.getTime() + oneDay, "IST");
-        const zonedUploadDate = utcToZonedTime(uploadDate.getTime() + oneDay, "IST");
+        const expiredAt = new Date(new Date().getTime() + oneDay);
 
         // Create optimized image record in the database
         const createdImage = await prisma.optimizedImage.create({
@@ -56,8 +54,7 @@ export async function POST(req: NextRequest) {
                 userId: currentUser.id,
                 fileName,
                 extension,
-                expiresAt: zonedExpiresAtDate,
-                uploadDate: zonedUploadDate,
+                expiresAt: expiredAt,
                 url: updatedKey,
             },
         });
@@ -71,6 +68,7 @@ export async function POST(req: NextRequest) {
                 },
             },
         });
+
 
         const data: Data = { s3UploadUrl, key: updatedKey };
         const responseBody = JSON.stringify(data);

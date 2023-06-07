@@ -11,11 +11,8 @@ export const uploadImage = async (file: File, date: Date): Promise<string> => {
         if (!file || file.name === "") {
             throw new Error("Invalid file");
         }
-        const fileType = encodeURIComponent(file.type);
-        const fileName = encodeURIComponent(file.name);
-
         try {
-            const { data } = await axios.post(`/api/media?fileType=${fileType}&fileName=${fileName}`, { fileType: file.type, fileName: file.name, uploadDate: date });
+            const { data } = await axios.post(`/api/media`, { fileType: file.type, fileName: file.name, uploadDate: date });
             const { s3UploadUrl, key } = JSON.parse(data);
 
             await axios.put(s3UploadUrl, file);

@@ -17,17 +17,15 @@ const getUserOptimizations = async (): Promise<SafeUserOptimizations[] | null> =
             }
         });
 
-        const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
-
         const formattedOptimizations = getUserOptimizations.map((optimization) => {
-            const currentDate = utcToZonedTime(new Date().getTime(), "IST");
-            const expiryDate = utcToZonedTime(optimization.expiresAt.getTime(), "IST");
-            const isExpired = expiryDate <= currentDate;
+            const currentDateToIST = utcToZonedTime(new Date(), "IST");
+            const expiryDateToIST = utcToZonedTime(optimization.expiresAt, "IST");
+            const isExpired = expiryDateToIST.getTime() <= currentDateToIST.getTime();
             return {
                 ...optimization,
                 extension: optimization.extension.replace("image/", ""),
                 expired: isExpired,
-                createdAt: formatDate(optimization.uploadDate)
+                createdAt: formatDate(optimization.createdAt)
             }
         });
 
