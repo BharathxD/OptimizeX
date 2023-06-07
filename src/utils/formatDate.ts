@@ -7,7 +7,15 @@ const enum TimeAgo {
 
 const formatDate = (targetDate: Date): string => {
     const currentDate = new Date();
-    const timeDifference = currentDate.getTime() - targetDate.getTime();
+    // Current Time Zone Offset
+    const currentTimezoneOffset = currentDate.getTimezoneOffset();
+    // IST offset in minutes
+    const ISTOffset = 330;
+    const serverOffset = currentTimezoneOffset + ISTOffset * 60 * 1000;
+    const serverTime = currentDate.getTime() + serverOffset;
+    const serverDate = new Date(serverTime);
+
+    const timeDifference = serverDate.getTime() - targetDate.getTime();
     const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
 
     if (timeDifference < oneDayInMilliseconds) {
