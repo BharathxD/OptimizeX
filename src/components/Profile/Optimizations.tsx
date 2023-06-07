@@ -52,7 +52,8 @@ const Optimizations = ({
           className={buttonVariants({
             variant: "default",
             className: `bg-gradient-to-br from-zinc-200 to-zinc-400  text-zinc-700 ${
-              hasExpired && "disabled:bg-red-600 disabled:text-zinc-50"
+              hasExpired &&
+              "disabled:bg-red-600 disabled:text-zinc-50 bg-gradient-to-br from-red-500 to-red-800 hover:cursor-not-allowed"
             }`,
           })}
           href={!hasExpired ? url : undefined}
