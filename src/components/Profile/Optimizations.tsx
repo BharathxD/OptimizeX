@@ -24,7 +24,7 @@ const Optimizations = ({
 }: OptimizationsProps) => {
   const isFullHeight = length && length >= 4;
   const name =
-    fileName.length > 8 ? `${fileName.substring(0, 8)}...` : fileName;
+    fileName.length > 8 ? `${fileName.substring(0, 12)}...` : fileName;
   return (
     <div
       className={`flex flex-col justify-center bg-zinc-800/50 p-4 ${
@@ -51,7 +51,7 @@ const Optimizations = ({
         <Button
           className={buttonVariants({
             variant: "default",
-            className: `${
+            className: `bg-gradient-to-br from-zinc-200 to-zinc-400  text-zinc-700 ${
               hasExpired && "disabled:bg-red-600 disabled:text-zinc-50"
             }`,
           })}

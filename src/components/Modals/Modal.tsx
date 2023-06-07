@@ -64,7 +64,7 @@ const Modal: FC<ModalProps> = ({
       onClick={handleClose}
     >
       <div
-        className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto bg-zinc-800 border border-zinc-700 rounded-lg overflow-hidden"
+        className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto bg-zinc-800 border border-zinc-700 rounded-2xl overflow-hidden"
         onClick={(event) => event.stopPropagation()}
       >
         {/* {CONTENT} */}

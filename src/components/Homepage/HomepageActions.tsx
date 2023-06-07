@@ -14,7 +14,7 @@ const HomepageActions = () => {
           variant: "default",
           size: "lg",
           className:
-            "md:w-fit font-bold text-md w-full bg-gradient-to-br from-zinc-200 to-zinc-400",
+            "md:w-fit font-bold text-md w-full",
         })}
         onClick={() => {
           loginModal.onOpen();

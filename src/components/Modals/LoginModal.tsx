@@ -15,7 +15,6 @@ import useRegisterModal from "@/hooks/useRegisterModal";
 import { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
 import { AxiosError } from "axios";
-import Toast from "../UI/Toast";
 import { toast } from "react-hot-toast";
 
 const LoginModal = () => {
@@ -52,8 +51,8 @@ const LoginModal = () => {
       }
     },
     onSuccess: async () => {
-      loginModal.onClose();
       router.refresh();
+      loginModal.onClose();
       return reset();
     },
     onError: (error: AxiosError) => {
