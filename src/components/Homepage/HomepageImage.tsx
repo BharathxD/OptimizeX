@@ -15,9 +15,9 @@ const HomepageImage = () => {
       <Image
         src="/images/homepage.webp"
         alt="Homepage Image"
-        width={50}
+        width={100}
         unoptimized={true}
-        height={29.24}
+        height={62.5}
         priority={true}
         onLoad={() => loadingSkeleton}
         className="hidden md:block aspect-video w-full md:w-[110vh] rounded-lg"
