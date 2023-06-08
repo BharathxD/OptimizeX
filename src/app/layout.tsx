@@ -29,6 +29,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "OptimizeX",
   },
+  viewport: {
+    width: "device-width",
+    initialScale: 1.0,
+    minimumScale: 1.0,
+  },
 };
 
 // Anti-aliazing - Improving the edges of the font

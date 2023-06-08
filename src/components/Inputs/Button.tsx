@@ -53,6 +53,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       return (
         <Link
           href={href}
+          aria-label="Link"
           className={mergeClasses(buttonVariants({ variant, size, className }))}
           {...(newTab && { target: "_blank", rel: "noreferrer" })}
         >

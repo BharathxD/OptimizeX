@@ -22,10 +22,12 @@ const Header: FC<HeaderProps> = ({ currentUser }) => {
             <NavItem
               href={siteConfiguration.links.github}
               icon={GoMarkGithub}
+              label="Github"
             />
             <NavItem
               href={siteConfiguration.links.linkedin}
               icon={FaLinkedin}
+              label="LinkedIn"
             />
             <UserMenu currentUser={currentUser} />
           </nav>

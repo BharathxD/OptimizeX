@@ -13,7 +13,7 @@ const HomepageImage = () => {
   return (
     <div>
       <Image
-        src="/images/homepage.png"
+        src="/images/homepage.webp"
         alt="Homepage Image"
         width={100}
         unoptimized={true}
