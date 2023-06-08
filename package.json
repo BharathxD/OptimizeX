@@ -19,6 +19,7 @@
     "aws-sdk": "^2.1389.0",
     "axios": "^1.4.0",
     "class-variance-authority": "^0.6.0",
+    "client-only": "^0.0.1",
     "clsx": "^1.2.1",
     "date-fns-tz": "^2.0.0",
     "eslint": "8.41.0",
@@ -45,6 +46,7 @@
     "zustand": "^4.3.8"
   },
   "devDependencies": {
+    "@types/gtag.js": "^0.0.12",
     "@types/lodash": "^4.14.195",
     "@types/uuid": "^9.0.1"
   }

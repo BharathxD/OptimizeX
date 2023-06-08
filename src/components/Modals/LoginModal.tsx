@@ -51,7 +51,6 @@ const LoginModal = () => {
       }
     },
     onSuccess: async () => {
-      router.refresh();
       loginModal.onClose();
       return reset();
     },
