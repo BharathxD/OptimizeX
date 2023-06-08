@@ -1,4 +1,36 @@
 /** @type {import('next').NextConfig} */
+const nextSafe = require('next-safe')
+
+const isDev = process.env.NODE_ENV !== "production";
+
+nextSafe({
+  contentTypeOptions: "nosniff",
+  contentSecurityPolicy: {
+    "base-uri": "'none'",
+    "child-src": "'none'",
+    "connect-src": "'self'",
+    "default-src": "'self'",
+    "font-src": "'self'",
+    "form-action": "'self'",
+    "frame-ancestors": "'none'",
+    "frame-src": "'none'",
+    "img-src": "'self'",
+    "manifest-src": "'self'",
+    "object-src": "'none'",
+    "prefetch-src": "'self'",
+    "script-src": "'self'",
+    "style-src": "'self'",
+    "worker-src": "'self'",
+    reportOnly: false,
+  },
+  frameOptions: "DENY",
+  permissionsPolicy: {},
+  permissionsPolicyDirectiveSupport: ["proposed", "standard"],
+  isDev: isDev,
+  referrerPolicy: "no-referrer",
+  xssProtection: "1; mode=block",
+});
+
 const nextConfig = {
   experimental: {
     serverActions: true,
@@ -14,8 +46,8 @@ const nextConfig = {
   async headers() {
     return [
       {
-        key: "Content-Security-Policy",
-        value: `default-src 'self';`,
+        source: "/:path*",
+        headers: nextSafe({ isDev }),
       },
     ];
   },
