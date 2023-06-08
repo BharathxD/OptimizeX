@@ -1,4 +1,6 @@
-import Loader from "@/components/UI/Loader";
+import dynamic from "next/dynamic";
+
+const Loader = dynamic(() => import("@/components/UI/Loader"));
 
 const LoadingPage = () => {
   return <Loader />;

@@ -11,6 +11,14 @@ const nextConfig = {
     ],
     imageSizes: [16, 32, 48, 64, 96],
   },
+  async headers() {
+    return [
+      {
+        key: "Content-Security-Policy",
+        value: `default-src 'self';`,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
