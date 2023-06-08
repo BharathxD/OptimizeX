@@ -4,6 +4,7 @@ import { VariantProps, cva } from "class-variance-authority";
 
 import mergeClasses from "@/utils/mergeClasses";
 import { IconType } from "react-icons";
+import { MoonLoader } from "react-spinners";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors gap-3 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2 hover:bg-zinc-800 hover:text-zinc-100 disabled:opacity-50 focus:ring-zinc-400 disabled:pointer-events-none focus:ring-offset-zinc-900 data-[state=open]:bg-zinc-800",
@@ -42,11 +43,22 @@ export interface ButtonProps
   href?: string;
   icon?: IconType;
   newTab?: boolean;
+  isLoading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { className, children, href, variant, size, newTab, icon: Icon, ...props },
+    {
+      className,
+      isLoading,
+      children,
+      href,
+      variant,
+      size,
+      newTab,
+      icon: Icon,
+      ...props
+    },
     ref
   ) => {
     if (href) {
@@ -68,8 +80,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        {children}
-        {Icon && <Icon />}
+        {!isLoading ? (
+          <>
+            {children}
+            {Icon && <Icon />}
+          </>
+        ) : (
+          <MoonLoader size={15} speedMultiplier={0.75} color="white" />
+        )}
       </button>
     );
   }

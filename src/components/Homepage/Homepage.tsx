@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import HomepageActions from "./HomepageActions";
 import HomepageHeader from "./HomepageHeader";
 import HomepageImage from "./HomepageImage";

@@ -6,6 +6,7 @@ const nextConfig = {
   },
   images: {
     domains: [
+      "media-bucket-project.s3.ap-south-1.amazonaws.com",
       "bharathxds-projects.s3.ap-south-1.amazonaws.com",
       "lh3.googleusercontent.com",
       "avatars.githubusercontent.com",

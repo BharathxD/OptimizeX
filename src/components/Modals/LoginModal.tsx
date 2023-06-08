@@ -109,7 +109,7 @@ const LoginModal = () => {
             className: "w-full p-7 text-lg",
           })}
         >
-          Github
+          <div>Github</div>
         </Button>
       </div>
       <div className="text-zinc-300 text-center font-light p-8">

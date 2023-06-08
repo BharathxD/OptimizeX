@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Fragment, useEffect, useState } from "react";
 
 const HomepageImage = () => {
   const loadingSkeleton = (
@@ -11,18 +12,18 @@ const HomepageImage = () => {
   );
 
   return (
-    <div>
+    <Fragment>
       <Image
-        src="/images/homepage.webp"
+        src="https://media-bucket-project.s3.ap-south-1.amazonaws.com/homepage.webp"
         alt="Homepage Image"
         width={100}
         unoptimized={true}
         height={62.5}
-        priority={true}
         onLoad={() => loadingSkeleton}
+        loading="lazy"
         className="hidden md:block aspect-video w-full md:w-[110vh] rounded-lg"
       />
-    </div>
+    </Fragment>
   );
 };
 
