@@ -4,13 +4,7 @@ import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
 
 const HomepageImage = () => {
-  const loadingSkeleton = (
-    <div
-      role="status"
-      className="mt-4 h-[59rem] w-[54rem] bg-zinc-700 hidden animate-pulse md:block aspect-video md:-ml-7 rounded-lg -mr-10"
-    ></div>
-  );
-
+  const [loaded, setLoaded] = useState(false);
   return (
     <Fragment>
       <Image
@@ -19,9 +13,10 @@ const HomepageImage = () => {
         width={100}
         unoptimized={true}
         height={62.5}
-        onLoad={() => loadingSkeleton}
-        loading="lazy"
-        className="hidden md:block aspect-video w-full md:w-[110vh] rounded-lg"
+        onLoad={() => setLoaded(true)}
+        className={`hidden md:block aspect-video w-full md:w-[110vh] rounded-lg ${
+          loaded ? "transform-y-0 opacity-100" : "transform-y-full opacity-0"
+        } transition`}
       />
     </Fragment>
   );
