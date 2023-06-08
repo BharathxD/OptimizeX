@@ -11,11 +11,12 @@ const HomepageImage = () => {
         src="https://media-bucket-project.s3.ap-south-1.amazonaws.com/homepage.webp"
         alt="Homepage Image"
         width={100}
+        priority={true}
         unoptimized={true}
-        height={62.5}
+        height={100}
         onLoad={() => setLoaded(true)}
-        className={`hidden md:block aspect-video w-full md:w-[110vh] rounded-lg ${
-          loaded ? "transform-y-0 opacity-100" : "transform-y-full opacity-0"
+        className={`hidden md:block aspect-video w-[110vh] rounded-lg ${
+          loaded ? "opacity-100" : "opacity-0"
         } transition`}
       />
     </Fragment>
