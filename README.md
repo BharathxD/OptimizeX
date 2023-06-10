@@ -90,19 +90,19 @@ Contributions are always welcome! If you wish to contribute to OptimizeX, please
 
 ## Acknowledgements
 
-[NextJS](https://github.com/vercel/next.js/)
+[`NextJS`](https://github.com/vercel/next.js/)
 
-[React](https://github.com/facebook/react)
+[`React`](https://github.com/facebook/react)
 
-[TypeScript](https://github.com/microsoft/TypeScript)
+[`TypeScript`](https://github.com/microsoft/TypeScript)
 
-[Prisma](https://github.com/prisma/prisma)
+[`Prisma`](https://github.com/prisma/prisma)
 
-[MongoDB](https://github.com/mongodb/mongo)
+[`MongoDB`](https://github.com/mongodb/mongo)
 
-[AWS](https://aws.amazon.com/)
+[`AWS`](https://aws.amazon.com/)
 
-[NextAuth](https://github.com/nextauthjs/next-auth)
+[`NextAuth`](https://github.com/nextauthjs/next-auth)
 
 ## License
 
