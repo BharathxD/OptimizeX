@@ -41,7 +41,7 @@ To get started with OptimizeX, follow the steps below:
 **Clone the repository:**
 
 ```bash
-git clone https://github.com/your-username/project-name.git
+git clone https://github.com/BharathxD/OptimizeX-Client
 ```
 
 **Install the dependencies:**
