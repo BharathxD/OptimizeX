@@ -5,8 +5,8 @@ export const siteConfiguration = {
     linkedin: "https://www.linkedin.com/in/bharath-bandi/",
   },
   project: {
-    github: "https://github.com/BharathxD/ConvertX-Client"
-  }
+    github: "https://github.com/BharathxD/ConvertX-Client",
+  },
 };
 
 export const siteMessages = {
@@ -20,7 +20,7 @@ export const siteMessages = {
       "Finalize and curate your pictures with the option to selectively choose or remove them.",
     withoutFiles:
       "Effortlessly process multiple images by simply dropping them or clicking in the designated area below.",
-    afterUploading: "Instantly access your optimized pictures after processing.",
+    afterUploading:
+      "Instantly access your optimized pictures after processing.",
   },
 };
-

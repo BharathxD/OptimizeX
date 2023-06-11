@@ -13,8 +13,7 @@ const HomepageActions = () => {
         className={buttonVariants({
           variant: "default",
           size: "lg",
-          className:
-            "md:w-fit font-bold text-md w-full",
+          className: "md:w-fit font-bold text-md w-full",
         })}
         onClick={() => {
           loginModal.onOpen();

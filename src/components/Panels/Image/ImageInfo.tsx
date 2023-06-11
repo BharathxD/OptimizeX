@@ -40,7 +40,9 @@ const ImageInfo: FC<ImageInfoProps> = ({
         <button disabled={isLoading} onClick={() => handleEdit(name)}>
           <IoIosRemoveCircleOutline
             size={25}
-            className={`cursor-pointer text-rose-400 ${isLoading && "hover:cursor-not-allowed text-rose-800"}`}
+            className={`cursor-pointer text-rose-400 ${
+              isLoading && "hover:cursor-not-allowed text-rose-800"
+            }`}
           />
         </button>
       </td>

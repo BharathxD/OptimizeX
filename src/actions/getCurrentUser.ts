@@ -8,30 +8,30 @@ import { SafeUser } from "@/types/User";
 import formatDate from "@/utils/formatDate";
 
 export const getSession = async () => {
-    return await getServerSession(authOptions);
+  return await getServerSession(authOptions);
 };
 
 const getCurrentUser = async (): Promise<SafeUser | null> => {
-    try {
-        const session: Session | null = await getSession();
-        if (!session?.user?.email) return null;
-        const currentUser = await prisma.user.findUnique({
-            where: { email: session.user.email }
-        });
-        if (!currentUser) return null;
-        return {
-            ...currentUser,
-            createdAt: currentUser.createdAt.toLocaleString("en-US", {
-                day: "numeric",
-                month: "long",
-                year: "numeric"
-            }),
-            updatedAt: currentUser.updatedAt.toISOString(),
-            emailVerified: currentUser.emailVerified?.toISOString() || null
-        }
-    } catch (error: any) {
-        throw new Error(error);
-    }
-}
+  try {
+    const session: Session | null = await getSession();
+    if (!session?.user?.email) return null;
+    const currentUser = await prisma.user.findUnique({
+      where: { email: session.user.email },
+    });
+    if (!currentUser) return null;
+    return {
+      ...currentUser,
+      createdAt: currentUser.createdAt.toLocaleString("en-US", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }),
+      updatedAt: currentUser.updatedAt.toISOString(),
+      emailVerified: currentUser.emailVerified?.toISOString() || null,
+    };
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
 
 export default getCurrentUser;

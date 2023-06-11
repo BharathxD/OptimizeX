@@ -18,7 +18,6 @@ import { AxiosError } from "axios";
 import { toast } from "react-hot-toast";
 
 const LoginModal = () => {
-  const router = useRouter();
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const {

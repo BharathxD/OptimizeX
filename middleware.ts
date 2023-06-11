@@ -1,5 +1,5 @@
 export const config = {
-    matcher: ["/optimizations"],
+  matcher: ["/optimizations"],
 };
 
 export { default } from "next-auth/middleware";
