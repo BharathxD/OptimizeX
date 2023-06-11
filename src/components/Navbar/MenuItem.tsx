@@ -1,8 +1,7 @@
 "use client";
 
 import { FC } from "react";
-import { Button } from "../Inputs/Button";
-import { FadeLoader, MoonLoader } from "react-spinners";
+import { MoonLoader } from "react-spinners";
 
 interface MenuItem {
   label: string;

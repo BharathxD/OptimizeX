@@ -12,7 +12,6 @@ import Modal from "./Modal";
 import Input from "../Inputs/Input";
 import { Button, buttonVariants } from "../Inputs/Button";
 import useRegisterModal from "@/hooks/useRegisterModal";
-import { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
 import { AxiosError } from "axios";
 import { toast } from "react-hot-toast";
