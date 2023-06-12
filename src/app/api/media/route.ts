@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from "next/server";
 import getCurrentUser from "@/actions/getCurrentUser";
 import { v4 as uuidv4 } from "uuid";
 import prisma from "@/libs/prismadb";
-import { utcToZonedTime } from "date-fns-tz";
 
 export async function POST(req: NextRequest) {
   try {

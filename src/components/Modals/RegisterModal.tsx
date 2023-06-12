@@ -13,10 +13,9 @@ import { Button, buttonVariants } from "../Inputs/Button";
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import { useRouter } from "next/navigation";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import axios, { AxiosError } from "axios";
 import { toast } from "react-hot-toast";
-import Toast from "../UI/Toast";
 
 const RegisterModal = () => {
   const router = useRouter();

@@ -1,14 +1,9 @@
-"use server";
-
 import getCurrentUser from "@/actions/getCurrentUser";
 import getUserOptimizations from "@/actions/getUserOptimizations";
 import Profile from "@/components/Profile/Profile";
 import ProfileDetails from "@/components/Profile/ProfileDetails";
 import UserOptimizations from "@/components/Profile/UserOptimizations";
-import formatDate from "@/utils/formatDate";
 import { Metadata } from "next";
-import Head from "next/head";
-import { Fragment } from "react";
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const currentUser = await getCurrentUser();

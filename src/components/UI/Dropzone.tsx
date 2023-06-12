@@ -1,9 +1,8 @@
 "use client";
 
-import { FC, Fragment, useCallback, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import ReactDropzone, { Accept } from "react-dropzone";
 import { toast } from "react-hot-toast";
-import Toast from "./Toast";
 
 interface DropzoneProps {
   setFiles: (files: File[]) => void;

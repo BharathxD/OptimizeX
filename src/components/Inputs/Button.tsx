@@ -1,4 +1,4 @@
-import * as React from "react";
+import { forwardRef } from "react";
 import Link from "next/link";
 import { VariantProps, cva } from "class-variance-authority";
 
@@ -46,7 +46,7 @@ export interface ButtonProps
   isLoading?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       className,

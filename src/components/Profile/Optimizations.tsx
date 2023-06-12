@@ -1,5 +1,3 @@
-// Optimizations.jsx
-
 "use client";
 
 import Typography from "../UI/Typography";

@@ -2,7 +2,7 @@ import formatDate from "@/utils/formatDate";
 import getCurrentUser from "./getCurrentUser";
 import prisma from "@/libs/prismadb";
 import { SafeUserOptimizations } from "@/types/Optimizations";
-import { format, utcToZonedTime } from "date-fns-tz";
+import { utcToZonedTime } from "date-fns-tz";
 
 const getUserOptimizations = async (): Promise<
   SafeUserOptimizations[] | null

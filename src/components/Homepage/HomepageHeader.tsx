@@ -1,5 +1,3 @@
-"use client";
-
 import { Fragment } from "react";
 
 const HomepageHeader = () => {
