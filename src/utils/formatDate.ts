@@ -7,6 +7,16 @@ const enum TimeAgo {
   MoreThanTwoDaysAgo = "More than two days ago",
 }
 
+/**
+ * The function formats a given date into a string that represents how long ago the date was relative
+ * to the current server time.
+ * @param {Date} targetDate - The targetDate parameter is a Date object representing the date and time
+ * to be formatted.
+ * @returns The function `formatDate` returns a string that represents the time difference between the
+ * `targetDate` and the current server time in the Indian Standard Time (IST) zone. 
+ * The string returned is based on the time difference and is formatted to show the time in a human-readable format using
+ * the `TimeAgo` enum and the `formatTime` function.
+ */
 const formatDate = (targetDate: Date): string => {
   const currentDate = new Date();
   const serverTime = utcToZonedTime(currentDate, "IST");
