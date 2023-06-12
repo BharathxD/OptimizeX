@@ -1,6 +1,6 @@
 import { format, utcToZonedTime } from "date-fns-tz";
 
-const enum TimeAgo {
+enum TimeAgo {
   Today = "Today",
   Yesterday = "Yesterday",
   TwoDaysAgo = "Two days ago",
@@ -15,14 +15,15 @@ const formatDate = (targetDate: Date): string => {
   const timeDifference = serverTime.getTime() - targetTime.getTime();
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
 
-  if (timeDifference < oneDayInMilliseconds) {
-    return `${TimeAgo.Today} at ${formatTime(targetTime)}`;
-  } else if (timeDifference < 2 * oneDayInMilliseconds) {
-    return `${TimeAgo.Yesterday} at ${formatTime(targetTime)}`;
-  } else if (timeDifference < 3 * oneDayInMilliseconds) {
-    return `${TimeAgo.TwoDaysAgo} at ${formatTime(targetTime)}`;
-  } else {
-    return TimeAgo.MoreThanTwoDaysAgo;
+  switch (true) {
+    case timeDifference < oneDayInMilliseconds:
+      return `${TimeAgo.Today} at ${formatTime(targetTime)}`;
+    case timeDifference < 2 * oneDayInMilliseconds:
+      return `${TimeAgo.Yesterday} at ${formatTime(targetTime)}`;
+    case timeDifference < 3 * oneDayInMilliseconds:
+      return `${TimeAgo.TwoDaysAgo} at ${formatTime(targetTime)}`;
+    default:
+      return TimeAgo.MoreThanTwoDaysAgo;
   }
 };
 
