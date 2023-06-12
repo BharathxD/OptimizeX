@@ -1,6 +1,6 @@
 import { format, utcToZonedTime } from "date-fns-tz";
 
-enum TimeAgo {
+const enum TimeAgo {
   Today = "Today",
   Yesterday = "Yesterday",
   TwoDaysAgo = "Two days ago",
@@ -27,8 +27,6 @@ const formatDate = (targetDate: Date): string => {
   }
 };
 
-const formatTime = (date: Date): string => {
-  return format(date, "h:mm a", { timeZone: "Asia/Kolkata" });
-};
+const formatTime = (date: Date): string => format(date, "h:mm a", { timeZone: "Asia/Kolkata" });
 
 export default formatDate;
