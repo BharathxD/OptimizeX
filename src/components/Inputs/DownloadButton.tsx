@@ -21,7 +21,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({ name, url }) => {
     {
       retry: (failureCount, error: AxiosError) => {
         if (
-          failureCount > 30 ||
+          failureCount > 10 ||
           error.response?.status === 200 ||
           data === 200
         ) {

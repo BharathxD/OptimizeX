@@ -8,7 +8,7 @@ import prisma from "@/libs/prismadb";
 
 export async function POST(req: NextRequest) {
   try {
-    const { fileType, fileName, uploadDate } = await req.json();
+    const { fileType, fileName } = await req.json();
 
     // Check authorization
     const currentUser = await getCurrentUser();
@@ -86,4 +86,8 @@ export async function POST(req: NextRequest) {
       { status: StatusCodes.INTERNAL_SERVER_ERROR }
     );
   }
+}
+
+export async function GET(req: NextRequest) {
+  
 }
