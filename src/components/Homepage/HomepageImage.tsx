@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 
 const HomepageImage = () => {
   const [loaded, setLoaded] = useState(false);
   return (
     <Fragment>
       <Image
-        src="https://media-bucket-project.s3.ap-south-1.amazonaws.com/homepage.webp"
+        src="/images/homepage.webp"
         alt="Homepage Image"
         width={100}
         priority={true}

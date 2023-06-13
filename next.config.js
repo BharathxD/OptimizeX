@@ -5,6 +5,7 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
+    minimumCacheTTL: 60 * 60 * 24 * 365, // One Year
     domains: [
       "media-bucket-project.s3.ap-south-1.amazonaws.com",
       "bharathxds-projects.s3.ap-south-1.amazonaws.com",
