@@ -26,7 +26,6 @@ const Optimizations = ({
   length,
   hasExpired,
 }: OptimizationsProps) => {
-  const [imageBuffer, setImageBuffer] = useState<Buffer | null>(null);
   const isFullHeight = length && length >= 4;
   const { mutate, isLoading, error } = useMutation({
     mutationFn: async () => {
@@ -34,8 +33,19 @@ const Optimizations = ({
         `/api/optimize?key=${objectKey.replace("optimize/", "")}`,
         { responseType: "arraybuffer" }
       );
-      if (response.status === StatusCodes.OK) setImageBuffer(response.data);
+      if (response.status === StatusCodes.OK) return response.data;
       return null;
+    },
+    onSuccess: async (data) => {
+      if (!data) return null;
+      const blob = arrayBufferToBlob(data);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      toast.success(`Saved ${fileName} to your device`);
+      URL.revokeObjectURL(url);
     },
     onError: () => {
       toast.success("Something went wrong");
@@ -43,18 +53,6 @@ const Optimizations = ({
   });
   const name =
     fileName.length > 8 ? `${fileName.substring(0, 10)}...` : fileName;
-  const handleDownload = async () => {
-    mutate();
-    if (!imageBuffer || isLoading || !!error) return null;
-    const blob = arrayBufferToBlob(imageBuffer);
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = fileName;
-    a.click();
-    toast.success(`Saved ${fileName} to your device`);
-    URL.revokeObjectURL(url);
-  };
   return (
     <div
       className={`flex flex-col justify-center bg-zinc-800/50 p-4 ${
@@ -87,7 +85,7 @@ const Optimizations = ({
             }`,
           })}
           iconColor="black"
-          onClick={handleDownload}
+          onClick={() => mutate()}
           disabled={hasExpired || isLoading}
           isLoading={isLoading}
         >
