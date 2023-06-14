@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
         if (!(response.Body instanceof Buffer)) {
             throw new Error("Something went wrong.")
         }
-        return new NextResponse(response.Body, { status: StatusCodes.OK });
+        return new NextResponse(response.Body as Buffer, { status: StatusCodes.OK });
     } catch (error: any) {
         console.log(error.message)
         if (error.code === "NoSuchKey") {
