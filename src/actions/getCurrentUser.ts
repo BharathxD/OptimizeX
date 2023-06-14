@@ -4,7 +4,7 @@ import { authOptions } from "../../pages/api/auth/[...nextauth]";
 import prisma from "@/libs/prismadb";
 import { SafeUser } from "@/types/User";
 
-export const getSession = async () => {
+export const getSession = async (): Promise<Session | null> => {
   return await getServerSession(authOptions);
 };
 
