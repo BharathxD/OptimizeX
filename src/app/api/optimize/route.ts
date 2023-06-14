@@ -1,7 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import { NextRequest, NextResponse } from "next/server";
 import getCurrentUser from "@/actions/getCurrentUser";
-import pollOptimizedImageFromS3 from "@/handlers/pollOptimizedImageFromS3";
 import prisma from "@/libs/prismadb";
 import s3 from "../../../../aws/s3";
 
@@ -35,7 +34,6 @@ export async function GET(req: NextRequest) {
         }
         return new NextResponse(response.Body as Buffer, { status: StatusCodes.OK });
     } catch (error: any) {
-        console.log(error.message)
         if (error.code === "NoSuchKey") {
             return NextResponse.json(
                 { message: "Image not found" },

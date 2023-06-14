@@ -41,7 +41,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({ objectKey, file }) => {
 
   const handleDownload = async () => {
     if (optimizedImageBuffer) {
-      const blob = arrayBufferToBlob(optimizedImageBuffer);
+      const blob = arrayBufferToBlob(optimizedImageBuffer, file.type);
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
