@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
 
     const extension = fileType.replace("image/", "");
     const key = `optimize/picture_${uuidv4()}.${extension}`;
+    const updatedKey = key.replace("optimize/", "optimized/");
 
     // Generate signed URL for S3 upload
     const s3Params = {
@@ -38,10 +39,6 @@ export async function POST(req: NextRequest) {
       ContentType: fileType,
     };
     const s3UploadUrl = await s3.getSignedUrlPromise("putObject", s3Params);
-
-    // Prepare optimized image URL
-    let updatedKey = key.replace("optimize/", "optimized/");
-    updatedKey = `https://${process.env.NEXT_AWS_S3_DESTINATION_BUCKET_NAME}.s3.ap-south-1.amazonaws.com/${updatedKey}`;
 
     // Set expiration date
     const oneDay = 24 * 60 * 60 * 1000;
@@ -54,7 +51,7 @@ export async function POST(req: NextRequest) {
         fileName,
         extension,
         expiresAt: expiredAt,
-        url: updatedKey,
+        url: key,
       },
     });
 
@@ -86,8 +83,4 @@ export async function POST(req: NextRequest) {
       { status: StatusCodes.INTERNAL_SERVER_ERROR }
     );
   }
-}
-
-export async function GET(req: NextRequest) {
-  
 }

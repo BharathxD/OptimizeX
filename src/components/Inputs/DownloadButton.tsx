@@ -1,70 +1,93 @@
 "use client";
 
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { useQuery } from "react-query";
-import axios, { AxiosError } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { AiOutlineLoading } from "react-icons/ai";
 import { Button, buttonVariants } from "./Button";
+import { StatusCodes } from "http-status-codes";
+import { arrayBufferToBlob } from "blob-util";
 
 interface DownloadButtonProps {
-  name: string;
-  url: string;
+  objectKey: string;
+  file: {
+    name: string;
+    type: string;
+  };
 }
 
-const DownloadButton: FC<DownloadButtonProps> = ({ name, url }) => {
-  const { data, isLoading } = useQuery(
-    url,
-    async () => {
-      const response = await axios.get(url);
-      return response.status;
+const DownloadButton: FC<DownloadButtonProps> = ({ objectKey, file }) => {
+  const {
+    data: optimizedImageBuffer,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryFn: async () => {
+      try {
+        const response: AxiosResponse<ArrayBuffer> = await axios.post(
+          "/api/optimize",
+          { key: objectKey, file },
+          { responseType: "arraybuffer" }
+        );
+        if (response.status !== StatusCodes.OK) return null;
+        return response.data;
+      } catch (error: any) {
+        console.log(error.message);
+      }
     },
-    {
-      retry: (failureCount, error: AxiosError) => {
-        if (
-          failureCount > 10 ||
-          error.response?.status === 200 ||
-          data === 200
-        ) {
-          return false;
-        } else {
-          return true;
-        }
-      },
-      retryDelay: 5000,
-      refetchOnWindowFocus: false,
+  });
+
+  const handleDownload = async () => {
+    if (optimizedImageBuffer) {
+      const blob = arrayBufferToBlob(optimizedImageBuffer);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = file.name;
+      a.click();
+      URL.revokeObjectURL(url);
     }
-  );
+  };
 
   const renderMessage = () => {
     if (isLoading) {
       return (
-        <Fragment>
-          <p>Processing {name}</p>
+        <>
+          <p>Processing {file.name}</p>
           <AiOutlineLoading className="animate-spin" />
-        </Fragment>
+        </>
       );
-    } else if (data === 200) {
-      return <p>Download {name}</p>;
-    } else {
-      return <p>Sorry something went wrong :(</p>;
+    } else if (isError) {
+      return (
+        <p>
+          Sorry, it&apos;s taking too long to process. You can check your
+          profile later to download it.
+        </p>
+      );
+    } else if (file) {
+      return (
+        <>
+          <p>Download {file.name}</p>
+        </>
+      );
     }
+    return null;
   };
 
   const renderButton = () => {
-    const isDownloaded = data === 200;
     const buttonClassName = buttonVariants({
       variant: "special",
       className: `p-6 disabled:bg-zinc-500 flex justify-between items-center ${
-        isDownloaded ? "" : "disabled"
+        isLoading || !!error ? "disabled" : ""
       }`,
     });
 
     return (
       <Button
         className={buttonClassName}
-        href={isDownloaded ? url : undefined}
-        disabled={!isDownloaded}
-        newTab
+        onClick={handleDownload}
+        disabled={isLoading || !!error}
       >
         {renderMessage()}
       </Button>

@@ -6,7 +6,7 @@ import axios from "axios";
  * @returns A Promise that resolves to the key of the uploaded image.
  * @throws {Error} If the file is invalid or an error occurs during the upload process.
  */
-export const uploadImage = async (file: File, date: Date): Promise<string> => {
+export const uploadImage = async (file: File, date: Date): Promise<any> => {
   try {
     if (!file || file.name === "") {
       throw new Error("Invalid file");
@@ -18,9 +18,7 @@ export const uploadImage = async (file: File, date: Date): Promise<string> => {
         uploadDate: date,
       });
       const { s3UploadUrl, key } = JSON.parse(data);
-
       await axios.put(s3UploadUrl, file);
-
       return key;
     } catch (error: any) {
       throw new Error(error);

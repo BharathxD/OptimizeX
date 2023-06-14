@@ -22,7 +22,7 @@ const MediaProcessingPanel: FC = () => {
   const router = useRouter();
   const [selectedFiles, setSelectedFiles] = useState<File[] | null>(null);
   const [processedFiles, setProcessedFiles] = useState<
-    { name: string; url: string }[] | []
+    { key: string; file: { name: string; type: string } }[] | []
   >([]);
   const [step, setStep] = useState<STEP>(STEP.SELECT);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -49,8 +49,8 @@ const MediaProcessingPanel: FC = () => {
       try {
         const uploadPromises = selectedFiles.map(async (file) => {
           const uploadDate = new Date();
-          const url = await uploadImage(file, uploadDate);
-          return { name: file.name, url: url };
+          const key = await uploadImage(file, uploadDate);
+          return { key: key, file: { name: file.name, type: file.type } };
         });
         const uploadedImages = await Promise.all(uploadPromises);
         router.refresh();
@@ -144,8 +144,8 @@ const MediaProcessingPanel: FC = () => {
                   return (
                     <DownloadButton
                       key={index}
-                      name={value.name}
-                      url={value.url}
+                      objectKey={value.key}
+                      file={value.file}
                     />
                   );
                 })}
