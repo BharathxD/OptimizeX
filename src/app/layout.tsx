@@ -37,7 +37,6 @@ export const metadata: Metadata = {
 };
 
 // Anti-aliazing - Improving the edges of the font
-
 export default async function RootLayout({
   children,
 }: {

@@ -14,7 +14,7 @@ const buttonVariants = cva(
         default:
           "hover:bg-zinc-400 hover:bg-zinc-200 hover:text-zinc-700 bg-zinc-100 text-zinc-900",
         special:
-          "hover:bg-zinc-700 hover:bg-zinc-700 bg-zinc-900 text-zinc-100 border border-zinc-700",
+          "hover:border-zinc-300 hover:bg-zinc-900/50 bg-zinc-900/50 text-zinc-100 border border-zinc-700 transition-colors",
         destructive: "hover:bg-zinc-600",
         outline:
           "bg-zinc-950 border border-zinc-200 hover:bg-zinc-800 border-zinc-700 text-zinc-100",
