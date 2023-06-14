@@ -145,7 +145,7 @@ const MediaProcessingPanel: FC = () => {
                     <DownloadButton
                       key={index}
                       objectKey={value.key}
-                      file={value.file}
+                      fileMetadata={value.file}
                     />
                   );
                 })}
