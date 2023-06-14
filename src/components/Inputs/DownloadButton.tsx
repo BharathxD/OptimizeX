@@ -1,12 +1,13 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, Fragment } from "react";
 import { useQuery } from "react-query";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { AiOutlineLoading } from "react-icons/ai";
 import { Button, buttonVariants } from "./Button";
 import { StatusCodes } from "http-status-codes";
 import { arrayBufferToBlob } from "blob-util";
+import { toast } from "react-hot-toast";
 
 interface DownloadButtonProps {
   objectKey: string;
@@ -51,6 +52,9 @@ const DownloadButton: FC<DownloadButtonProps> = ({
       a.href = url;
       a.download = "Optimized-" + fileMetadata.name;
       a.click();
+      toast.success(
+        `${fileMetadata.name} has been successfully saved to your device.`
+      );
       URL.revokeObjectURL(url);
     }
   };
@@ -58,10 +62,10 @@ const DownloadButton: FC<DownloadButtonProps> = ({
   const renderMessage = () => {
     if (isLoading) {
       return (
-        <>
+        <Fragment>
           <p>Processing {fileMetadata.name}</p>
           <AiOutlineLoading className="animate-spin" />
-        </>
+        </Fragment>
       );
     } else if (isError) {
       return (
@@ -71,11 +75,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({
         </p>
       );
     } else if (fileMetadata) {
-      return (
-        <>
-          <p>Download {fileMetadata.name}</p>
-        </>
-      );
+      return <p>Download {fileMetadata.name}</p>;
     }
     return null;
   };

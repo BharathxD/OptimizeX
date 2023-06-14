@@ -26,7 +26,7 @@ const Optimizations = ({
   hasExpired,
 }: OptimizationsProps) => {
   const isFullHeight = length && length >= 4;
-  const { mutate, isLoading, error } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: async () => {
       const response: AxiosResponse<Buffer> = await axios.get(
         `/api/optimize?key=${objectKey.replace("optimize/", "")}`,
@@ -43,7 +43,7 @@ const Optimizations = ({
       a.href = url;
       a.download = "Optimized-" + fileName;
       a.click();
-      toast.success(`Saved ${fileName} to your device`);
+      toast.success(`${fileName} has been successfully saved to your device.`);
       URL.revokeObjectURL(url);
     },
     onError: () => {

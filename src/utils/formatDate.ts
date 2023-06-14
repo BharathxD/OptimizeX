@@ -37,6 +37,12 @@ const formatDate = (targetDate: Date): string => {
   }
 };
 
+/**
+ * The function formats a given date into a string that represents the time in the "h:mm a" format,
+ * considering the Indian Standard Time (IST) zone.
+ * @param {Date} date - The date parameter is a Date object representing the date and time to be formatted.
+ * @returns {string} - A string representing the time in the "h:mm a" format, adjusted to the Indian Standard Time (IST) zone.
+ */
 const formatTime = (date: Date): string =>
   format(date, "h:mm a", { timeZone: "Asia/Kolkata" });
 
