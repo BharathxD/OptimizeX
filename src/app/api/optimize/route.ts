@@ -14,7 +14,7 @@ import s3 from "../../../../aws/s3";
  * If the user is not authenticated or authorized, or if the image is not found, 
  * the function returns a NextResponse object with an appropriate error message and status code. 
  * If there is a generic error, the function returns a NextResponse object with a generic error message and status code.
-*/
+ */
 export async function GET(req: NextRequest) {
     try {
         const key = req.nextUrl.searchParams.get("key");

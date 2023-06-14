@@ -14,7 +14,7 @@ import prisma from "@/libs/prismadb";
  * @returns a NextResponse object with a JSON body and status code. 
  * The JSON body contains a signed URL for uploading an image to an S3 bucket and a key for the uploaded image. 
  * The status code is either 200 OK if the operation is successful or an error code if there is an error.
-*/
+ */
 export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const { fileType, fileName } = await req.json();
@@ -84,6 +84,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       },
     });
   } catch (error: any) {
+    // Handle generic error
     return NextResponse.json(
       { message: "Failed to generate the signed URL" },
       { status: StatusCodes.INTERNAL_SERVER_ERROR }
