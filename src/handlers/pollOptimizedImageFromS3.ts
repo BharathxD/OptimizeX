@@ -1,12 +1,11 @@
+import { NextResponse } from "next/server";
+import s3 from "../../aws/s3";
 import { StatusCodes } from "http-status-codes";
-import { NextRequest, NextResponse } from "next/server";
-import s3 from "../../../../aws/s3";
-import getCurrentUser from "@/actions/getCurrentUser";
 
 const MAX_RETRIES = 5;
 const RETRY_DELAY = 5000;
 
-async function pollOptimizedImageFromS3(key: string, fileMetadata: { name: string, type: string }, retries = MAX_RETRIES): Promise<NextResponse> {
+const pollOptimizedImageFromS3 = async (key: string, fileMetadata: { name: string, type: string }, retries = MAX_RETRIES): Promise<NextResponse> => {
     try {
         const getObjectParams = {
             Bucket: process.env.NEXT_AWS_S3_DESTINATION_BUCKET_NAME!,
@@ -48,32 +47,4 @@ async function pollOptimizedImageFromS3(key: string, fileMetadata: { name: strin
     }
 }
 
-export async function GET(req: NextRequest) {
-    try {
-        const currentUser = await getCurrentUser();
-        if (!currentUser) {
-            return NextResponse.json({ message: "User is not authenticated to perform this operation" }, { status: StatusCodes.UNAUTHORIZED });
-        }
-        const { key } = await req.json();
-
-    } catch (error: any) {
-        return NextResponse.json({ message: "Internal Server Error" }, { status: StatusCodes.INTERNAL_SERVER_ERROR });
-    }
-}
-
-export async function POST(req: NextRequest) {
-    try {
-        const currentUser = await getCurrentUser();
-        if (!currentUser) {
-            return NextResponse.json({ message: "User is not authenticated to perform this operation" }, { status: StatusCodes.UNAUTHORIZED });
-        }
-        const { key, file } = await req.json();
-        const response = await pollOptimizedImageFromS3(key, file, 10);
-        return response;
-    } catch (error: any) {
-        console.error(error);
-        return new NextResponse(null, {
-            status: StatusCodes.INTERNAL_SERVER_ERROR,
-        });
-    }
-}
+export default pollOptimizedImageFromS3;

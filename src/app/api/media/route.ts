@@ -50,8 +50,8 @@ export async function POST(req: NextRequest) {
         userId: currentUser.id,
         fileName,
         extension,
+        objectKey: key,
         expiresAt: expiredAt,
-        url: key,
       },
     });
 
