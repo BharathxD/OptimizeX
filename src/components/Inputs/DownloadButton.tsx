@@ -10,13 +10,16 @@ import { arrayBufferToBlob } from "blob-util";
 
 interface DownloadButtonProps {
   objectKey: string;
-  file: {
+  fileMetadata: {
     name: string;
     type: string;
   };
 }
 
-const DownloadButton: FC<DownloadButtonProps> = ({ objectKey, file }) => {
+const DownloadButton: FC<DownloadButtonProps> = ({
+  objectKey,
+  fileMetadata,
+}) => {
   const {
     data: optimizedImageBuffer,
     isLoading,
@@ -25,7 +28,8 @@ const DownloadButton: FC<DownloadButtonProps> = ({ objectKey, file }) => {
   } = useQuery({
     queryFn: async () => {
       const response: AxiosResponse<ArrayBuffer> = await axios.get(
-        `/api/optimize?key=${objectKey}`
+        `/api/optimize?key=${objectKey}`,
+        { responseType: "arraybuffer" }
       );
       if (response.status !== StatusCodes.OK) return null;
       return response.data;
@@ -41,11 +45,11 @@ const DownloadButton: FC<DownloadButtonProps> = ({ objectKey, file }) => {
 
   const handleDownload = async () => {
     if (optimizedImageBuffer) {
-      const blob = arrayBufferToBlob(optimizedImageBuffer, file.type);
+      const blob = arrayBufferToBlob(optimizedImageBuffer, fileMetadata.type);
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = file.name;
+      a.download = fileMetadata.name;
       a.click();
       URL.revokeObjectURL(url);
     }
@@ -55,7 +59,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({ objectKey, file }) => {
     if (isLoading) {
       return (
         <>
-          <p>Processing {file.name}</p>
+          <p>Processing {fileMetadata.name}</p>
           <AiOutlineLoading className="animate-spin" />
         </>
       );
@@ -66,10 +70,10 @@ const DownloadButton: FC<DownloadButtonProps> = ({ objectKey, file }) => {
           profile later to download it.
         </p>
       );
-    } else if (file) {
+    } else if (fileMetadata) {
       return (
         <>
-          <p>Download {file.name}</p>
+          <p>Download {fileMetadata.name}</p>
         </>
       );
     }

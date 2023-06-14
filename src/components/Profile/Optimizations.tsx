@@ -37,9 +37,6 @@ const Optimizations = ({
       if (response.status === StatusCodes.OK) setImageBuffer(response.data);
       return null;
     },
-    onSuccess: () => {
-      toast.success(`Saved ${fileName} to your device`);
-    },
     onError: () => {
       toast.success("Something went wrong");
     },
@@ -55,6 +52,7 @@ const Optimizations = ({
     a.href = url;
     a.download = fileName;
     a.click();
+    toast.success(`Saved ${fileName} to your device`);
     URL.revokeObjectURL(url);
   };
   return (
