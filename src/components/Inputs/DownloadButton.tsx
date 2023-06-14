@@ -25,7 +25,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({ objectKey, file }) => {
   } = useQuery({
     queryFn: async () => {
       const response: AxiosResponse<ArrayBuffer> = await axios.get(
-        `/api/optimize?key${objectKey}`
+        `/api/optimize?key=${objectKey}`
       );
       if (response.status !== StatusCodes.OK) return null;
       return response.data;
