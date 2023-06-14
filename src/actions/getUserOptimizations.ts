@@ -1,3 +1,5 @@
+"use server";
+
 import formatDate from "@/utils/formatDate";
 import getCurrentUser from "./getCurrentUser";
 import prisma from "@/libs/prismadb";
