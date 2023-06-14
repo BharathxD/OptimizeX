@@ -49,7 +49,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = fileMetadata.name;
+      a.download = "Optimized-" + fileMetadata.name;
       a.click();
       URL.revokeObjectURL(url);
     }

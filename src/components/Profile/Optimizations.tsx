@@ -42,7 +42,7 @@ const Optimizations = ({
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = fileName;
+      a.download = "Optimized-" + fileName;
       a.click();
       toast.success(`Saved ${fileName} to your device`);
       URL.revokeObjectURL(url);
