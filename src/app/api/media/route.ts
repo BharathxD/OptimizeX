@@ -1,4 +1,3 @@
-import { Data } from "aws-sdk/clients/firehose";
 import s3 from "../../../../aws/s3";
 import { StatusCodes } from "http-status-codes";
 import { NextRequest, NextResponse } from "next/server";
@@ -6,7 +5,17 @@ import getCurrentUser from "@/actions/getCurrentUser";
 import { v4 as uuidv4 } from "uuid";
 import prisma from "@/libs/prismadb";
 
-export async function POST(req: NextRequest) {
+/**
+ * This function generates a signed URL for S3 upload, creates an optimized image record in the database, 
+ * and updates the user's optimizedImages array.
+ * @param {NextRequest} req - The req parameter is an object representing the incoming HTTP request.
+ * It contains information such as the request method, headers, and body. It is of type NextRequest,
+ * which is a custom type defined by the Next.js framework.
+ * @returns a NextResponse object with a JSON body and status code. 
+ * The JSON body contains a signed URL for uploading an image to an S3 bucket and a key for the uploaded image. 
+ * The status code is either 200 OK if the operation is successful or an error code if there is an error.
+*/
+export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const { fileType, fileName } = await req.json();
 
@@ -14,15 +23,15 @@ export async function POST(req: NextRequest) {
     const currentUser = await getCurrentUser();
     if (!currentUser) {
       return NextResponse.json(
-        { message: "Unauthorized" },
-        { status: StatusCodes.OK }
+        { message: "You are unauthenticated to perform this operation." },
+        { status: StatusCodes.FORBIDDEN }
       );
     }
 
     // Validate params
     if (!fileType || !fileName) {
       return NextResponse.json(
-        { message: "Invalid params" },
+        { message: "Invalid file metadata." },
         { status: StatusCodes.BAD_REQUEST }
       );
     }
@@ -65,9 +74,9 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    const data: Data = { s3UploadUrl, key: destinationKey };
-    const responseBody = JSON.stringify(data);
+    const responseBody = { s3UploadUrl, key: destinationKey };
 
+    // Return the response with signedUrl and the key
     return NextResponse.json(responseBody, {
       status: StatusCodes.OK,
       headers: {
@@ -75,9 +84,6 @@ export async function POST(req: NextRequest) {
       },
     });
   } catch (error: any) {
-    console.error(
-      `Failed to generate presigned URL: ${(error as Error).message}`
-    );
     return NextResponse.json(
       { message: "Failed to generate the signed URL" },
       { status: StatusCodes.INTERNAL_SERVER_ERROR }
