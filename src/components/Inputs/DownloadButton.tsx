@@ -2,7 +2,7 @@
 
 import React, { FC } from "react";
 import { useQuery } from "react-query";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { AiOutlineLoading } from "react-icons/ai";
 import { Button, buttonVariants } from "./Button";
 import { StatusCodes } from "http-status-codes";
@@ -24,18 +24,19 @@ const DownloadButton: FC<DownloadButtonProps> = ({ objectKey, file }) => {
     error,
   } = useQuery({
     queryFn: async () => {
-      try {
-        const response: AxiosResponse<ArrayBuffer> = await axios.post(
-          "/api/optimize",
-          { key: objectKey, file },
-          { responseType: "arraybuffer" }
-        );
-        if (response.status !== StatusCodes.OK) return null;
-        return response.data;
-      } catch (error: any) {
-        console.log(error.message);
-      }
+      const response: AxiosResponse<ArrayBuffer> = await axios.get(
+        `/api/optimize?key${objectKey}`
+      );
+      if (response.status !== StatusCodes.OK) return null;
+      return response.data;
     },
+    retry: (failureCount, error: AxiosError) => {
+      if (failureCount > 5 || error.response?.status === 200) {
+        return false;
+      }
+      return true;
+    },
+    retryDelay: 5000,
   });
 
   const handleDownload = async () => {
