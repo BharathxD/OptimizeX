@@ -28,13 +28,13 @@ export async function POST(req: NextRequest) {
     }
 
     const extension = fileType.replace("image/", "");
-    const key = `optimize/picture_${uuidv4()}.${extension}`;
-    const updatedKey = key.replace("optimize/", "optimized/");
+    const sourceKey = `optimize/picture_${uuidv4()}.${extension}`;
+    const destinationKey = sourceKey.replace("optimize/", "optimized/");
 
     // Generate signed URL for S3 upload
     const s3Params = {
       Bucket: process.env.NEXT_AWS_S3_SOURCE_BUCKET_NAME,
-      Key: key,
+      Key: sourceKey,
       Expires: 60,
       ContentType: fileType,
     };
@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
         userId: currentUser.id,
         fileName,
         extension,
-        objectKey: key,
+        objectKey: destinationKey,
         expiresAt: expiredAt,
       },
     });
@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    const data: Data = { s3UploadUrl, key: updatedKey };
+    const data: Data = { s3UploadUrl, key: destinationKey };
     const responseBody = JSON.stringify(data);
 
     return NextResponse.json(responseBody, {

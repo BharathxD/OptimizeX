@@ -2,12 +2,18 @@
 
 import Typography from "../UI/Typography";
 import { Button, buttonVariants } from "../Inputs/Button";
+import { useMutation } from "react-query";
+import axios, { AxiosResponse } from "axios";
+import { StatusCodes } from "http-status-codes";
+import { useState } from "react";
+import { arrayBufferToBlob } from "blob-util";
+import { toast } from "react-hot-toast";
 
 interface OptimizationsProps {
   fileName: string;
   createdAt: string;
   extension: string;
-  url: string;
+  objectKey: string;
   length?: number;
   hasExpired: boolean;
 }
@@ -16,13 +22,41 @@ const Optimizations = ({
   fileName,
   createdAt,
   extension,
-  url,
+  objectKey,
   length,
   hasExpired,
 }: OptimizationsProps) => {
+  const [imageBuffer, setImageBuffer] = useState<Buffer | null>(null);
   const isFullHeight = length && length >= 4;
+  const { mutate, isLoading, error } = useMutation({
+    mutationFn: async () => {
+      const response: AxiosResponse<Buffer> = await axios.get(
+        `/api/optimize?key=${objectKey.replace("optimize/", "")}`,
+        { responseType: "arraybuffer" }
+      );
+      if (response.status === StatusCodes.OK) setImageBuffer(response.data);
+      return null;
+    },
+    onSuccess: () => {
+      toast.success(`Saved ${fileName} to your device`);
+    },
+    onError: () => {
+      toast.success("Something went wrong");
+    },
+  });
   const name =
-    fileName.length > 8 ? `${fileName.substring(0, 12)}...` : fileName;
+    fileName.length > 8 ? `${fileName.substring(0, 10)}...` : fileName;
+  const handleDownload = async () => {
+    mutate();
+    if (!imageBuffer || isLoading || !!error) return null;
+    const blob = arrayBufferToBlob(imageBuffer);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
   return (
     <div
       className={`flex flex-col justify-center bg-zinc-800/50 p-4 ${
@@ -49,14 +83,15 @@ const Optimizations = ({
         <Button
           className={buttonVariants({
             variant: "default",
-            className: `bg-gradient-to-br from-zinc-200 to-zinc-400  text-zinc-700 ${
+            className: `bg-gradient-to-br from-zinc-200 to-zinc-400  text-zinc-700 min-w-[100px] ${
               hasExpired &&
               "disabled:bg-red-600 disabled:text-zinc-50 bg-gradient-to-br from-red-500 to-red-800 hover:cursor-not-allowed"
             }`,
           })}
-          href={!hasExpired ? url : undefined}
-          disabled={hasExpired}
-          newTab
+          iconColor="black"
+          onClick={handleDownload}
+          disabled={hasExpired || isLoading}
+          isLoading={isLoading}
         >
           {!hasExpired ? "Download" : "Expired"}
         </Button>

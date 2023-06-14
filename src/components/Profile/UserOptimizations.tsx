@@ -77,7 +77,7 @@ const UserOptimizations = ({ optimizations }: UserOptimizationsProps) => {
               fileName={optimization.fileName}
               createdAt={optimization.createdAt}
               extension={optimization.extension}
-              url={optimization.url}
+              objectKey={optimization.objectKey}
               hasExpired={optimization.expired}
               length={optimizationPage.length}
             />

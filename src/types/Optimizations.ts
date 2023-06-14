@@ -1,7 +1,7 @@
 export type SafeUserOptimizations = {
   id: string;
   userId: string;
-  url: string;
+  objectKey: string;
   fileName: string;
   extension: string;
   expired: boolean;

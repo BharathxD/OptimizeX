@@ -44,6 +44,7 @@ export interface ButtonProps
   icon?: IconType;
   newTab?: boolean;
   isLoading?: boolean;
+  iconColor?: string;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -54,6 +55,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       href,
       variant,
+      iconColor = "white",
       size,
       newTab,
       icon: Icon,
@@ -86,7 +88,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             {Icon && <Icon />}
           </>
         ) : (
-          <MoonLoader size={15} speedMultiplier={0.75} color="white" />
+          <MoonLoader size={15} speedMultiplier={0.75} color={iconColor} />
         )}
       </button>
     );
