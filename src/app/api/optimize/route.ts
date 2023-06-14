@@ -64,13 +64,13 @@ export async function POST(req: NextRequest) {
             file
         );
         if (!responseBuffer) {
-            return NextResponse.json(
-                {
-                    message:
-                        "Sorry, it's taking too long to process. You can check your profile later to download it.",
+            return new NextResponse(null, {
+                status: StatusCodes.OK,
+                headers: {
+                    "X-Processing-Status": "pending",
+                    "Retry-After": "120",
                 },
-                { status: StatusCodes.NOT_FOUND }
-            );
+            });
         }
         return new NextResponse(responseBuffer, {
             status: StatusCodes.OK,
