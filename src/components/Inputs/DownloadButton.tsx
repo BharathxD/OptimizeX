@@ -24,8 +24,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({
   const {
     data: optimizedImageBuffer,
     isLoading,
-    isError,
-    error,
+    error: isError,
   } = useQuery({
     queryFn: async () => {
       const response: AxiosResponse<ArrayBuffer> = await axios.get(
@@ -52,9 +51,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({
       a.href = url;
       a.download = "Optimized-" + fileMetadata.name;
       a.click();
-      toast.success(
-        `${fileMetadata.name} has been successfully saved to your device.`
-      );
+      toast.success(`Saved ${fileMetadata.name} to your device.`);
       URL.revokeObjectURL(url);
     }
   };
@@ -84,7 +81,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({
     const buttonClassName = buttonVariants({
       variant: "special",
       className: `p-6 disabled:bg-zinc-500 flex justify-between items-center ${
-        isLoading || !!error ? "disabled" : ""
+        (isLoading || isError) && "disabled"
       }`,
     });
 
@@ -92,7 +89,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({
       <Button
         className={buttonClassName}
         onClick={handleDownload}
-        disabled={isLoading || !!error}
+        disabled={isLoading || !!isError}
       >
         {renderMessage()}
       </Button>

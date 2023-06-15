@@ -43,7 +43,7 @@ const Optimizations = ({
       a.href = url;
       a.download = "Optimized-" + fileName;
       a.click();
-      toast.success(`${fileName} has been successfully saved to your device.`);
+      toast.success(`Saved ${fileName} to your device.`);
       URL.revokeObjectURL(url);
     },
     onError: () => {
