@@ -2,7 +2,7 @@
 
 import { SafeUser } from "@/types/User";
 import Avatar from "../UI/Avatar";
-import { FC, useCallback, useEffect, useRef, useState } from "react";
+import { FC, Fragment, useCallback, useEffect, useRef, useState } from "react";
 import MenuItem from "./MenuItem";
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
@@ -71,21 +71,22 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
       {isOpen && (
         <div
           ref={menuRef}
-          className="absolute mt-3 xl:mt-2 max-w-screen-sm rounded-xl shadow-md w-[40vw] md:w-min bg-zinc-900 overflow-hidden right-0 text-sm border-[1px] border-zinc-600"
+          className="absolute mt-3 xl:mt-2 max-w-screen-sm rounded-xl shadow-md w-[40vw] md:w-min py-1 bg-zinc-900 overflow-hidden right-0 text-sm border-[1px] border-zinc-600"
         >
           {currentUser ? (
-            <div>
-              <MenuItem
-                onClick={() => {
-                  router.push("/optimizations");
-                }}
-                label="Optimizations"
-              />
-              <div className="w-full bg-zinc-600 h-[1px]"></div>
+            <Fragment>
+              <div className="pb-1">
+                <MenuItem onClick={() => router.push("/")} label="Home" />
+                <MenuItem
+                  onClick={() => router.push("/optimizations")}
+                  label="Optimizations"
+                />
+              </div>
+              <div className="w-full bg-zinc-600 h-[1px] mt-1"></div>
               <MenuItem onClick={logOut} isLoading={isLoading} label="Logout" />
-            </div>
+            </Fragment>
           ) : (
-            <div>
+            <Fragment>
               <MenuItem
                 onClick={() => {
                   loginModal.onOpen();
@@ -99,7 +100,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 }}
                 label="Register"
               />
-            </div>
+            </Fragment>
           )}
         </div>
       )}

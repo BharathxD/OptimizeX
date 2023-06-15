@@ -25,7 +25,7 @@ const MenuItem: FC<MenuItem> = ({
   return (
     <button
       onClick={onClickHandler}
-      className={`flex justify-end flex-row px-4 py-3 cursor-pointer hover:bg-sinc-100 hover:text-zinc-400 transistion ${
+      className={`flex justify-end flex-row px-4 py-2.5 cursor-pointer hover:bg-sinc-100 hover:text-zinc-400 transistion ${
         bold ? "font-bold" : "font-semibold-400"
       } ${
         disabled && "bg-sinc-300 hover:bg-sinc-300 hover:cursor-not-allowed"

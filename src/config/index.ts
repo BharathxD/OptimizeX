@@ -1,5 +1,5 @@
 export const siteConfiguration = {
-  items: [{ title: "Home", href: "/" }],
+  items: [],
   links: {
     github: "https://github.com/BharathxD/OptimizeX-Client",
     linkedin: "https://www.linkedin.com/in/bharath-bandi/",
