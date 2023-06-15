@@ -1,4 +1,4 @@
-# OptimizeX - An Open-Source image optimization platform
+# OptimizeX - An Open-source image optimization platform
 
 ![Landing Page](https://media-bucket-project.s3.ap-south-1.amazonaws.com/1.png)
 
