@@ -13,27 +13,21 @@ export const uploadImage = async (file: File, date: Date): Promise<any> => {
     if (!file || file.name === "") {
       throw new Error("Invalid file");
     }
+    // Make a POST request to the server to get the upload URL and key
+    const { data } = await axios.post(`/api/media`, {
+      fileType: file.type,
+      fileName: file.name,
+      uploadDate: date,
+    });
 
-    try {
-      // Make a POST request to the server to get the upload URL and key
-      const { data } = await axios.post(`/api/media`, {
-        fileType: file.type,
-        fileName: file.name,
-        uploadDate: date,
-      });
+    // Extract the upload URL and key from the response
+    const { s3UploadUrl, key } = data;
 
-      // Extract the upload URL and key from the response
-      const { s3UploadUrl, key } = JSON.parse(data);
+    // Upload the file to the specified S3 URL
+    await axios.put(s3UploadUrl, file);
 
-      // Upload the file to the specified S3 URL
-      await axios.put(s3UploadUrl, file);
-
-      // Return the key of the uploaded image
-      return key;
-    } catch (error: any) {
-      // Rethrow the error if an exception occurs during the upload process
-      throw new Error(error);
-    }
+    // Return the key of the uploaded image
+    return key;
   } catch (error: any) {
     // Rethrow the error if the file is invalid
     throw new Error(error);

@@ -56,9 +56,8 @@ const MediaProcessingPanel: FC = () => {
         router.refresh();
         setProcessedFiles(uploadedImages);
         setStep(STEP.PROCESSED);
-      } catch (error) {
+      } catch (error: any) {
         toast.error("Something went wrong");
-        console.error(error);
       } finally {
         setIsLoading(false);
       }
