@@ -3,7 +3,7 @@
 import { getServerSession } from "next-auth/next";
 import { Session } from "next-auth";
 import { authOptions } from "@/libs/auth";
-import prisma from "@/libs/prismadb";
+import database from "@/libs/prismadb";
 import { SafeUser } from "@/types/User";
 
 /**
@@ -13,9 +13,7 @@ import { SafeUser } from "@/types/User";
  * `getServerSession` function with the `authOptions` parameter. The `await` keyword is used to wait
  * for the promise to resolve before returning its result.
  */
-export const getSession = async () => {
-  return await getServerSession(authOptions);
-};
+export const getSession = async () => await getServerSession(authOptions);
 
 
 /** 
@@ -27,14 +25,14 @@ export const getSession = async () => {
  */
 const getCurrentUser = async (): Promise<SafeUser | null> => {
   try {
-    // Retrieve the session
+    // Retrieve thaae session
     const session: Session | null = await getSession();
 
     // Check if the session or user email is missing, return null if true
     if (!session?.user?.email) return null;
 
     // Retrieve the currentUser from the database using the email from the session
-    const currentUser = await prisma.user.findUnique({
+    const currentUser = await database.user.findUnique({
       where: { email: session.user.email },
     });
 
