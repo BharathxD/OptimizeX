@@ -65,7 +65,7 @@ const Optimizations = ({
           className="text-md md:text-md flex items-center justify-center truncate"
         >
           <div className="md:hidden">{name}</div>
-          <div className="hidden md:inline-block">{fileName}</div>
+          <div className="hidden md:inline-block">{fileName.split(".")[0]}</div>
         </Typography>
         <div className="text-md flex items-center justify-center">
           {createdAt}
