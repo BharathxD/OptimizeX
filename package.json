@@ -2,6 +2,16 @@
   "name": "optimizex",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BharathxD/OptimizeX.git"
+  },
+  "author": "BharathxD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BharathxD/OptimizeX/issues"
+  },
+  "homepage": "https://github.com/BharathxD/OptimizeX#readme",
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
