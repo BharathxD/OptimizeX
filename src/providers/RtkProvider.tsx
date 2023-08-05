@@ -1,7 +1,7 @@
 "use client";
 
-import { QueryClient, QueryClientProvider } from "react-query";
 import { FC, ReactNode } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 interface LayoutProps {
   children: ReactNode;

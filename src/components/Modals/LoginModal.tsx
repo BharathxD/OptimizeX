@@ -1,21 +1,22 @@
 "use client";
 
+import { useCallback } from "react";
+import { useRouter } from "next/navigation";
+import { AxiosError } from "axios";
+import { StatusCodes } from "http-status-codes";
 import { signIn } from "next-auth/react";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { useCallback } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import useLoginModal from "@/hooks/useLoginModal";
-import { StatusCodes } from "http-status-codes";
-
-import Modal from "./Modal";
-import Input from "../Inputs/Input";
-import { Button, buttonVariants } from "../Inputs/Button";
-import useRegisterModal from "@/hooks/useRegisterModal";
 import { useMutation } from "react-query";
-import { AxiosError } from "axios";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
+
+import useLoginModal from "@/hooks/useLoginModal";
+import useRegisterModal from "@/hooks/useRegisterModal";
+
+import { Button, buttonVariants } from "../Inputs/Button";
+import Input from "../Inputs/Input";
+import Modal from "./Modal";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -89,8 +90,8 @@ const LoginModal = () => {
   );
 
   const footerContent = (
-    <div className="flex flex-col mt-3">
-      <div className="flex flex-row w-full gap-2">
+    <div className="mt-3 flex flex-col">
+      <div className="flex w-full flex-row gap-2">
         <Button
           icon={FcGoogle}
           onClick={() => signIn("google")}
@@ -112,11 +113,11 @@ const LoginModal = () => {
           <div>Github</div>
         </Button>
       </div>
-      <div className="text-zinc-300 text-center font-light p-8">
-        <div className="flex flex-row items-center gap-2 justify-center">
+      <div className="p-8 text-center font-light text-zinc-300">
+        <div className="flex flex-row items-center justify-center gap-2">
           <div>Don&apos;t have an account?</div>
           <div
-            className="text-zinc-400 cursor-pointer hover:underline font-medium"
+            className="cursor-pointer font-medium text-zinc-400 hover:underline"
             onClick={toggle}
           >
             Sign Up

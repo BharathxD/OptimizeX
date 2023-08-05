@@ -1,5 +1,7 @@
-import { NavItem } from "@/types/Navigation";
 import Link from "next/link";
+
+import { NavItem } from "@/types/Navigation";
+
 import { Button, buttonVariants } from "../Inputs/Button";
 
 interface NavbarProps {
@@ -13,7 +15,7 @@ const Navbar = ({ items }: NavbarProps) => {
         href="/"
         className="flex items-center justify-center space-x-2 md:flex"
       >
-        <span className="font-extrabold text-2xl sm:inline-block relative">
+        <span className="relative text-2xl font-extrabold sm:inline-block">
           OptimizeX
         </span>
       </Link>

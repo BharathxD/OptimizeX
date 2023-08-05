@@ -1,6 +1,6 @@
 import { FC, HTMLAttributes, ReactNode } from "react";
-import mergeClasses from "@/utils/mergeClasses";
 import Link from "next/link";
+import mergeClasses from "@/utils/mergeClasses";
 
 interface TypographyProps
   extends HTMLAttributes<
@@ -46,7 +46,7 @@ const Typography: FC<TypographyProps> = ({
         <Link
           href={`mailto:${email!}`}
           className={mergeClasses(
-            "underline text-zinc-200 my-0 inline-block mx-1",
+            "mx-1 my-0 inline-block text-zinc-200 underline",
             className
           )}
         >
@@ -58,7 +58,7 @@ const Typography: FC<TypographyProps> = ({
         <Link
           href={href!}
           className={mergeClasses(
-            "underline text-zinc-200 my-0 inline-block mx-1",
+            "mx-1 my-0 inline-block text-zinc-200 underline",
             className
           )}
         >
@@ -69,7 +69,7 @@ const Typography: FC<TypographyProps> = ({
       return (
         <span
           className={mergeClasses(
-            "font-light text-zinc-200 inline-block",
+            "inline-block font-light text-zinc-200",
             className
           )}
         >
@@ -78,7 +78,7 @@ const Typography: FC<TypographyProps> = ({
       );
     case "special":
       return (
-        <span className={mergeClasses("text-zinc-200 inline-block", className)}>
+        <span className={mergeClasses("inline-block text-zinc-200", className)}>
           {children}
         </span>
       );

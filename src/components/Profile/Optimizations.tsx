@@ -1,12 +1,13 @@
 "use client";
 
-import Typography from "../UI/Typography";
-import { Button, buttonVariants } from "../Inputs/Button";
-import { useMutation } from "react-query";
 import axios, { AxiosResponse } from "axios";
-import { StatusCodes } from "http-status-codes";
 import { arrayBufferToBlob } from "blob-util";
+import { StatusCodes } from "http-status-codes";
 import { toast } from "react-hot-toast";
+import { useMutation } from "react-query";
+
+import { Button, buttonVariants } from "../Inputs/Button";
+import Typography from "../UI/Typography";
 
 interface OptimizationsProps {
   fileName: string;
@@ -56,31 +57,31 @@ const Optimizations = ({
     <div
       className={`flex flex-col justify-center bg-zinc-800/50 p-4 ${
         isFullHeight ? "h-full" : "h-min"
-      } rounded-lg gap-4`}
+      } gap-4 rounded-lg`}
     >
       <div className="flex flex-row justify-between">
         <Typography
           type="subheading"
-          className="flex justify-center items-center text-md md:text-md truncate"
+          className="text-md md:text-md flex items-center justify-center truncate"
         >
           <div className="md:hidden">{name}</div>
           <div className="hidden md:inline-block">{fileName}</div>
         </Typography>
-        <div className="flex justify-center items-center text-md">
+        <div className="text-md flex items-center justify-center">
           {createdAt}
         </div>
       </div>
       <div className="flex flex-row justify-between">
-        <div className="flex justify-center items-center text-md">
+        <div className="text-md flex items-center justify-center">
           It&apos;s a {extension}
         </div>
 
         <Button
           className={buttonVariants({
             variant: "default",
-            className: `bg-gradient-to-br from-zinc-200 to-zinc-400  text-zinc-700 min-w-[100px] ${
+            className: `min-w-[100px] bg-gradient-to-br from-zinc-200  to-zinc-400 text-zinc-700 ${
               hasExpired &&
-              "disabled:bg-red-600 disabled:text-zinc-50 bg-gradient-to-br from-red-500 to-red-800 hover:cursor-not-allowed"
+              "bg-gradient-to-br from-red-500 to-red-800 hover:cursor-not-allowed disabled:bg-red-600 disabled:text-zinc-50"
             }`,
           })}
           iconColor="black"

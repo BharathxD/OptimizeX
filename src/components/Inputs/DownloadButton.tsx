@@ -1,13 +1,14 @@
 "use client";
 
 import React, { FC, Fragment } from "react";
-import { useQuery } from "react-query";
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { AiOutlineLoading } from "react-icons/ai";
-import { Button, buttonVariants } from "./Button";
-import { StatusCodes } from "http-status-codes";
 import { arrayBufferToBlob } from "blob-util";
+import { StatusCodes } from "http-status-codes";
 import { toast } from "react-hot-toast";
+import { AiOutlineLoading } from "react-icons/ai";
+import { useQuery } from "react-query";
+
+import { Button, buttonVariants } from "./Button";
 
 interface DownloadButtonProps {
   objectKey: string;
@@ -96,7 +97,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({
     );
   };
 
-  return <div className="p-2 flex flex-col gap-2 w-full">{renderButton()}</div>;
+  return <div className="flex w-full flex-col gap-2 p-2">{renderButton()}</div>;
 };
 
 export default DownloadButton;

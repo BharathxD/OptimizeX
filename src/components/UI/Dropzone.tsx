@@ -50,13 +50,13 @@ const Dropzone: FC<DropzoneProps> = ({ setFiles }) => {
       {({ getRootProps, getInputProps }) => (
         <div
           {...getRootProps()}
-          className="bg-zinc-800/50 transition-colors hover:bg-zinc-800 h-[40rem] w-full md:w-[40rem] rounded-lg shadow-2xl text-center md:flex flex-col justify-center items-center  cursor-pointer inset-0 outline-dashed bg-gradient-to-tr from-zinc-800/50 to-zinc-950/50 outline-zinc-200 outline-12 hover:transition hover:bg-gradient-to-bl hover:from-zinc-800 hover:to-zinc-950/50"
+          className="outline-12 inset-0 h-[40rem] w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-zinc-800/50 bg-gradient-to-tr from-zinc-800/50 to-zinc-950/50  text-center shadow-2xl outline-dashed outline-zinc-200 transition-colors hover:bg-zinc-800 hover:bg-gradient-to-bl hover:from-zinc-800 hover:to-zinc-950/50 hover:transition md:flex md:w-[40rem]"
         >
           <input {...getInputProps()} required />
-          <div className="hidden md:inline-block md:-mt-[25%] text-transparent bg-clip-text bg-gradient-to-br from-zinc-200 to-zinc-400 font-extrabold">
+          <div className="hidden bg-gradient-to-br from-zinc-200 to-zinc-400 bg-clip-text font-extrabold text-transparent md:-mt-[25%] md:inline-block">
             Click (Or) Drop the Images here
           </div>
-          <div className="md:hidden pt-[12.5vh] text-transparent bg-clip-text bg-gradient-to-br from-zinc-200 to-zinc-400 font-extrabold">
+          <div className="bg-gradient-to-br from-zinc-200 to-zinc-400 bg-clip-text pt-[12.5vh] font-extrabold text-transparent md:hidden">
             Click to select Image(s)
           </div>
         </div>

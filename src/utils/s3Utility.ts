@@ -33,4 +33,3 @@ export const uploadImage = async (file: File, date: Date): Promise<any> => {
     throw new Error(error);
   }
 };
-

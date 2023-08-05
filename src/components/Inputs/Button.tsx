@@ -1,8 +1,7 @@
 import { forwardRef } from "react";
 import Link from "next/link";
-import { VariantProps, cva } from "class-variance-authority";
-
 import mergeClasses from "@/utils/mergeClasses";
+import { cva, VariantProps } from "class-variance-authority";
 import { IconType } from "react-icons";
 import { MoonLoader } from "react-spinners";
 

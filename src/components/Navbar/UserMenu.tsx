@@ -1,15 +1,17 @@
 "use client";
 
-import { SafeUser } from "@/types/User";
-import Avatar from "../UI/Avatar";
 import { FC, Fragment, useCallback, useEffect, useRef, useState } from "react";
-import MenuItem from "./MenuItem";
-import useLoginModal from "@/hooks/useLoginModal";
-import useRegisterModal from "@/hooks/useRegisterModal";
+import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { BiMenu } from "react-icons/bi";
-import { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
+
+import { SafeUser } from "@/types/User";
+import useLoginModal from "@/hooks/useLoginModal";
+import useRegisterModal from "@/hooks/useRegisterModal";
+
+import Avatar from "../UI/Avatar";
+import MenuItem from "./MenuItem";
 
 interface UserMenuProps {
   currentUser: SafeUser | null;
@@ -52,11 +54,11 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
     <div className="relative">
       <div
         onClick={toggleOpen}
-        className={`ml-4 p-1 md:p-4 md:py-1 md:px-1 border-[1px] hover:border-zinc-600 bg-zinc-700 ${
+        className={`ml-4 border-[1px] bg-zinc-700 p-1 hover:border-zinc-600 md:p-4 md:px-1 md:py-1 ${
           isOpen
             ? "border-zinc-700 bg-zinc-800 bg-gradient-to-tl from-zinc-700 to-zinc-900"
             : "border-zinc-700 bg-zinc-900 bg-gradient-to-br from-zinc-700 to-zinc-900"
-        } hover:bg-gradient-to-tr hover:from-zinc-700 hover:to-zinc-900 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition`}
+        } flex cursor-pointer flex-row items-center gap-3 rounded-full transition hover:bg-gradient-to-tr hover:from-zinc-700 hover:to-zinc-900 hover:shadow-md`}
       >
         <div>
           {currentUser ? (
@@ -71,7 +73,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
       {isOpen && (
         <div
           ref={menuRef}
-          className="absolute mt-3 xl:mt-2 max-w-screen-sm rounded-xl shadow-md w-[40vw] md:w-min py-1 bg-zinc-900 overflow-hidden right-0 text-sm border-[1px] border-zinc-600"
+          className="absolute right-0 mt-3 w-[40vw] max-w-screen-sm overflow-hidden rounded-xl border-[1px] border-zinc-600 bg-zinc-900 py-1 text-sm shadow-md md:w-min xl:mt-2"
         >
           {currentUser ? (
             <Fragment>
@@ -82,7 +84,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                   label="Optimizations"
                 />
               </div>
-              <div className="w-full bg-zinc-600 h-[1px] mt-1"></div>
+              <div className="mt-1 h-[1px] w-full bg-zinc-600"></div>
               <MenuItem onClick={logOut} isLoading={isLoading} label="Logout" />
             </Fragment>
           ) : (
@@ -93,7 +95,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 }}
                 label="Login"
               />
-              <div className="w-full bg-zinc-600 h-[1px]"></div>
+              <div className="h-[1px] w-full bg-zinc-600"></div>
               <MenuItem
                 onClick={() => {
                   registerModal.onOpen();

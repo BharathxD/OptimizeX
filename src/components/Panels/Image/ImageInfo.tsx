@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { FC } from "react";
+import Image from "next/image";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 
 interface ImageInfoProps {
@@ -33,7 +33,7 @@ const ImageInfo: FC<ImageInfoProps> = ({
         </div>
       </td>
       <td className="px-6 py-4">{name}</td>
-      <td className={"hidden md:inline-block text-sm px-10 py-11"}>
+      <td className={"hidden px-10 py-11 text-sm md:inline-block"}>
         {(size / 1000).toFixed(0)} KB
       </td>
       <td className="px-10 py-10">
@@ -41,7 +41,7 @@ const ImageInfo: FC<ImageInfoProps> = ({
           <IoIosRemoveCircleOutline
             size={25}
             className={`cursor-pointer text-rose-400 ${
-              isLoading && "hover:cursor-not-allowed text-rose-800"
+              isLoading && "text-rose-800 hover:cursor-not-allowed"
             }`}
           />
         </button>

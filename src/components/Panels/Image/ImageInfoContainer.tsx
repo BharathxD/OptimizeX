@@ -1,6 +1,7 @@
 "use client";
 
 import { FC } from "react";
+
 import ImageInfo from "./ImageInfo";
 
 interface ImageInfoContainerProps {

@@ -1,17 +1,15 @@
-import argon2 from "argon2";
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/libs/prismadb";
+import argon2 from "argon2";
 import { StatusCodes } from "http-status-codes";
 import { omit } from "lodash";
-
-import { NextRequest, NextResponse } from "next/server";
-
 
 /**
  * This function creates a new user in a database, hashes their password, and returns a JSON response with the user's information.
  * @param {NextRequest} req - The `req` parameter is an object representing the incoming HTTP request.
- * It is of type `NextRequest`, which is a custom type defined by the Next.js framework. 
+ * It is of type `NextRequest`, which is a custom type defined by the Next.js framework.
  * It contains information about the request, such as the HTTP method, headers, and body.
- * @returns a JSON response with a safeUser object and a 201 status code if the user is successfully created in the database. 
+ * @returns a JSON response with a safeUser object and a 201 status code if the user is successfully created in the database.
  * If there is an error, it will return a JSON response with an appropriate error message and status code.
  */
 export async function POST(req: NextRequest) {

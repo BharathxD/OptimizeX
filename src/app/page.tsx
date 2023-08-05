@@ -1,11 +1,12 @@
 import getCurrentUser from "@/actions/getCurrentUser";
+
 import Homepage from "@/components/Homepage/Homepage";
 import MediaProcessingPanel from "@/components/Panels/MediaProcessingPanel";
 
 const Page = async () => {
   const currentUser = await getCurrentUser();
   return (
-    <section className="container grid items-center gap-1 md:pt-6 md:py-9 h-[75vh] md:h-[82vh] relative overflow-hidden">
+    <section className="container relative grid h-[75vh] items-center gap-1 overflow-hidden md:h-[82vh] md:py-9 md:pt-6">
       {!currentUser ? <Homepage /> : <MediaProcessingPanel />}
     </section>
   );

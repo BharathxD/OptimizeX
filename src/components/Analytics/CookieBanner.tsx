@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { getLocalStorage, setLocalStorage } from "@/libs/storageHelper";
+
 import { Button, buttonVariants } from "../Inputs/Button";
 
 const CookieBanner = () => {
@@ -34,7 +35,7 @@ const CookieBanner = () => {
   };
 
   return (
-    <div className="fixed bottom-0 right-0 m-2.5 z-10 flex items-center justify-center w-auto md:w-full backdrop-blur-sm">
+    <div className="fixed bottom-0 right-0 z-10 m-2.5 flex w-auto items-center justify-center backdrop-blur-sm md:w-full">
       <div className={cookieBannerClasses}>
         <div className="text-center">
           <Link href="/privacy-policy">
@@ -44,7 +45,7 @@ const CookieBanner = () => {
             </p>
           </Link>
         </div>
-        <div className="hidden md:block w-[1px] h-[30px] rotate-180 bg-zinc-700"></div>
+        <div className="hidden h-[30px] w-[1px] rotate-180 bg-zinc-700 md:block"></div>
         <div className="flex gap-2">
           <Button
             className={buttonVariants({ variant: "special" })}

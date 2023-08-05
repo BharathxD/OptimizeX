@@ -1,10 +1,12 @@
 "use server";
 
-import formatDate from "@/utils/formatDate";
-import getCurrentUser from "./getCurrentUser";
 import prisma from "@/libs/prismadb";
-import { SafeUserOptimizations } from "@/types/Optimizations";
+import formatDate from "@/utils/formatDate";
 import { utcToZonedTime } from "date-fns-tz";
+
+import { SafeUserOptimizations } from "@/types/Optimizations";
+
+import getCurrentUser from "./getCurrentUser";
 
 /**
  * This function retrieves and formats a user's optimized images from a database, checking for
@@ -12,7 +14,9 @@ import { utcToZonedTime } from "date-fns-tz";
  * @returns The function `getUserOptimizations` returns a Promise that resolves to an array of
  * `SafeUserOptimizations` objects or `null`.
  */
-const getUserOptimizations = async (): Promise<SafeUserOptimizations[] | null> => {
+const getUserOptimizations = async (): Promise<
+  SafeUserOptimizations[] | null
+> => {
   try {
     // Get the current user
     const currentUser = await getCurrentUser();

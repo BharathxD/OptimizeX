@@ -5,7 +5,7 @@ import HomepageImage from "./HomepageImage";
 const Homepage = () => {
   return (
     <div>
-      <div className="flex w-full gap-4 flex-col items-center">
+      <div className="flex w-full flex-col items-center gap-4">
         <HomepageHeader />
         <HomepageActions />
       </div>

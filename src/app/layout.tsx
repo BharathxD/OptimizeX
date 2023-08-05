@@ -1,16 +1,18 @@
 import "./globals.css";
-import { Montserrat } from "next/font/google";
+
 import { Metadata } from "next";
-import Header from "@/components/Navbar/Header";
+import { Montserrat } from "next/font/google";
+import getCurrentUser from "@/actions/getCurrentUser";
+import mergeClasses from "@/utils/mergeClasses";
+
+import RtkProvider from "@/providers/RtkProvider";
+import ToasterProvider from "@/providers/ToasterProvider";
+import CookieBanner from "@/components/Analytics/CookieBanner";
+import GoogleAnalytics from "@/components/Analytics/GoogleAnalytics";
 import Footer from "@/components/Footer/Footer";
 import LoginModal from "@/components/Modals/LoginModal";
-import RtkProvider from "@/providers/RtkProvider";
-import CookieBanner from "@/components/Analytics/CookieBanner";
-import mergeClasses from "@/utils/mergeClasses";
 import RegisterModal from "@/components/Modals/RegisterModal";
-import getCurrentUser from "@/actions/getCurrentUser";
-import ToasterProvider from "@/providers/ToasterProvider";
-import GoogleAnalytics from "@/components/Analytics/GoogleAnalytics";
+import Header from "@/components/Navbar/Header";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -57,7 +59,7 @@ export default async function RootLayout({
         GA_MEASUREMENT_ID={process.env.GOOGLE_ANALYTICS_MEASUREMENT_ID!}
       />
       <body
-        className={`min-h-screen font-sans antialiased bg-zinc-950 text-zinc-50`}
+        className={`min-h-screen bg-zinc-950 font-sans text-zinc-50 antialiased`}
         suppressHydrationWarning={true}
       >
         <CookieBanner />

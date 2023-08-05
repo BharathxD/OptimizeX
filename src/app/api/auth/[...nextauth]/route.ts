@@ -1,6 +1,5 @@
-import NextAuth from "next-auth/next";
-
 import { authOptions } from "@/libs/auth";
+import NextAuth from "next-auth/next";
 
 /**
  * Initialize the NextAuth.js authentication handler with the provided options.

@@ -1,18 +1,19 @@
-import s3 from "../../../../aws/s3";
-import { StatusCodes } from "http-status-codes";
 import { NextRequest, NextResponse } from "next/server";
 import getCurrentUser from "@/actions/getCurrentUser";
-import { v4 as uuidv4 } from "uuid";
 import prisma from "@/libs/prismadb";
+import { StatusCodes } from "http-status-codes";
+import { v4 as uuidv4 } from "uuid";
+
+import s3 from "../../../../aws/s3";
 
 /**
- * This function generates a signed URL for S3 upload, creates an optimized image record in the database, 
+ * This function generates a signed URL for S3 upload, creates an optimized image record in the database,
  * and updates the user's optimizedImages array.
  * @param {NextRequest} req - The req parameter is an object representing the incoming HTTP request.
  * It contains information such as the request method, headers, and body. It is of type NextRequest,
  * which is a custom type defined by the Next.js framework.
- * @returns a NextResponse object with a JSON body and status code. 
- * The JSON body contains a signed URL for uploading an image to an S3 bucket and a key for the uploaded image. 
+ * @returns a NextResponse object with a JSON body and status code.
+ * The JSON body contains a signed URL for uploading an image to an S3 bucket and a key for the uploaded image.
  * The status code is either 200 OK if the operation is successful or an error code if there is an error.
  */
 export async function POST(req: NextRequest): Promise<NextResponse> {

@@ -1,11 +1,13 @@
-import Navbar from "./Navbar";
+import { FC } from "react";
 import { siteConfiguration } from "@/config";
-import NavItem from "./Navitem";
 import { FaLinkedin } from "react-icons/fa";
 import { GoMarkGithub } from "react-icons/go";
-import UserMenu from "./UserMenu";
+
 import { SafeUser } from "@/types/User";
-import { FC } from "react";
+
+import Navbar from "./Navbar";
+import NavItem from "./Navitem";
+import UserMenu from "./UserMenu";
 
 interface HeaderProps {
   currentUser: SafeUser | null;

@@ -1,19 +1,21 @@
 "use client";
 
-import useLoginModal from "@/hooks/useLoginModal";
-import { Button, buttonVariants } from "../Inputs/Button";
-import { GoMarkGithub } from "react-icons/go";
 import { siteConfiguration } from "@/config";
+import { GoMarkGithub } from "react-icons/go";
+
+import useLoginModal from "@/hooks/useLoginModal";
+
+import { Button, buttonVariants } from "../Inputs/Button";
 
 const HomepageActions = () => {
   const loginModal = useLoginModal();
   return (
-    <div className="flex flex-col w-full gap-3 md:flex-row md:w-auto">
+    <div className="flex w-full flex-col gap-3 md:w-auto md:flex-row">
       <Button
         className={buttonVariants({
           variant: "default",
           size: "lg",
-          className: "md:w-fit font-bold text-md w-full",
+          className: "text-md w-full font-bold md:w-fit",
         })}
         onClick={() => {
           loginModal.onOpen();
@@ -25,7 +27,7 @@ const HomepageActions = () => {
         className={buttonVariants({
           variant: "special",
           size: "lg",
-          className: "md:w-fit font-bold text-md w-full",
+          className: "text-md w-full font-bold md:w-fit",
         })}
         href={siteConfiguration.project.github}
         icon={GoMarkGithub}

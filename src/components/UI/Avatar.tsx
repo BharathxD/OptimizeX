@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { FC, HTMLAttributes } from "react";
+import Image from "next/image";
 import mergeClasses from "@/utils/mergeClasses";
 
 interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
@@ -15,7 +15,7 @@ const Avatar: FC<AvatarProps> = ({ src, name, className }) => {
       <div
         className={mergeClasses(
           className,
-          "flex justify-center items-center text-md p-auto aspect-square w-[25px] h-[25px] bg-green-600 rounded-full"
+          "text-md p-auto flex aspect-square h-[25px] w-[25px] items-center justify-center rounded-full bg-green-600"
         )}
       >
         {name.charAt(0).toUpperCase()}

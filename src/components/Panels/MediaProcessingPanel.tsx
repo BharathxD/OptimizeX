@@ -1,16 +1,17 @@
 "use client";
 
 import React, { FC, Fragment, useCallback, useState } from "react";
-import Dropzone from "../UI/Dropzone";
-import ImageInfoContainer from "./Image/ImageInfoContainer";
-import { Button, buttonVariants } from "../Inputs/Button";
-import ProcessBody from "../Container/Processing";
+import { useRouter } from "next/navigation";
 import { siteMessages } from "@/config";
 import { uploadImage } from "@/utils/s3Utility";
-import { AiOutlineLoading } from "react-icons/ai";
-import DownloadButton from "../Inputs/DownloadButton";
-import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import { AiOutlineLoading } from "react-icons/ai";
+
+import ProcessBody from "../Container/Processing";
+import { Button, buttonVariants } from "../Inputs/Button";
+import DownloadButton from "../Inputs/DownloadButton";
+import Dropzone from "../UI/Dropzone";
+import ImageInfoContainer from "./Image/ImageInfoContainer";
 
 const enum STEP {
   SELECT = 0,
@@ -94,18 +95,18 @@ const MediaProcessingPanel: FC = () => {
     switch (step) {
       case STEP.SELECT:
         return (
-          <div className="flex w-full flex-col gap-4 items-center relative">
+          <div className="relative flex w-full flex-col items-center gap-4">
             <Dropzone setFiles={handleDropzoneChange} />
           </div>
         );
       case STEP.CURATE:
         return (
           <Fragment>
-            <div className="flex justify-center items-center">
+            <div className="flex items-center justify-center">
               <Button
                 className={buttonVariants({
                   variant: "special",
-                  className: `w-full md:w-full mb-4 ${
+                  className: `mb-4 w-full md:w-full ${
                     isLoading && "animate-pulse disabled:opacity-50"
                   }`,
                 })}
@@ -119,9 +120,9 @@ const MediaProcessingPanel: FC = () => {
                 )}
               </Button>
             </div>
-            <div className="flex w-full flex-col gap-4 items-center relative">
+            <div className="relative flex w-full flex-col items-center gap-4">
               <div
-                className={`bg-zinc-900 border border-dashed border-zinc-600 h-auto max-h-[20rem] w-full md:w-[40rem] rounded-lg overflow-auto ${
+                className={`h-auto max-h-[20rem] w-full overflow-auto rounded-lg border border-dashed border-zinc-600 bg-zinc-900 md:w-[40rem] ${
                   isLoading && "bg-zinc-900/50 hover:cursor-not-allowed"
                 }`}
               >
@@ -136,8 +137,8 @@ const MediaProcessingPanel: FC = () => {
         );
       case STEP.PROCESSED:
         return (
-          <div className="flex flex-col gap-1 w-full">
-            <div className="min-w-[25vw] bg-zinc-800 rounded-lg rounded-b-sm">
+          <div className="flex w-full flex-col gap-1">
+            <div className="min-w-[25vw] rounded-lg rounded-b-sm bg-zinc-800">
               {processedFiles &&
                 processedFiles.map((value, index) => {
                   return (
@@ -149,7 +150,7 @@ const MediaProcessingPanel: FC = () => {
                   );
                 })}
             </div>
-            <div className="flex justify-center items-center">
+            <div className="flex items-center justify-center">
               <Button
                 className={buttonVariants({
                   variant: "default",

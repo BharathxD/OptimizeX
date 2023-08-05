@@ -1,9 +1,10 @@
 "use server";
 
-import { getServerSession } from "next-auth/next";
-import { Session } from "next-auth";
 import { authOptions } from "@/libs/auth";
 import database from "@/libs/prismadb";
+import { Session } from "next-auth";
+import { getServerSession } from "next-auth/next";
+
 import { SafeUser } from "@/types/User";
 
 /**
@@ -15,13 +16,12 @@ import { SafeUser } from "@/types/User";
  */
 export const getSession = async () => await getServerSession(authOptions);
 
-
-/** 
+/**
  * `getCurrentUser` is a function that retrieves the current user's information from the database,
  * by using their email address stored in the session.
- * @returns A Promise that resolves to a `SafeUser` object with modified date properties. 
- * If the session or user email is missing, it returns null. 
- * If the currentUser is not found in the database, it also returns null. 
+ * @returns A Promise that resolves to a `SafeUser` object with modified date properties.
+ * If the session or user email is missing, it returns null.
+ * If the currentUser is not found in the database, it also returns null.
  */
 const getCurrentUser = async (): Promise<SafeUser | null> => {
   try {

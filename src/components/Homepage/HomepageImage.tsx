@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { Fragment, useState } from "react";
+import Image from "next/image";
 
 const HomepageImage = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -16,7 +16,7 @@ const HomepageImage = () => {
         unoptimized={true}
         onLoad={handleImageLoad}
         height={100}
-        className={`hidden md:block aspect-video w-[110vh] rounded-lg ${
+        className={`hidden aspect-video w-[110vh] rounded-lg md:block ${
           !isLoaded ? "opacity-0" : "opacity-100"
         } transition-opacity`}
       />

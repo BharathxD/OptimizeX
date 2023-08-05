@@ -1,10 +1,12 @@
 "use client";
 
 import { Fragment, useState } from "react";
-import Typography from "../UI/Typography";
+
 import { SafeUserOptimizations } from "@/types/Optimizations";
-import Optimizations from "./Optimizations";
+
 import { Button, buttonVariants } from "../Inputs/Button";
+import Typography from "../UI/Typography";
+import Optimizations from "./Optimizations";
 
 interface UserOptimizationsProps {
   optimizations: SafeUserOptimizations[] | null;
@@ -26,15 +28,15 @@ const UserOptimizations = ({ optimizations }: UserOptimizationsProps) => {
 
   return (
     <Fragment>
-      <div className="bg-zinc-800/50 p-4 flex rounded-lg rounded-tl-sm rounded-b-sm">
+      <div className="flex rounded-lg rounded-b-sm rounded-tl-sm bg-zinc-800/50 p-4">
         <Typography type="heading">Optimization History</Typography>
       </div>
-      <div className="flex w-full flex-row gap-2 justify-center items-center">
+      <div className="flex w-full flex-row items-center justify-center gap-2">
         {maxPages !== 1 &&
           Array.from({ length: maxPages }).map((_, i) => (
             <div
               key={i}
-              className={`p-2 flex items-center justify-center w-full rounded-sm cursor-pointer  ${
+              className={`flex w-full cursor-pointer items-center justify-center rounded-sm p-2  ${
                 currentPage === i + 1
                   ? "bg-zinc-200 text-zinc-800"
                   : "bg-zinc-800 text-zinc-200"
@@ -46,13 +48,13 @@ const UserOptimizations = ({ optimizations }: UserOptimizationsProps) => {
           ))}
       </div>
       <div
-        className={`flex flex-col bg-zinc-800/50 p-3 rounded-lg gap-4 h-full rounded-t-sm rounded-l-sm ${
+        className={`flex h-full flex-col gap-4 rounded-lg rounded-l-sm rounded-t-sm bg-zinc-800/50 p-3 ${
           optimizations && optimizations?.length <= 4 && "-mt-2"
         }`}
       >
         {(!optimizations || optimizations.length === 0) && (
-          <div className="flex flex-col gap-4 justify-center items-center h-full w-full text-2xl font-bold">
-            <div className="flex flex-col gap-4 justify-center items-center text-center">
+          <div className="flex h-full w-full flex-col items-center justify-center gap-4 text-2xl font-bold">
+            <div className="flex flex-col items-center justify-center gap-4 text-center">
               <div className="text-light">
                 Oops! We couldn&apos;t find any previous optimization records
               </div>
