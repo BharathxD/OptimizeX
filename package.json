@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
+    "typecheck": "tsc --noEmit",
     "format:w": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:c": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
