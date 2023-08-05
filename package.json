@@ -2,6 +2,7 @@
   "name": "optimizex",
   "version": "0.1.0",
   "private": true,
+  "description": "This repository contains the code for the fullstack client application of OptimizeX. It includes the NextJS, TypeScript, MongoDB, NextAuth, React, and TailwindCSS implementation, as well as the frontend components, pages, and logic for uploading and receiving optimized images.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BharathxD/OptimizeX.git"
