@@ -9,9 +9,7 @@ import UserOptimizations from "@/components/Profile/UserOptimizations";
 export const generateMetadata = async (): Promise<Metadata> => {
   const currentUser = await getCurrentUser();
   const title = `${currentUser?.name}'s Optimizations`;
-  return {
-    title: title,
-  };
+  return { title };
 };
 
 const OptimizationsPage = async () => {
