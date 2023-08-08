@@ -1,4 +1,4 @@
-export const siteConfiguration = {
+const siteConfiguration = {
   items: [],
   links: {
     github: "https://github.com/BharathxD/OptimizeX-Client",
@@ -9,7 +9,7 @@ export const siteConfiguration = {
   },
 };
 
-export const siteMessages = {
+const siteMessages = {
   heading: {
     withFiles: "Alright, one last step.",
     withoutFiles: "Drop your image(s) below.",
@@ -24,3 +24,5 @@ export const siteMessages = {
       "Instantly access your optimized pictures after processing.",
   },
 };
+
+export { siteConfiguration, siteMessages };
