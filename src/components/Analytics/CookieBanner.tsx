@@ -7,7 +7,7 @@ import { getLocalStorage, setLocalStorage } from "@/libs/storageHelper";
 import { Button, buttonVariants } from "../Inputs/Button";
 
 const CookieBanner = () => {
-  const [cookieConsent, setCookieConsent] = useState(false);
+  const [cookieConsent, setCookieConsent] = useState<boolean | null>(false);
 
   useEffect(() => {
     const storedCookieConsent = getLocalStorage("cookie_consent", null);
