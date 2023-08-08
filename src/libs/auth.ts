@@ -1,12 +1,16 @@
+import argon2 from "argon2";
 import prisma from "@/libs/prismadb";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import argon2 from "argon2";
-import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import type { NextAuthOptions } from "next-auth";
 
-export const authOptions: AuthOptions = {
+/**
+ * Authentication options for NextAuth.
+ * @type { NextAuthOptions }
+ */
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GithubProvider({
