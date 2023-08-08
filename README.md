@@ -41,13 +41,13 @@ To get started with OptimizeX, follow the steps below:
 **Clone the repository:**
 
 ```bash
-git clone https://github.com/BharathxD/OptimizeX-Client
+git clone https://github.com/BharathxD/OptimizeX
 ```
 
 **Install the dependencies:**
 
 ```bash
-cd optimizex-client
+cd optimizex
 npm install
 ```
 
