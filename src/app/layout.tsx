@@ -3,6 +3,7 @@ import "./globals.css";
 import { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import getCurrentUser from "@/actions/getCurrentUser";
+import { siteConfiguration } from "@/config";
 import mergeClasses from "@/utils/mergeClasses";
 
 import RtkProvider from "@/providers/RtkProvider";
@@ -20,18 +21,15 @@ const font = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "OptimizeX",
-  description:
-    "Effortlessly bulk-generate optimized versions of your images with our free and open-source tool.",
+  title: siteConfiguration.title,
+  description: siteConfiguration.description,
   openGraph: {
-    title: "OptimizeX",
-    description:
-      "Effortlessly bulk-generate optimized versions of your images with our free and open-source tool.",
-    images:
-      "https://media-bucket-project.s3.ap-south-1.amazonaws.com/og-render.png",
-    url: "https://optimizex.vercel.app/",
-    type: "website",
-    siteName: "OptimizeX",
+    title: siteConfiguration.title,
+    description: siteConfiguration.openGraph.description,
+    images: siteConfiguration.openGraph.description,
+    url: siteConfiguration.openGraph.url,
+    type: siteConfiguration.openGraph.type,
+    siteName: siteConfiguration.openGraph.siteName,
   },
   viewport: {
     width: "device-width",
