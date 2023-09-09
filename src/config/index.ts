@@ -1,3 +1,8 @@
+
+/**
+ * Configuration object for site-specific settings.
+ * @type {SiteConfiguration}
+ */
 const siteConfiguration = {
   title: "OptimizeX",
   description:
