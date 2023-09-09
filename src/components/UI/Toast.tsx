@@ -5,6 +5,12 @@ interface ToastProps {
   type: "error" | "success";
 }
 
+/**
+ * Toast component for displaying error or success messages.
+ * @param {string} message - The message to be displayed in the toast.
+ * @param {"error" | "success"} type - The type of toast, either "error" or "success".
+ * @returns {void}
+ */
 const Toast = (message: ToastProps["message"], type: ToastProps["type"]) => {
   const style = {
     style: {
