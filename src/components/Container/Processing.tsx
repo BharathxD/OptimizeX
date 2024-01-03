@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, ReactNode } from "react";
+import { FC, memo, ReactNode } from "react";
 
 interface WrapperProps {
   header: ReactNode;
@@ -24,4 +24,6 @@ const ProcessBody: FC<WrapperProps> = ({ header, body, footer }) => {
   );
 };
 
-export default ProcessBody;
+ProcessBody.displayName = "ProcessBody";
+
+export default memo(ProcessBody);

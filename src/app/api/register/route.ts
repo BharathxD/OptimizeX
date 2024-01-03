@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/libs/prismadb";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import argon2 from "argon2";
 import { StatusCodes } from "http-status-codes";
 import { omit } from "lodash";
@@ -16,6 +17,14 @@ export async function POST(req: NextRequest) {
   try {
     // Extract name, email, and password from the request body
     const { name, email, password } = await req.json();
+
+    // Validate params
+    if (!name || !email || !password) {
+      return NextResponse.json(
+        { message: "Invalid user information" },
+        { status: StatusCodes.BAD_REQUEST }
+      );
+    }
 
     // Hash the password using Argon2
     const hashedPassword = await argon2.hash(password);
@@ -36,9 +45,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(safeUser, {
       status: StatusCodes.CREATED,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Handle specific errors and return appropriate JSON responses
-    if (error.code === "P2002") {
+    if (
+      error instanceof PrismaClientKnownRequestError &&
+      error.code === "P2002"
+    ) {
       return NextResponse.json(
         { message: "User already exists" },
         { status: StatusCodes.CONFLICT }

@@ -19,12 +19,14 @@ const enum STEP {
   PROCESSED = 2,
 }
 
+type ProcessedFile = { key: string; file: { name: string; type: string } };
+
 const MediaProcessingPanel: FC = () => {
   const router = useRouter();
   const [selectedFiles, setSelectedFiles] = useState<File[] | null>(null);
-  const [processedFiles, setProcessedFiles] = useState<
-    { key: string; file: { name: string; type: string } }[] | []
-  >([]);
+  const [processedFiles, setProcessedFiles] = useState<ProcessedFile[] | []>(
+    []
+  );
   const [step, setStep] = useState<STEP>(STEP.SELECT);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -44,7 +46,7 @@ const MediaProcessingPanel: FC = () => {
     setStep(STEP.CURATE);
   }, []);
 
-  const handleBeginProcessing = async () => {
+  const handleBeginProcessing = useCallback(async () => {
     setIsLoading(true);
     if (selectedFiles && selectedFiles.length > 0) {
       try {
@@ -63,9 +65,9 @@ const MediaProcessingPanel: FC = () => {
         setIsLoading(false);
       }
     }
-  };
+  }, [router, selectedFiles]);
 
-  const renderHeading = () => {
+  const renderHeading = useCallback(() => {
     switch (step) {
       case STEP.SELECT:
         return siteMessages.heading.withoutFiles;
@@ -76,9 +78,9 @@ const MediaProcessingPanel: FC = () => {
       default:
         return null;
     }
-  };
+  }, [step]);
 
-  const renderBody = () => {
+  const renderBody = useCallback(() => {
     switch (step) {
       case STEP.SELECT:
         return siteMessages.body.withoutFiles;
@@ -89,9 +91,9 @@ const MediaProcessingPanel: FC = () => {
       default:
         return null;
     }
-  };
+  }, [step]);
 
-  const renderFooter = () => {
+  const renderFooter = useCallback(() => {
     switch (step) {
       case STEP.SELECT:
         return (
@@ -169,7 +171,15 @@ const MediaProcessingPanel: FC = () => {
       default:
         return null;
     }
-  };
+  }, [
+    handleBeginProcessing,
+    handleDropzoneChange,
+    handleEdit,
+    isLoading,
+    processedFiles,
+    selectedFiles,
+    step,
+  ]);
 
   return (
     <ProcessBody

@@ -20,6 +20,7 @@ const getLocalStorage = <T>(key: string, defaultValue: T): T => {
  * @param key - The key for the value in local storage.
  * @param value - The value to be stored in local storage.
  */
-const setLocalStorage = (key: string, value: any) => localStorage.setItem(key, JSON.stringify(value));
+const setLocalStorage = (key: string, value: any) =>
+  localStorage.setItem(key, JSON.stringify(value));
 
 export { getLocalStorage, setLocalStorage };

@@ -1,10 +1,10 @@
-import argon2 from "argon2";
 import prisma from "@/libs/prismadb";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import argon2 from "argon2";
+import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import type { NextAuthOptions } from "next-auth";
 
 /**
  * Authentication options for NextAuth.

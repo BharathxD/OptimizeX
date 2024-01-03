@@ -51,8 +51,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const s3UploadUrl = await s3.getSignedUrlPromise("putObject", s3Params);
 
     // Set expiration date
-    const oneDay = 24 * 60 * 60 * 1000;
-    const expiredAt = new Date(new Date().getTime() + oneDay);
+    const ONE_DAY_IN_MILLISECONDS = 24 * 60 * 60 * 1000;
+    const expiredAt = new Date(new Date().getTime() + ONE_DAY_IN_MILLISECONDS);
 
     // Create optimized image record in the database
     const createdImage = await prisma.optimizedImage.create({

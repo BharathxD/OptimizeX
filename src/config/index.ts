@@ -1,4 +1,3 @@
-
 /**
  * Configuration object for site-specific settings.
  * @type {SiteConfiguration}
@@ -9,13 +8,14 @@ const siteConfiguration = {
     "Effortlessly bulk-generate optimized versions of your images with our free and open-source tool.",
   openGraph: {
     title: "OptimizeX",
-    description: "Effortlessly bulk-generate optimized versions of your images with our free and open-source tool.",
+    description:
+      "Effortlessly bulk-generate optimized versions of your images with our free and open-source tool.",
     images:
       "https://media-bucket-project.s3.ap-south-1.amazonaws.com/og-render.png",
     url: "https://optimizex.vercel.app/",
     type: "website",
     siteName: "OptimizeX",
-  },
+  } as const,
   items: [],
   links: {
     github: "https://github.com/BharathxD/OptimizeX-Client",
@@ -24,7 +24,7 @@ const siteConfiguration = {
   project: {
     github: "https://github.com/BharathxD/ConvertX-Client",
   },
-} as const;
+};
 
 const siteMessages = {
   heading: {

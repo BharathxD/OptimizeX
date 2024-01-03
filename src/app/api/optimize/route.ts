@@ -63,9 +63,9 @@ export async function GET(req: NextRequest) {
     return new NextResponse(response.Body as Buffer, {
       status: StatusCodes.OK,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Handle specific error codes
-    if (error.code === "NoSuchKey") {
+    if ((error as { code: string }).code === "NoSuchKey") {
       return NextResponse.json(
         { message: "Image not found" },
         { status: StatusCodes.NOT_FOUND }
